@@ -1,6 +1,6 @@
-const app = require('./app')
+const app = require("./app");
 
-const PORT = 8080
+const PORT = 8080;
 app.listen(PORT, () => {
-  console.log(`Request some furry pals at port ${PORT}`)
-})
+  console.log(`Join server is running on ${PORT}`);
+});

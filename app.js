@@ -1,62 +1,98 @@
-const express = require("express")
-const morgan = require("morgan")
-const { join } = require("path")
-const { getPets, addPet, removePet } = require("./petdata")
-const webpack = require("webpack")
-const middleware = require("webpack-dev-middleware")
-const webpackConfig = require("./webpack.config")
+const express = require("express");
+const morgan = require("morgan");
+const { join } = require("path");
+const webpack = require("webpack");
+const middleware = require("webpack-dev-middleware");
+const webpackConfig = require("./webpack.config");
+const config = require("./config");
+require("dotenv").config();
+const app = express();
 
-const app = express()
+const AccessToken = require("twilio").jwt.AccessToken;
+const VideoGrant = AccessToken.VideoGrant;
 
-// Body Parsing
-app.use(express.json())
+const MAX_ALLOWED_SESSION_DURATION = 1800;
+const twilioAccountSid = process.env.TWILIO_ACCOUNT_SID;
+const twilioApiKeySID = process.env.TWILIO_API_KEY_SID;
+const twilioApiKeySecret = process.env.TWILIO_API_KEY_SECRET;
 
-// Request/Response Logging
-app.use(morgan("dev"))
+app.use(express.json());
+app.use(morgan("dev"));
 
-// GET all the pets
-app.get("/api/pets", (req, res) => {
-  // Wanna see what would happen if this endpoint were to fail? Uncomment
-  // this line and comment out the other responses:
-  // res.sendStatus(500)
+const sendTokenResponse = (token, res) => {
+  res.set("Content-Type", "application/json");
+  res.send(
+    JSON.stringify({
+      token: token.toJwt(),
+    })
+  );
+};
 
-  // Wanna see what would happen if this endpoint were to take a whole second?
-  // Uncomment this line and comment out the other responses:
-  // setTimeout(() => {
-  //   res.json(getPets())
-  // }, 1000)
+const generateToken = (config) => {
+  return new AccessToken(
+    config.twilio.accountSid,
+    config.twilio.apiKey,
+    config.twilio.apiSecret
+  );
+};
 
-  // This is how this endpoint SHOULD behave:
-  res.json(getPets())
-})
+const videoToken = (identity, room, config) => {
+  let videoGrant;
+  if (typeof room !== "undefined") {
+    videoGrant = new VideoGrant({ room });
+  } else {
+    videoGrant = new VideoGrant();
+  }
+  const token = generateToken(config);
+  token.addGrant(videoGrant);
+  token.identity = identity;
+  return token;
+};
 
-// POST a new pet
-app.post("/api/pets", (req, res) => {
-  console.log("server received this request body:\n", req.body)
-  const { name, description, species } = req.body
-  const newPet = { name, description, species }
-  addPet(newPet)
-  res.json(newPet)
-})
+app.get("/token", (req, res) => {
+  console.log(config.twilio, "config FILEEEEEEEE");
+  const { identity, roomName } = req.query;
+  const token = new AccessToken(
+    twilioAccountSid,
+    twilioApiKeySID,
+    twilioApiKeySecret,
+    {
+      ttl: MAX_ALLOWED_SESSION_DURATION,
+    }
+  );
+  token.identity = identity;
+  const videoGrant = new VideoGrant({ room: roomName });
+  token.addGrant(videoGrant);
+  res.send(token.toJwt());
+  console.log(`issued token for ${identity} in room ${roomName}`);
+});
 
-// DELETE pet with the given id
-app.delete("/api/pets/:id", (req, res) => {
-  const id = Number(req.params.id)
-  removePet(id)
-  res.sendStatus(204)
-})
+app.post("/video/token", (req, res) => {
+  console.log("is the post route hitting now?");
+  const identity = req.body.identity;
+  const room = req.body.room;
+  const token = videoToken(identity, room, config);
+  sendTokenResponse(token, res);
+});
+
+app.get("/video/token", (req, res) => {
+  const identity = req.query.identity;
+  const room = req.query.room;
+  const token = videoToken(identity, room, config);
+  sendTokenResponse(token, res);
+});
 
 // Webpack Dev Middleware
-const compiler = webpack(webpackConfig)
+const compiler = webpack(webpackConfig);
 app.use(
   middleware(compiler, {
     // publicPath: join(__dirname, "public"),
     publicPath: webpackConfig.output.publicPath,
-    writeToDisk: true
+    writeToDisk: true,
   })
-)
+);
 
 // static file-serving middleware
-app.use(express.static(join(__dirname, "public")))
+app.use(express.static(join(__dirname, "public")));
 
-module.exports = app
+module.exports = app;
