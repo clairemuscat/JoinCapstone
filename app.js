@@ -1,11 +1,11 @@
 const express = require("express");
+require("dotenv").config();
 const morgan = require("morgan");
 const { join } = require("path");
 const webpack = require("webpack");
 const middleware = require("webpack-dev-middleware");
 const webpackConfig = require("./webpack.config");
 const config = require("./config");
-require("dotenv").config();
 const app = express();
 
 const AccessToken = require("twilio").jwt.AccessToken;
@@ -86,7 +86,7 @@ app.get("/video/token", (req, res) => {
 const compiler = webpack(webpackConfig);
 app.use(
   middleware(compiler, {
-    // publicPath: join(__dirname, "public"),
+    publicPath: join(__dirname, "public"),
     publicPath: webpackConfig.output.publicPath,
     writeToDisk: true,
   })

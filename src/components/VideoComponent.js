@@ -22,7 +22,8 @@ const VideoComponent = (props) => {
         console.log("is the post hitting???????");
         console.log({ username, roomName });
         const { data } = await axios.post("/video/token", {
-          data: { identity: username, room: roomName },
+          identity: username,
+          room: roomName,
         });
 
         setToken(data.token);
