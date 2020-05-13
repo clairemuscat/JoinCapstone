@@ -1,4 +1,5 @@
 import React from "react";
+import ConnectPopUp from "./ConnectPopUp";
 
 const Lobby = ({
   username,
@@ -21,7 +22,7 @@ const Lobby = ({
           required
         />
       </div>
-
+      <ConnectPopUp />
       <div>
         <label htmlFor="room">Room name:</label>
         <input

@@ -78,10 +78,10 @@ button {
   border-radius: 6px;
   border: 1px solid transparent;
 }
-button:hover {
-  filter: brightness(150%);
-}
-
+button:hover {  <img
+  src="https://static.boredpanda.com/blog/wp-content/uploads/2014/03/cute-smiling-animals-251.jpg"
+  alt=""
+></img>
 .room {
   position: relative;
 }
@@ -140,4 +140,30 @@ footer {
 
 footer a {
   color: #fff;
+}
+
+.bg-modal {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  width: 500px;
+  height: 300px;
+  background-color: white;
+  border-radius: 4px;
+  text-align: center;
+  padding: 20px;
+}
+
+input {
+  width: 50%;
+  display: block;
+  margin: 15px auto;
 }
