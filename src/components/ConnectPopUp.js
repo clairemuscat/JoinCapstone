@@ -10,3 +10,5 @@ const ConnectPopUp = () => {
 }
 
 export default ConnectPopUp;
+
+// hit localhost, page has a pop-up, with name and asks if you want to connect. click connect, connect to room.

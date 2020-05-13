@@ -78,10 +78,10 @@ button {
   border-radius: 6px;
   border: 1px solid transparent;
 }
-button:hover {  <img
-  src="https://static.boredpanda.com/blog/wp-content/uploads/2014/03/cute-smiling-animals-251.jpg"
-  alt=""
-></img>
+button:hover {
+  filter: brightness(150%);
+}
+
 .room {
   position: relative;
 }
