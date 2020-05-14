@@ -1,10 +1,9 @@
 import React from "react";
-import { VideoComponent, NewUserMandatory } from "./components";
+import { VideoComponent,  } from "./components";
 
 function App() {
   return (
     <div className="app">
-      <NewUserMandatory />
       <VideoComponent />
     </div>
   );

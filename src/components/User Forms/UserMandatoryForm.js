@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 
 // how to upload pictures with react forms
 
-export default function NewUserMandatory() {
+export default function UserMandatoryForm() {
   const { register, handleSubmit, errors } = useForm();
   const onSubmit = data => console.log(data);
   console.log(errors);
