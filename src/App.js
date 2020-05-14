@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './theme';
 import {
@@ -9,9 +9,14 @@ import {
   MatchingInterface,
 } from './components';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import firebase from 'firebase';
 
 function App() {
   const [open, setOpen] = useState(false);
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((user) => console.log(user));
+  });
+
   return (
     <div className="app">
       <ThemeProvider theme={theme}>
