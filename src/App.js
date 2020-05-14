@@ -12,6 +12,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import firebase from 'firebase';
 import { connect } from 'react-redux';
 import { setUser } from './store/user';
+import { db } from '.';
+console.log(db, 'db');
 
 function App(props) {
   const { setUser, isLoggedIn } = props;
@@ -19,6 +21,15 @@ function App(props) {
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => setUser(user));
+  });
+
+  useEffect(() => {
+    const getSampleProfile = async () => {
+      const snap = await db.collection('users').doc('example').get();
+      const profile = snap.data();
+      console.log(profile);
+    };
+    getSampleProfile();
   });
 
   return (

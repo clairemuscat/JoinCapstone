@@ -10,7 +10,14 @@ import { Provider } from 'react-redux';
 import store from './store';
 // import * as serviceWorker from './serviceWorker';
 
-const fire = firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
+export const db = firebase.firestore();
+
+// const getSampleProfile = async () => {
+//   const profile = await db.collection('users').get('example');
+//   console.log(profile, 'profile');
+// };
+// getSampleProfile();
 
 ReactDOM.render(
   <React.StrictMode>
