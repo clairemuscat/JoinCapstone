@@ -1,6 +1,5 @@
 import React from "react";
 
-
 const Lobby = ({
   username,
   handleUsernameChange,
@@ -10,7 +9,7 @@ const Lobby = ({
 }) => {
   console.log(handleSubmit);
   return (
-    <form onSubmit={handleSubmit} >
+    <form onSubmit={handleSubmit}>
       <h2>Enter a Room</h2>
       <div>
         <label htmlFor="name">Name:</label>

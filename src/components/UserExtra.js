@@ -8,19 +8,20 @@ export default function NewUserExtra() {
   
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <label></label>
+
+      <label>Title: </label>
       <input type="text" placeholder="Title" name="Title" ref={register} />
 
-      <label></label>
+      <label>Interests: </label>
       <input type="text" placeholder="Interests" name="Interests" ref={register} />
 
-      <label></label>
+      <label>Location: </label>
       <input type="text" placeholder="Location" name="Location" ref={register} />
 
-      <label></label>
+      <label>Technologies: </label>
       <input type="text" placeholder="Technologies" name="Technologies" ref={register} />
 
-      <label></label>
+      <label>Gender: </label>
       <input type="text" placeholder="Gender" name="Gender" ref={register} />
 
       <input type="submit" />

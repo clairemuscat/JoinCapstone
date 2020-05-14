@@ -14,7 +14,7 @@ export default function NewUserMandatory() {
   
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-
+      <h1>Create your .join() profile</h1>
       <label>First Name: </label>
       <input type="text" placeholder="First name" name="First name" ref={register({required: true, maxLength: 20})} />
 
