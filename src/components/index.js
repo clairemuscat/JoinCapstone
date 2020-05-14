@@ -10,3 +10,5 @@ export { default as Connections } from './Connections';
 export { default as MatchingInterface } from './MatchingInterface';
 export { default as Profile } from './Profile';
 export { default as Chat } from './Chat';
+export { default as Burger } from './Burger';
+export { Menu } from './Burger';
