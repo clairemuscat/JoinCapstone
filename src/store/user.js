@@ -5,7 +5,7 @@ export const setUser = (user) => ({
   user,
 });
 
-export default userReducer = (state = {}, action) => {
+export default (state = {}, action) => {
   switch (action.type) {
     case SET_USER:
       return action.user;
