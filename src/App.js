@@ -13,24 +13,29 @@ import firebase from 'firebase';
 import { connect } from 'react-redux';
 import { setUser } from './store/user';
 import { db } from '.';
+import { setProfile } from './store/profile';
+import emptyProfile from '../emptyProfile';
 
 function App(props) {
-  const { setUser, isLoggedIn } = props;
+  const { setUser, setProfile, isLoggedIn } = props;
   const [open, setOpen] = useState(false);
 
-  // Listen for auth state change
+  // Listen for auth state change, set user and profile in state
   useEffect(() => {
-    firebase.auth().onAuthStateChanged((user) => setUser(user));
-  });
-  // Set logged in user's profile
-  useEffect(() => {
-    const getSampleProfile = async () => {
-      const snap = await db.collection('users').doc('example').get();
-      const profile = snap.data();
-      console.log(profile);
-    };
-    getSampleProfile();
-  });
+    firebase.auth().onAuthStateChanged(async (user) => {
+      setUser(user);
+      const snap = await db.collection('users').doc(user.uid).get();
+      if (snap.exists) {
+        const profile = snap.data();
+        setProfile(profile);
+      } else {
+        await db.collection('users').doc(user.uid).set(emptyProfile);
+        const snap = await db.collection('users').doc(user.uid).get();
+        const profile = snap.data();
+        setProfile(profile);
+      }
+    });
+  }, []);
 
   return (
     <div className="app">
@@ -62,6 +67,7 @@ const mapState = (state) => ({
 
 const mapDispatch = (dispatch) => ({
   setUser: (user) => dispatch(setUser(user)),
+  setProfile: (profile) => dispatch(setProfile(profile)),
 });
 
 export default connect(mapState, mapDispatch)(App);

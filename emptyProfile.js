@@ -1,4 +1,4 @@
-export default {
+const emptyProfile = {
   city: '',
   state_province: '',
   country: '',
@@ -12,3 +12,5 @@ export default {
     about: '',
   },
 };
+
+export default emptyProfile;
