@@ -27,9 +27,6 @@ export default function UserProfileForm() {
       <label>Gender: </label>
       <input type="text" placeholder="Gender" name="Gender" ref={register} />
 
-      <label>Gender: </label>
-      <input type="text" placeholder="Gender" name="Gender" ref={register} />
-
       <input type="submit" />
     </form>
   );

@@ -7,6 +7,7 @@ import {
   LandingPage,
   AccountPage,
   MatchingInterface,
+  UserMandatoryForm
 } from './components';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
@@ -25,6 +26,7 @@ function App() {
           <Route exact path="/" component={LandingPage} />
           <Route path="/account" component={AccountPage} />
           <Route path="/connect" component={MatchingInterface} />
+          <Route path="/userCreation" component={UserMandatoryForm} />
         </Switch>
       </Router>
     </div>
