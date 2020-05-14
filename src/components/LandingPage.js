@@ -19,7 +19,7 @@ function LandingPage(props) {
 
 const mapState = (state) => ({
   user: state.user,
-  isLoggedIn: !!state.user.uid,
+  isLoggedIn: state.user ? !!state.user.uid : false,
 });
 
 export default connect(mapState)(LandingPage);

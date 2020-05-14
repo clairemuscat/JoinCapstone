@@ -10,6 +10,6 @@ export default (state = {}, action) => {
     case SET_USER:
       return action.user;
     default:
-      return {};
+      return state;
   }
 };

@@ -57,7 +57,7 @@ function App(props) {
 
 const mapState = (state) => ({
   user: state.user,
-  isLoggedIn: !!state.user.uid,
+  isLoggedIn: state.user ? !!state.user.uid : false,
 });
 
 const mapDispatch = (dispatch) => ({

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
+// import functions from 'firebase-functions';
 import firebaseConfig from '../firebaseConfig';
 import { Provider } from 'react-redux';
 import store from './store';
@@ -17,15 +18,15 @@ export const db = firebase.firestore();
 // };
 // getSampleProfile();
 
-// const createProfileOnUserCreation = admin.functions.auth
-//   .user()
-//   .onCreate(async (user) => {
-//     try {
-//       await db.collection('users').doc(user.uid).set(emptyProfile);
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   });
+const createProfileOnUserCreation = functions.auth
+  .user()
+  .onCreate(async (user) => {
+    try {
+      await db.collection('users').doc(user.uid).set(emptyProfile);
+    } catch (error) {
+      console.error(error);
+    }
+  });
 
 ReactDOM.render(
   <React.StrictMode>
