@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import { ThemeProvider } from 'styled-components';
-import { theme } from './theme';
+import React, { useState } from "react";
+import { ThemeProvider } from "styled-components";
+import { theme } from "./theme";
 import {
   Burger,
   Menu,
   LandingPage,
   AccountPage,
   MatchingInterface,
-} from './components';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+} from "./components";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   const [open, setOpen] = useState(false);
