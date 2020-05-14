@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const morgan = require('morgan');
 const { join } = require('path');
 const webpack = require('webpack');
@@ -93,5 +94,10 @@ app.use(
 
 // static file-serving middleware
 app.use(express.static(join(__dirname, 'public')));
+
+// sends index.html
+app.use('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/index.html'));
+});
 
 module.exports = app;

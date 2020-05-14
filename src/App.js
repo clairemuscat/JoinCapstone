@@ -1,5 +1,5 @@
 import React from 'react';
-import { LandingPage } from './components';
+import { LandingPage, AccountPage, MatchingInterface } from './components';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
@@ -8,6 +8,8 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={LandingPage} />
+          <Route path="/account" component={AccountPage} />
+          <Route path="/connect" component={MatchingInterface} />
         </Switch>
       </Router>
     </div>
