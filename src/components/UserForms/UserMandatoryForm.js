@@ -1,33 +1,58 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
+import React from "react";
+import { useForm } from "react-hook-form";
 
-// Want to try out this react hook form.
-// Entry page, followed by second page 
-// which will have non-mandatory profile options
-
-// how to upload pictures with react forms
+// Using react-hook-form https://react-hook-form.com/
 
 export default function UserMandatoryForm() {
   const { register, handleSubmit, errors } = useForm();
-  const onSubmit = data => console.log(data);
+  const onSubmit = (data) => console.log(data);
   console.log(errors);
-  
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <h1>Create your .join() profile</h1>
-      <label>First Name: </label>
-      <input type="text" placeholder="First name" name="First name" ref={register({required: true, maxLength: 20})} />
+    <form className="user-form" onSubmit={handleSubmit(onSubmit)}>
+      <h1 className="user-greeting">Create your .join() profile</h1>
+      <label className="user-labels">First Name: </label>
+      <input className="form-inputs"
+        type="text"
+        placeholder="First Name"
+        name="firstName"
+        ref={register({ required: true, maxLength: 20 })}
+      />
+      {errors.firstName && errors.firstName.type === "required" && (
+        <p className="required"> This is required </p>
+      )}
 
-      <label>Last Name: </label>
-      <input type="text" placeholder="Last name" name="Last name" ref={register({required: true, maxLength: 20})} />
+      <label className="user-labels">Last Name: </label>
+      <input className="form-inputs"
+        type="text"
+        placeholder="Last Name"
+        name="lastName"
+        ref={register({ required: true, maxLength: 20 })}
+      />
+      {errors.lastName && errors.lastName.type === "required" && (
+        <p className="required"> This is required </p>
+      )}
 
-      <label>UserName: </label>
-      <input type="text" placeholder="User Name" name="User Name" ref={register({required: true, maxLength: 15})} />
+      <label className="user-labels">UserName: </label>
+      <input className="form-inputs"
+        type="text"
+        placeholder="User Name"
+        name="userName"
+        ref={register({ required: true, maxLength: 15 })}
+      />
+      {errors.userName && errors.userName.type === "required" && (
+        <p className="required"> This is required </p>
+      )}
 
-      <label>Profile Picture: </label>
-      <input type="text" placeholder="Profile Picture" name="Profile Picture" ref={register({required: true})} />
+      <label className="user-labels">Profile Picture: </label>
+      <input className="form-inputs"
+        type="file"
+        placeholder="Profile Picture"
+        name="profilePicture"
+        ref={register}
+      />
 
-      <input type="submit" />
+      <input className="form-inputs" type="submit" />
     </form>
   );
 }
