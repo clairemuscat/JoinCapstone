@@ -5,10 +5,8 @@ import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import firebaseConfig from '../firebaseConfig';
 import { Provider } from 'react-redux';
-// React-redux has a provider element
-// with which we pass down our store to react
 import store from './store';
-// import * as serviceWorker from './serviceWorker';
+import emptyProfile from '../emptyProfile';
 
 firebase.initializeApp(firebaseConfig);
 export const db = firebase.firestore();
@@ -18,6 +16,16 @@ export const db = firebase.firestore();
 //   console.log(profile, 'profile');
 // };
 // getSampleProfile();
+
+// const createProfileOnUserCreation = admin.functions.auth
+//   .user()
+//   .onCreate(async (user) => {
+//     try {
+//       await db.collection('users').doc(user.uid).set(emptyProfile);
+//     } catch (error) {
+//       console.error(error);
+//     }
+//   });
 
 ReactDOM.render(
   <React.StrictMode>

@@ -13,16 +13,16 @@ import firebase from 'firebase';
 import { connect } from 'react-redux';
 import { setUser } from './store/user';
 import { db } from '.';
-console.log(db, 'db');
 
 function App(props) {
   const { setUser, isLoggedIn } = props;
   const [open, setOpen] = useState(false);
 
+  // Listen for auth state change
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => setUser(user));
   });
-
+  // Set logged in user's profile
   useEffect(() => {
     const getSampleProfile = async () => {
       const snap = await db.collection('users').doc('example').get();
