@@ -11,8 +11,9 @@ export default function UserMandatoryForm() {
   return (
     <form className="user-form" onSubmit={handleSubmit(onSubmit)}>
       <h1 className="user-greeting">Create your .join() profile</h1>
-      <label className="user-labels">First Name: </label>
-      <input className="form-inputs"
+      <label className="user-labels"></label>
+      <input
+        className="form-inputs"
         type="text"
         placeholder="First Name"
         name="firstName"
@@ -22,8 +23,9 @@ export default function UserMandatoryForm() {
         <p className="required"> This is required </p>
       )}
 
-      <label className="user-labels">Last Name: </label>
-      <input className="form-inputs"
+      <label className="user-labels"></label>
+      <input
+        className="form-inputs"
         type="text"
         placeholder="Last Name"
         name="lastName"
@@ -33,8 +35,9 @@ export default function UserMandatoryForm() {
         <p className="required"> This is required </p>
       )}
 
-      <label className="user-labels">UserName: </label>
-      <input className="form-inputs"
+      <label className="user-labels"></label>
+      <input
+        className="form-inputs"
         type="text"
         placeholder="User Name"
         name="userName"
@@ -45,12 +48,71 @@ export default function UserMandatoryForm() {
       )}
 
       <label className="user-labels">Profile Picture: </label>
-      <input className="form-inputs"
+      <input
+        className="form-inputs"
         type="file"
         placeholder="Profile Picture"
         name="profilePicture"
         ref={register}
       />
+
+      <label className="user-labels"></label>
+      <input
+        className="form-inputs"
+        type="text"
+        placeholder="Job Title"
+        name="Title"
+        ref={register}
+      />
+
+      <label className="user-labels"></label>
+      <input
+        className="form-inputs"
+        type="text"
+        placeholder="Interests"
+        name="Interests"
+        ref={register}
+      />
+
+      <label className="user-labels"></label>
+      <input
+        className="form-inputs"
+        type="text"
+        placeholder="Location"
+        name="Location"
+        ref={register}
+      />
+
+      <label className="user-labels"></label>
+      <input
+        className="form-inputs"
+        type="text"
+        placeholder="Technologies"
+        name="Technologies"
+        ref={register}
+      />
+
+      <label className="user-labels"></label>
+      <input
+        className="form-inputs"
+        type="email"
+        placeholder="Email"
+        name="Email"
+        ref={register}
+      />
+
+      <label className="user-labels">Gender: </label>
+      <select className="form-inputs" name="Gender" ref={register}>
+        <option>
+          Select...
+        </option>
+        <option>
+          Male
+        </option>
+        <option>
+          Female
+        </option>
+      </select>
 
       <input className="form-inputs" type="submit" />
     </form>
