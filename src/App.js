@@ -14,7 +14,7 @@ import { connect } from 'react-redux';
 import { setUser } from './store/user';
 import { db } from '.';
 import { setProfile } from './store/profile';
-import emptyProfile from '../emptyProfile';
+import { generateNewProfile } from './utils';
 
 function App(props) {
   const { setUser, setProfile, isLoggedIn } = props;
@@ -29,7 +29,10 @@ function App(props) {
         const profile = snap.data();
         setProfile(profile);
       } else {
-        await db.collection('users').doc(user.uid).set(emptyProfile);
+        await db
+          .collection('users')
+          .doc(user.uid)
+          .set(generateNewProfile(user));
         const snap = await db.collection('users').doc(user.uid).get();
         const profile = snap.data();
         setProfile(profile);
