@@ -1,7 +1,14 @@
-import React, { useState } from "react";
-import { ThemeProvider } from "styled-components";
-import { theme } from "./theme";
-import { VideoComponent, Burger, Menu } from "./components";
+import React, { useState } from 'react';
+import { ThemeProvider } from 'styled-components';
+import { theme } from './theme';
+import {
+  Burger,
+  Menu,
+  LandingPage,
+  AccountPage,
+  MatchingInterface,
+} from './components';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
   const [open, setOpen] = useState(false);
@@ -13,7 +20,13 @@ function App() {
           <Menu open={open} setOpen={setOpen} />
         </div>
       </ThemeProvider>
-      <VideoComponent />
+      <Router>
+        <Switch>
+          <Route exact path="/" component={LandingPage} />
+          <Route path="/account" component={AccountPage} />
+          <Route path="/connect" component={MatchingInterface} />
+        </Switch>
+      </Router>
     </div>
   );
 }
