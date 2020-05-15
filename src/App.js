@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { ThemeProvider } from 'styled-components';
-import { theme } from './theme';
+import React, { useEffect } from 'react';
 import {
-  Burger,
-  Menu,
   LandingPage,
   AccountPage,
   MatchingInterface,
+  Navbar,
 } from './components';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import firebase from 'firebase';
@@ -18,7 +15,6 @@ import { generateNewProfile } from './utils';
 
 function App(props) {
   const { setUser, setProfile, isLoggedIn } = props;
-  const [open, setOpen] = useState(false);
 
   // Listen for auth state change, set user and profile in state
   useEffect(() => {
@@ -46,12 +42,7 @@ function App(props) {
 
   return (
     <div className="app">
-      <ThemeProvider theme={theme}>
-        <div>
-          <Burger open={open} setOpen={setOpen} />
-          <Menu open={open} setOpen={setOpen} />
-        </div>
-      </ThemeProvider>
+      <Navbar />
       <Router>
         <Switch>
           <Route exact path="/" component={LandingPage} />
