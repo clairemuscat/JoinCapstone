@@ -14,7 +14,7 @@ import { connect } from 'react-redux';
 import { setUser } from './store/user';
 import { db } from '.';
 import { setProfile } from './store/profile';
-import { generateNewProfile } from './utils';
+import { generateNewProfile, randomEqualitySign, randomLimit } from './utils';
 
 function App(props) {
   const { setUser, setProfile, isLoggedIn } = props;
@@ -46,7 +46,15 @@ function App(props) {
 
   useEffect(() => {
     const getRando = async () => {
-      const snap = db.collection('users').limit(1);
+      const snap = await db
+        .collection('users')
+        .where('random', randomEqualitySign(), randomLimit())
+        .orderBy('random')
+        .limit(1)
+        .get();
+      const randos = [];
+      snap.forEach((doc) => randos.push({ [doc.id]: doc.data() }));
+      console.log(randos);
     };
     getRando();
   });

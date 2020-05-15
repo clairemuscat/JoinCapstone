@@ -17,3 +17,11 @@ export function generateNewProfile(user) {
 export function generateCompoundUid(uid1, uid2) {
   return uid1 > uid2 ? `${uid1}_${uid2}` : `${uid2}_${uid1}`;
 }
+
+export function randomEqualitySign() {
+  return Math.round(Math.random()) ? '>=' : '<=';
+}
+
+export function randomLimit() {
+  return Math.random() * 2 ** 50;
+}
