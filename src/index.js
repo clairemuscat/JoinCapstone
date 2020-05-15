@@ -5,12 +5,22 @@ import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import firebaseConfig from '../firebaseConfig';
 import { Provider } from 'react-redux';
-// React-redux has a provider element
-// with which we pass down our store to react
 import store from './store';
-// import * as serviceWorker from './serviceWorker';
 
-const fire = firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
+export const db = firebase.firestore();
+
+// const makeRando = async (first, last) => {
+//   const id = (Math.random() * 2 ** 50).toString();
+//   const rando = {
+//     random: Math.random() * 2 ** 50,
+//     firstName: first,
+//     lastName: last,
+//   };
+//   await db.collection('users').doc(id).set(rando);
+// };
+
+// makeRando('bla', 'bloo');
 
 ReactDOM.render(
   <React.StrictMode>
@@ -20,8 +30,3 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('app')
 );
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-// serviceWorker.unregister();
