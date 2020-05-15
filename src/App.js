@@ -18,7 +18,11 @@ function App() {
     <div className="app">
       <nav>
       <ThemeProvider theme={theme}>
-          Hello
+          <div className='logo'>
+            {/* <a href={LandingPage}> */}
+            <img  src='public/images/join Logo.jpg' />
+            {/* </a> */}
+          </div>
           <div>
           <Burger open={open} setOpen={setOpen} />
           <Menu open={open} setOpen={open} />
