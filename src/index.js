@@ -10,6 +10,18 @@ import store from './store';
 firebase.initializeApp(firebaseConfig);
 export const db = firebase.firestore();
 
+// const makeRando = async (first, last) => {
+//   const id = (Math.random() * 2 ** 50).toString();
+//   const rando = {
+//     random: Math.random() * 2 ** 50,
+//     firstName: first,
+//     lastName: last,
+//   };
+//   await db.collection('users').doc(id).set(rando);
+// };
+
+// makeRando('bla', 'bloo');
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

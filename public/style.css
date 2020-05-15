@@ -141,3 +141,9 @@ footer {
 footer a {
   color: #fff;
 }
+
+.match-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
