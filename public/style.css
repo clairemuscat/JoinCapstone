@@ -142,42 +142,28 @@ footer a {
   color: #fff;
 }
 
-.user-form {
-  max-width: 500px;
-  margin: 0 auto;
+.match-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid grey;
+  height: 600px;
+  width: 600px;
 }
 
-.user-greeting {
-  font-weight: 100;
-  color: turquoise;
-  text-align: center;
-  padding-bottom: 10px;
-  border-bottom: 10px solid rgb(79, 98, 148);
+#card-image-container {
+  width: 400px;
+  height: 400px;
 }
 
-.form-inputs {
-  display: block;
-  box-sizing: border-box;
-  width: 100%;
-  border-radius: 4px;
-  border: 1px solid turquoise;
-  padding: 10px 15px;
-  margin-bottom: 10px;
-  font-size: 14px;
+#card-image-container img {
+  max-width: 100%;
+  max-height: 100%;
 }
 
-.required {
-  color: #bf1650;
-
-}
-
-.user-labels {
-  line-height: 2;
-  text-align: left;
-  display: block;
-  margin-bottom: 13px;
-  margin-top: 20px;
-  color: black;
-  font-size: 14px;
-  font-weight: 200;
+#navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
 }
