@@ -4,12 +4,13 @@ const emptyProfile = {
   country: '',
   profile: {
     role: '',
-    programming_languages: [],
-    libraries_frameworks: [],
+    programming_languages: '',
+    libraries_frameworks: '',
     company: '',
     looking_for_work: false,
-    hobbies_interests: [],
+    hobbies_interests: '',
     about: '',
+    imageUrl: '',
   },
 };
 
