@@ -14,6 +14,13 @@ body {
   min-height: 100%;
 }
 
+/* nav{
+  display: inline-block;
+  margin: 5rem;
+  text-align: center;
+} */
+
+
 header {
   background: #f0293e;
   color: #fff;
@@ -21,6 +28,11 @@ header {
   flex-grow: 0;
   margin-bottom: 2em;
 }
+
+/* nav a {
+  display: inline-block;
+  margin: 1em;
+} */
 
 h1 {
   font-weight: 300;
