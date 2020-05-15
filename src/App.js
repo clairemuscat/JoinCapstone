@@ -24,10 +24,13 @@ function App(props) {
   useEffect(() => {
     firebase.auth().onAuthStateChanged(async (user) => {
       setUser(user);
+      //check firestore for a profile matching the user
       const snap = await db.collection('users').doc(user.uid).get();
+      // if the user has a profile in the database, set that to redux
       if (snap.exists) {
         const profile = snap.data();
         setProfile(profile);
+        //if not, create a new profile object and post it to firestore
       } else {
         await db
           .collection('users')
@@ -35,10 +38,18 @@ function App(props) {
           .set(generateNewProfile(user));
         const snap = await db.collection('users').doc(user.uid).get();
         const profile = snap.data();
+        // set profile in redux
         setProfile(profile);
       }
     });
   }, []);
+
+  useEffect(() => {
+    const getRando = async () => {
+      const snap = db.collection('users').limit(1);
+    };
+    getRando();
+  });
 
   return (
     <div className="app">
