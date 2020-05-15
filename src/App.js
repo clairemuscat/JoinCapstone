@@ -7,7 +7,7 @@ import {
 } from './components';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import firebase from 'firebase';
-import { connect } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { setUser } from './store/user';
 import { db } from '.';
 import { setProfile } from './store/profile';
