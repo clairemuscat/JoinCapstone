@@ -43,37 +43,51 @@ function MatchingInterface(props) {
   };
 
   const addToSeen = async (targetUid) => {
-    const docRef = db.collection('users').doc(user.uid);
-    const newUsersSeen = profile.users_seen;
-    profile.users_seen[targetUid] = true;
-    await docRef.set({ users_seen: newUsersSeen }, { merge: true });
+    try {
+      const docRef = db.collection('users').doc(user.uid);
+      const newUsersSeen = profile.users_seen;
+      profile.users_seen[targetUid] = true;
+      await docRef.set({ users_seen: newUsersSeen }, { merge: true });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const handleConnect = (targetUser) => {
-    addToSeen(targetUser.id);
-    const compoundUid = generateCompoundUid(targetUser.id, user.uid);
-    const matchRef = db.collection('connections').doc(compoundUid);
-    const baseUserRef = db.collection('users').doc(user.uid);
-    const targetUserRef = db.collection('users').doc(targetUser.id);
-    const snap = matchRef.get();
-    if (snap.exists) {
-      const connectionInfo = snap.data();
-      if (connectionInfo[targetUser.id]) {
-        const newBaseUserMatches = user.matches;
-        newBaseUserMatches[targetUser.id] = targetUser;
-        baseUserRef.set(newBaseUserMatches, { merge: true });
-        newTargetUserMatches = targetUser.matches;
-        newTargetUserMatches[user.uid] = profile;
-        targetUserRef.set(newTargetUserMatches, { merge: true });
+  const handleConnect = async (targetUser) => {
+    try {
+      addToSeen(targetUser.id);
+      const compoundUid = generateCompoundUid(targetUser.id, user.uid);
+      const matchRef = db.collection('connections').doc(compoundUid);
+      const baseUserRef = db.collection('users').doc(user.uid);
+      const targetUserRef = db.collection('users').doc(targetUser.id);
+      const snap = await matchRef.get();
+      if (snap.exists) {
+        const connectionInfo = snap.data();
+        if (connectionInfo[targetUser.id]) {
+          const newBaseUserMatches = { ...user.matches };
+          newBaseUserMatches[targetUser.id] = targetUser;
+          await baseUserRef.set(
+            { matches: newBaseUserMatches },
+            { merge: true }
+          );
+          const newTargetUserMatches = { ...targetUser.matches };
+          newTargetUserMatches[user.uid] = profile;
+          await targetUserRef.set(
+            { matches: newTargetUserMatches },
+            { merge: true }
+          );
+        }
+      } else {
+        const connectionRef = db.collection('connections').doc(compoundUid);
+        const connectionData = {
+          [user.uid]: true,
+        };
+        await connectionRef.set(connectionData);
       }
-    } else {
-      const connectionRef = db.collection('connections').doc(compoundUid);
-      const connectionData = {
-        [user.uid]: true,
-      };
-      connectionRef.set(connectionData);
+      updateCurrent();
+    } catch (error) {
+      console.error(error);
     }
-    updateCurrent();
   };
 
   const handleReject = (targetUid) => {

@@ -3,7 +3,6 @@ import { MatchProfileDisplay } from '.';
 
 function MatchCard(props) {
   const { userB, handleConnect, handleReject } = props;
-  console.log(userB, 'userB');
   return (
     <div className="match-card">
       <MatchProfileDisplay userProfile={userB} />
