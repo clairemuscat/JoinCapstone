@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import axios from "axios";
-import { Lobby, Room } from ".";
+import { Lobby } from ".";
 
 const VideoComponent = (props) => {
   const [username, setUsername] = useState("");
@@ -40,9 +40,7 @@ const VideoComponent = (props) => {
 
   let render;
   if (token) {
-    render = (
-      <Room roomName={roomName} token={token} handleLogout={handleLogout} />
-    );
+    render = <div>test</div>;
   } else {
     render = (
       <Lobby

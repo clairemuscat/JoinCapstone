@@ -5,7 +5,7 @@ const { join } = require("path");
 const webpack = require("webpack");
 const middleware = require("webpack-dev-middleware");
 const webpackConfig = require("./webpack.config");
-const config = require("./config");
+// const config = require("./config");
 const app = express();
 require("dotenv").config();
 
@@ -16,6 +16,17 @@ const MAX_ALLOWED_SESSION_DURATION = 1800;
 const twilioAccountSid = process.env.TWILIO_ACCOUNT_SID;
 const twilioApiKeySID = process.env.TWILIO_API_KEY_SID;
 const twilioApiKeySecret = process.env.TWILIO_API_KEY_SECRET;
+
+let config = {
+  twilio: {
+    accountSid: process.env.TWILIO_ACCOUNT_SID,
+    apiKey: process.env.TWILIO_API_KEY_SID,
+    apiSecret: process.env.TWILIO_API_KEY_SECRET,
+    // chatService: process.env.TWILIO_CHAT_SERVICE_SID,
+    // outgoingApplicationSid: process.env.TWILIO_TWIML_APP_SID,
+    // incomingAllow: process.env.TWILIO_ALLOW_INCOMING_CALLS === "true"
+  },
+};
 
 app.use(express.json());
 app.use(morgan("dev"));
