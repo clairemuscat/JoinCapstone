@@ -11,6 +11,7 @@ export function generateNewProfile(user) {
     lastName,
     email: user.email,
     random,
+    users_seen: { [user.uid]: true },
   };
 }
 
