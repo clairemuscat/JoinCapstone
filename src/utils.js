@@ -12,6 +12,7 @@ export function generateNewProfile(user) {
     email: user.email,
     random,
     users_seen: { [user.uid]: true },
+    matches: {},
   };
 }
 

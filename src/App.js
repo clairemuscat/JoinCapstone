@@ -10,33 +10,16 @@ import firebase from 'firebase';
 import { connect } from 'react-redux';
 import { setUser } from './store/user';
 import { db } from '.';
-import { setProfile } from './store/profile';
+import { fetchOrCreateProfile } from './store/profile';
 import { generateNewProfile } from './utils';
 
 function App(props) {
-  const { setUser, setProfile, isLoggedIn } = props;
+  const { setUser, getProfile, isLoggedIn } = props;
 
-  // Listen for auth state change, set user and profile in state
   useEffect(() => {
     firebase.auth().onAuthStateChanged(async (user) => {
       setUser(user);
-      //check firestore for a profile matching the user
-      const snap = await db.collection('users').doc(user.uid).get();
-      // if the user has a profile in the database, set that to redux
-      if (snap.exists) {
-        const profile = snap.data();
-        setProfile(profile);
-        //if not, create a new profile object and post it to firestore
-      } else {
-        await db
-          .collection('users')
-          .doc(user.uid)
-          .set(generateNewProfile(user));
-        const snap = await db.collection('users').doc(user.uid).get();
-        const profile = snap.data();
-        // set profile in redux
-        setProfile(profile);
-      }
+      getProfile(user);
     });
   }, []);
 
@@ -65,7 +48,7 @@ const mapState = (state) => ({
 
 const mapDispatch = (dispatch) => ({
   setUser: (user) => dispatch(setUser(user)),
-  setProfile: (profile) => dispatch(setProfile(profile)),
+  getProfile: (user) => dispatch(fetchOrCreateProfile(user)),
 });
 
 export default connect(mapState, mapDispatch)(App);
