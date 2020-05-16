@@ -50,12 +50,8 @@ function MatchingInterface(props) {
   };
 
   const handleConnect = (targetUser) => {
-    console.log(targetUser, 'targetUser');
-    console.log(targetUser.id, 'target user id');
-    console.log(user.uid, 'user id');
     addToSeen(targetUser.id);
     const compoundUid = generateCompoundUid(targetUser.id, user.uid);
-    console.log(compoundUid, 'compoundUid');
     const matchRef = db.collection('connections').doc(compoundUid);
     const baseUserRef = db.collection('users').doc(user.uid);
     const targetUserRef = db.collection('users').doc(targetUser.id);
@@ -77,6 +73,7 @@ function MatchingInterface(props) {
       };
       connectionRef.set(connectionData);
     }
+    updateCurrent();
   };
 
   const handleReject = (targetUid) => {
