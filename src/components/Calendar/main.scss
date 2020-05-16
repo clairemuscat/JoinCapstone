@@ -15,3 +15,11 @@
   margin: 0 auto;
   max-width: 900px;
 }
+
+figcaption {
+  opacity: 0;
+  transition: opacity 0.3s ease-out;  
+}
+figure:hover figcaption {
+  opacity: 1; 
+}
