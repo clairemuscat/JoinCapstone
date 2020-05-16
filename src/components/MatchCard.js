@@ -2,12 +2,13 @@ import React from 'react';
 import { MatchProfileDisplay } from '.';
 
 function MatchCard(props) {
-  const { userB, handleConnect, handleNotConnect } = props;
+  const { userB, handleConnect, handleReject } = props;
+  console.log(userB, 'userB');
   return (
     <div className="match-card">
       <MatchProfileDisplay userProfile={userB} />
-      <button onClick={() => handleConnect(userB.id)}>Connect</button>
-      <button onClick={() => handleNotConnect(userB.id)}>Don't Connect</button>
+      <button onClick={() => handleConnect(userB)}>Connect</button>
+      <button onClick={() => handleReject(userB.id)}>Don't Connect</button>
     </div>
   );
 }

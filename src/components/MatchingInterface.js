@@ -49,11 +49,37 @@ function MatchingInterface(props) {
     await docRef.set({ users_seen: newUsersSeen }, { merge: true });
   };
 
-  const handleConnect = (targetUid) => {
-    addToSeen(targetUid);
+  const handleConnect = (targetUser) => {
+    console.log(targetUser, 'targetUser');
+    console.log(targetUser.id, 'target user id');
+    console.log(user.uid, 'user id');
+    addToSeen(targetUser.id);
+    const compoundUid = generateCompoundUid(targetUser.id, user.uid);
+    console.log(compoundUid, 'compoundUid');
+    const matchRef = db.collection('connections').doc(compoundUid);
+    const baseUserRef = db.collection('users').doc(user.uid);
+    const targetUserRef = db.collection('users').doc(targetUser.id);
+    const snap = matchRef.get();
+    if (snap.exists) {
+      const connectionInfo = snap.data();
+      if (connectionInfo[targetUser.id]) {
+        const newBaseUserMatches = user.matches;
+        newBaseUserMatches[targetUser.id] = targetUser;
+        baseUserRef.set(newBaseUserMatches, { merge: true });
+        newTargetUserMatches = targetUser.matches;
+        newTargetUserMatches[user.uid] = profile;
+        targetUserRef.set(newTargetUserMatches, { merge: true });
+      }
+    } else {
+      const connectionRef = db.collection('connections').doc(compoundUid);
+      const connectionData = {
+        [user.uid]: true,
+      };
+      connectionRef.set(connectionData);
+    }
   };
 
-  const handleNotConnect = (targetUid) => {
+  const handleReject = (targetUid) => {
     // NEED TO ADD UPDATE PROFILE TO THIS SOMEWHERE!!!
     addToSeen(targetUid);
     updateCurrent();
@@ -65,7 +91,7 @@ function MatchingInterface(props) {
         <MatchCard
           userB={toConnect[current]}
           handleConnect={handleConnect}
-          handleNotConnect={handleNotConnect}
+          handleReject={handleReject}
         />
       )}
     </div>
