@@ -64,14 +64,17 @@ function MatchingInterface(props) {
       if (snap.exists) {
         const connectionInfo = snap.data();
         if (connectionInfo[targetUser.id]) {
+          const matchDate = new Date();
           const newBaseUserMatches = { ...user.matches };
           newBaseUserMatches[targetUser.id] = targetUser;
+          newBaseUserMatches.matchDate = matchDate;
           await baseUserRef.set(
             { matches: newBaseUserMatches },
             { merge: true }
           );
           const newTargetUserMatches = { ...targetUser.matches };
           newTargetUserMatches[user.uid] = profile;
+          newTargetUserMatches.matchDate = matchDate;
           await targetUserRef.set(
             { matches: newTargetUserMatches },
             { merge: true }
@@ -98,12 +101,14 @@ function MatchingInterface(props) {
 
   return (
     <div>
-      {toConnect.length && (
+      {toConnect.length ? (
         <MatchCard
           userB={toConnect[current]}
           handleConnect={handleConnect}
           handleReject={handleReject}
         />
+      ) : (
+        <div>No users to connect with</div>
       )}
     </div>
   );
