@@ -4,6 +4,7 @@ import {
   AccountPage,
   MatchingInterface,
   Navbar,
+  PrivateRoute,
 } from './components';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import firebase from 'firebase';
@@ -33,14 +34,18 @@ function App(props) {
       <div className="app">
         <Navbar />
         <Switch>
-          <Route path="/" component={LandingPage} />
+          <PrivateRoute
+            isLoggedIn={isLoggedIn}
+            path="/account"
+            component={AccountPage}
+          />
+          <PrivateRoute
+            isLoggedIn={isLoggedIn}
+            path="/connect"
+            component={MatchingInterface}
+          />
+          <Route component={LandingPage} />
         </Switch>
-        {isLoggedIn && (
-          <Switch>
-            <Route path="/account" component={AccountPage} />
-            <Route path="/connect" component={MatchingInterface} />
-          </Switch>
-        )}
       </div>
     </Router>
   );
