@@ -53,8 +53,14 @@ function App(props) {
               />
               <PrivateRoute
                 isLoggedIn={isLoggedIn}
+                exact
                 path="/connect"
                 component={MatchingInterface}
+              />
+              <PrivateRoute
+                isLoggedIn={isLoggedIn}
+                path="/connections"
+                component={Connections}
               />
               <Route component={LandingPage} />
             </Switch>
