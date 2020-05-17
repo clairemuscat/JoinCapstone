@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { generateCompoundUid } from "../utils";
-
+import StartVideoChat from "./StartVideoChat";
 function Connections(props) {
   const profile = useSelector((state) => state.profile);
   const user = useSelector((state) => state.user);
@@ -14,6 +14,7 @@ function Connections(props) {
           return (
             <div key={match.id}>
               <h1>{match.firstName}</h1>
+              <StartVideoChat compoundUid={compound} />
             </div>
           );
         })

@@ -15,19 +15,21 @@ function StartVideoChat(props) {
       event.preventDefault();
       const { data } = await axios.post("/video/token", {
         identity: user.displayName,
-        room: "this will probably be the compound uid",
+        room: props.compoundUid,
       });
       setToken(data.token);
     } catch (error) {
       console.log("Oops I did it again", error);
     }
   };
-
   let render;
-  let roomName = "Compound Uid";
   if (token) {
     render = (
-      <Room roomName={roomName} token={token} handleLogout={handleLogout} />
+      <Room
+        roomName={props.compoundUid}
+        token={token}
+        handleLogout={handleLogout}
+      />
     );
   } else {
     render = (

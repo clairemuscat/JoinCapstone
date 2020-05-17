@@ -5,6 +5,7 @@ import {
   MatchingInterface,
   Navbar,
   PrivateRoute,
+  Connections,
 } from "./components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import firebase from "firebase";
@@ -52,7 +53,7 @@ function App(props) {
               path="/connect"
               component={MatchingInterface}
             />
-            <Route component={LandingPage} />
+            <Route component={Connections} />
           </Switch>
         </div>
       </div>
