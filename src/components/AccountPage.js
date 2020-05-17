@@ -9,12 +9,11 @@ function AccountPage(props) {
         This is the account dashboard. Things will render here Someday There's a
         subrouter that changes the account content based on the url
       </div>
-      <StartVideoChat />
-      <Router>
+      {/* <Router>
         <Route path="/account/calendar" component={Calendar} />
         <Route path="/account/connections" component={Connections} />
         <Route path="/account/profile" component={Profile} />
-      </Router>
+      </Router> */}
     </div>
   );
 }
