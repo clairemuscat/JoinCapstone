@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const Lobby = ({
   username,
@@ -7,7 +7,6 @@ const Lobby = ({
   handleRoomNameChange,
   handleSubmit,
 }) => {
-  console.log(handleSubmit);
   return (
     <form onSubmit={handleSubmit}>
       <h2>Enter a Room</h2>

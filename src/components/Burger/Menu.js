@@ -1,14 +1,14 @@
-import React from "react";
-import { StyledMenu } from "./Menu.styled";
-import { bool } from "prop-types";
+import React from 'react';
+import { StyledMenu } from './Menu.styled';
+import { bool } from 'prop-types';
 
-export const Menu = ({ open }) => {
+export const Menu = ({ open, handleSignOut }) => {
   return (
     <StyledMenu open={open}>
       <a href="/">My Profile</a>
       <a href="/">Calendar</a>
       <a href="/">Matches</a>
-      <a href="/">Log Out</a>
+      <div onClick={handleSignOut}>Sign Out</div>
     </StyledMenu>
   );
 };

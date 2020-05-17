@@ -10,7 +10,7 @@ function LandingPage(props) {
       <Redirect to="/connect" />
     ) : (
       <div id="landing-page">
-        <h1>This is the landing page for unauthenticated users</h1>
+        <h1>{'Welcome to .join()! Sign in to start connecting.'} </h1>
         <Auth />
       </div>
     );

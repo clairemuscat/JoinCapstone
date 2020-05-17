@@ -14,4 +14,6 @@ export { default as Burger } from "./Burger";
 export { Menu } from "./Burger";
 export { default as MatchCard } from "./MatchCard";
 export { default as Navbar } from "./Navbar";
+export { default as MatchProfileDisplay } from "./MatchProfileDisplay";
+export { default as PrivateRoute } from "./PrivateRoute";
 export { default as StartVideoChat } from "./StartVideoChat";
