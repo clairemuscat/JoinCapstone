@@ -9,7 +9,6 @@ const Navbar = withRouter(function (props) {
   const [open, setOpen] = useState(false);
 
   const handleSignOut = () => {
-    console.log('invoked');
     try {
       firebase.auth().signOut();
       props.history.push('/');

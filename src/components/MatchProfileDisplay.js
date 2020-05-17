@@ -2,7 +2,6 @@ import React from 'react';
 
 function MatchProfileDisplay(props) {
   const { userProfile } = props;
-  console.log(userProfile);
   return (
     <div className="match-profile-display">
       <div id="card-image-container">
