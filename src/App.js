@@ -14,7 +14,6 @@ import { setUser } from './store/user';
 import { db } from '.';
 import { setProfile } from './store/profile';
 import { generateNewProfile } from './utils';
-import UserMandatoryForm from './components/UserForms/UserMandatoryForm';
 
 function App(props) {
   const { setUser, setProfile, isLoggedIn } = props;
@@ -52,11 +51,10 @@ function App(props) {
         </Switch>
         {isLoggedIn && (
           <Switch>
-            <Route path="/user" component={NewUser} />
-            <Route path="/newUser" component={UserMandatoryForm} />
+            <Route path="/newUser" component={NewUser} />
             <Route path="/account" component={AccountPage} />
             <Route path="/connect" component={MatchingInterface} />
-            <Route path="/newUser" component={UserMandatoryForm} />
+            <Route path="/form" component={UserMandatoryForm} />
           </Switch>
         )}
       </Router>

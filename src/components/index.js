@@ -14,6 +14,5 @@ export { default as Burger } from './Burger';
 export { Menu } from './Burger';
 export { default as MatchCard } from './MatchCard';
 export { default as Navbar } from './Navbar';
-export { default as MatchProfileDisplay } from './MatchProfileDisplay';
 export { default as UserMandatoryForm } from './UserMandatoryForm'
 export { default as NewUser } from './NewUser'

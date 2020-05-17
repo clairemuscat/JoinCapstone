@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useReducer } from "react";
 import UserMandatoryForm from "./UserMandatoryForm";
-// import { updateProfileEntry } from "../store/profile";
+import { updateProfileEntry, fetchOrCreateProfile } from "../store/profile";
 import { connect } from "react-redux";
 import { generateNewProfile } from "../utils";
 import firebase from "firebase";
@@ -9,7 +9,8 @@ import { db } from "..";
 
 const NewUser = (props) => {
   const {
-    profile
+    profile,
+    user
   } = props;
 
   const [userInput, setUserInput] = useReducer(
@@ -43,14 +44,8 @@ const NewUser = (props) => {
   // const [about, setabout] = useState("");
   // const [imageUrl, setimageUrl] = useState("");
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    
-  };
-
   return (
     <UserMandatoryForm
-      handleSubmit={handleSubmit}
       handleChange={handleChange}
       profile={profile}
       userInput={setUserInput}
@@ -60,9 +55,11 @@ const NewUser = (props) => {
 
 const mapState = (state) => ({
   profile: state.profile,
+  user: state.user
 });
 
 const mapDispatch = (dispatch) => ({
+  setUser: (user) => dispatch(setUser(user)),
   updateProfile: (user) => dispatch(updateProfileEntry(user))
 });
 

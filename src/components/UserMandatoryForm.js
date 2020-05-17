@@ -9,9 +9,9 @@ import { generateNewProfile } from '../utils';
 
 export default function UserMandatoryForm(props) {
   const { register, setValue, handleSubmit, getValues, errors } = useForm();
-  const { profile, handleChange, userInput } = props;
-  console.log(profile)
-  const onSubmit = (data) => console.log(data)
+  const { profile, handleChange, userInput, user } = props;
+  const onSubmit = (data) => data
+  console.log(props)
 
   return (
     <form className="user-form" onSubmit={handleSubmit(onSubmit)}>
