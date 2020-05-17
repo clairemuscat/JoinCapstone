@@ -53,7 +53,7 @@ function App(props) {
               path="/connect"
               component={MatchingInterface}
             />
-            <Route component={Connections} />
+            <Route component={LandingPage} />
           </Switch>
         </div>
       </div>
