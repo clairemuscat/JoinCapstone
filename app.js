@@ -51,7 +51,6 @@ const videoToken = (identity, room, config) => {
 };
 
 app.get('/token', (req, res) => {
-  console.log(config.twilio, 'config FILEEEEEEEE');
   const { identity, roomName } = req.query;
   const token = new AccessToken(
     twilioAccountSid,

@@ -1,43 +1,68 @@
-import React, { useState } from 'react';
-import { ThemeProvider } from 'styled-components';
-import { theme } from './theme';
+import React, { useEffect, useState } from 'react';
 import {
-  Burger,
-  Menu,
   LandingPage,
   AccountPage,
   MatchingInterface,
+  Navbar,
+  PrivateRoute,
   Calendar
 } from './components';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import firebase from 'firebase';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser as setUserRedux } from './store/user';
+import {
+  fetchOrCreateProfile,
+  setProfile as setProfileRedux,
+} from './store/profile';
 
+function App(props) {
+  const isLoggedIn = useSelector((state) =>
+    state.user ? !!state.user.uid : false
+  );
+  const dispatch = useDispatch();
+  const setUser = (user) => dispatch(setUserRedux(user));
+  const getProfile = (user) => dispatch(fetchOrCreateProfile(user));
+  const setProfile = (profile) => dispatch(setProfileRedux(profile));
+  const [authStateChecked, setAuthStateChecked] = useState(false);
 
-function App() {
-  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged(async (user) => {
+      if (user) {
+        setUser(user);
+        getProfile(user);
+      } else {
+        setUser({});
+        setProfile({});
+      }
+      setAuthStateChecked(true);
+    });
+  }, []);
+
   return (
-    <div className="app">
-      <nav>
-      <ThemeProvider theme={theme}>
-          <div className='logo'>
-            {/* <a href={LandingPage}> */}
-            <img  src='public/images/join Logo.jpg' />
-            {/* </a> */}
-          </div>
-          <div>
-          <Burger open={open} setOpen={setOpen} />
-          <Menu open={open} setOpen={open} />
-          </div>
-      </ThemeProvider>
-      </nav>
-      <Router>
-        <Switch>
-          <Route exact path="/" component={LandingPage} />
-          <Route exact path="/account" component={AccountPage} />
-          <Route path="/connect" component={MatchingInterface} />
-          <Route exact path='/account/calendar' component={Calendar}/>
-        </Switch>
-      </Router>
-    </div>
+    <Router>
+      <div className="app">
+        <Navbar />
+        <div id="content">
+          {authStateChecked && (
+            <Switch>
+              <PrivateRoute
+                isLoggedIn={isLoggedIn}
+                path="/account"
+                component={AccountPage}
+              />
+              <PrivateRoute
+                isLoggedIn={isLoggedIn}
+                path="/connect"
+                component={MatchingInterface}
+              />
+              <Route component={LandingPage} />
+              <Route exact path='/account/calendar' component={Calendar}/>
+            </Switch>
+          )}
+        </div>
+      </div>
+    </Router>
   );
 }
 

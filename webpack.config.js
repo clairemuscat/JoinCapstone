@@ -7,6 +7,7 @@ module.exports = {
     filename: 'public/bundle.js',
     publicPath: '/',
   },
+  // node: { fs: 'empty' },
   module: {
     rules: [
       {

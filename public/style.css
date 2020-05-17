@@ -156,16 +156,38 @@ footer {
 footer a {
   color: #fff;
 }
+
+.match-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid grey;
+  width: 600px;
+}
+
+#card-image-container {
+  width: 400px;
+  height: 400px;
+}
+
+#card-image-container img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+#navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 #attendee{
   text-align: left;
 }
-
-/* #event-form{
-  height:20px;
-  width:20px
-} */
-/* 
-.logo{
-  width:20px;
-  height:20px
-} */

@@ -71,27 +71,28 @@ class Calendar extends React.Component{
     this.state={
       calendarWeekends:true,
       calendarEvents:[{title: "Event Now", start: new Date()}],
+      calendarEventsDescrptions:[]
       // displayPopup:false,
      
 
     }
-    this.handleDateClick=this.handleDateClick.bind(this)
+    // this.handleDateClick=this.handleDateClick.bind(this)
   }
 
-  handleDateClick(evt){
-    console.log(evt)
-    console.log('calenadr state',this.state)
-    this.setState({
-      // add new event data
-      calendarEvents:[...this.state.calendarEvents,{
-        // creates a new array
-        title: "New Event",
-        start: evt.date,
-        allDay: !evt.allDay
-      }]
-    });
+  // handleDateClick(evt){
+  //   console.log(evt)
+  //   console.log('calenadr state',this.state)
+  //   this.setState({
+  //     // add new event data
+  //     calendarEvents:[...this.state.calendarEvents,{
+  //       // creates a new array
+  //       title: "New Event",
+  //       start: evt.date,
+  //       allDay: !evt.allDay
+  //     }]
+  //   });
     
-  }
+  // }
 
   
   
@@ -123,11 +124,13 @@ class Calendar extends React.Component{
 
       })
    .then(val=>{
+     console.log('plums',val)
      this.setState({calendarEvents:[...this.state.calendarEvents,{
        title: val.value.title,
        start:val.value.date,
       //  allDay:val.value.date.allDay
-     }]})
+     }],
+    calendarEventsDescrptions:[...this.state.calendarEventsDescrptions,{eventId:1,eventDesciption:val.value.description}]})
     swal({
       title:'Event Created',
       text:'Event: ' + val.value.title + ', was created!',
