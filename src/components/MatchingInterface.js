@@ -34,12 +34,15 @@ function MatchingInterface(props) {
     }
   }, [profile]);
 
+  // useEffect(() => {
+  //   setCurrent(0);
+  // }, [toConnect]);
+
   const updateCurrent = () => {
     if (current < toConnect.length - 1) {
       setCurrent(current + 1);
     } else {
       dispatch(fetchOrCreateProfile(user));
-      setCurrent(0);
     }
   };
 
@@ -102,7 +105,6 @@ function MatchingInterface(props) {
   };
 
   const handleReject = (targetUid) => {
-    // NEED TO ADD UPDATE PROFILE TO THIS SOMEWHERE!!!
     addToSeen(targetUid);
     updateCurrent();
   };

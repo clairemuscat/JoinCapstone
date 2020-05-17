@@ -8,14 +8,12 @@ import {
 } from './components';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import firebase from 'firebase';
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setUser as setUserRedux } from './store/user';
-import { db } from '.';
 import {
   fetchOrCreateProfile,
   setProfile as setProfileRedux,
 } from './store/profile';
-import { generateNewProfile } from './utils';
 
 function App(props) {
   const isLoggedIn = useSelector((state) =>
@@ -42,19 +40,21 @@ function App(props) {
     <Router>
       <div className="app">
         <Navbar />
-        <Switch>
-          <PrivateRoute
-            isLoggedIn={isLoggedIn}
-            path="/account"
-            component={AccountPage}
-          />
-          <PrivateRoute
-            isLoggedIn={isLoggedIn}
-            path="/connect"
-            component={MatchingInterface}
-          />
-          <Route component={LandingPage} />
-        </Switch>
+        <div id="content">
+          <Switch>
+            <PrivateRoute
+              isLoggedIn={isLoggedIn}
+              path="/account"
+              component={AccountPage}
+            />
+            <PrivateRoute
+              isLoggedIn={isLoggedIn}
+              path="/connect"
+              component={MatchingInterface}
+            />
+            <Route component={LandingPage} />
+          </Switch>
+        </div>
       </div>
     </Router>
   );
