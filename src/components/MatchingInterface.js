@@ -4,6 +4,7 @@ import { db } from '..';
 import { setToConnect } from '../store/toConnect';
 import { randomEqualitySign, randomLimit, generateCompoundUid } from '../utils';
 import { MatchCard } from '.';
+import { fetchOrCreateProfile } from '../store/profile';
 
 function MatchingInterface(props) {
   const [current, setCurrent] = useState(0);
@@ -17,7 +18,7 @@ function MatchingInterface(props) {
       .collection('users')
       .where('random', randomEqualitySign(), randomLimit())
       .orderBy('random')
-      .limit(20)
+      .limit(5)
       .get();
     const randos = [];
     snap.forEach((doc) => randos.push({ id: doc.id, ...doc.data() }));
@@ -37,8 +38,8 @@ function MatchingInterface(props) {
     if (current < toConnect.length - 1) {
       setCurrent(current + 1);
     } else {
+      dispatch(fetchOrCreateProfile(user));
       setCurrent(0);
-      getRandos();
     }
   };
 
@@ -80,6 +81,7 @@ function MatchingInterface(props) {
             { merge: true }
           );
         }
+        // redirect to matches
       } else {
         const connectionRef = db.collection('connections').doc(compoundUid);
         const connectionData = {

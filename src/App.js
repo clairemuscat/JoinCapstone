@@ -10,25 +10,30 @@ import firebase from 'firebase';
 import { connect } from 'react-redux';
 import { setUser } from './store/user';
 import { db } from '.';
-import { fetchOrCreateProfile } from './store/profile';
+import { fetchOrCreateProfile, setProfile } from './store/profile';
 import { generateNewProfile } from './utils';
 
 function App(props) {
-  const { setUser, getProfile, isLoggedIn } = props;
+  const { setUser, getProfile, setProfileRedux, isLoggedIn } = props;
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(async (user) => {
-      setUser(user);
-      getProfile(user);
+      if (user) {
+        setUser(user);
+        getProfile(user);
+      } else {
+        setUser({});
+        setProfileRedux({});
+      }
     });
   }, []);
 
   return (
-    <div className="app">
-      <Navbar />
-      <Router>
+    <Router>
+      <div className="app">
+        <Navbar />
         <Switch>
-          <Route exact path="/" component={LandingPage} />
+          <Route path="/" component={LandingPage} />
         </Switch>
         {isLoggedIn && (
           <Switch>
@@ -36,8 +41,8 @@ function App(props) {
             <Route path="/connect" component={MatchingInterface} />
           </Switch>
         )}
-      </Router>
-    </div>
+      </div>
+    </Router>
   );
 }
 
@@ -49,6 +54,7 @@ const mapState = (state) => ({
 const mapDispatch = (dispatch) => ({
   setUser: (user) => dispatch(setUser(user)),
   getProfile: (user) => dispatch(fetchOrCreateProfile(user)),
+  setProfileRedux: (profile) => dispatch(setProfile(profile)),
 });
 
 export default connect(mapState, mapDispatch)(App);

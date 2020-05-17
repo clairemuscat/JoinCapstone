@@ -11,7 +11,9 @@ export const setProfile = (profile) => ({
 export const fetchOrCreateProfile = (user) => {
   return async (dispatch) => {
     const snap = await db.collection('users').doc(user.uid).get();
+    console.log('in the fetch or create');
     if (snap.exists) {
+      console.log('snap exists');
       const profile = snap.data();
       dispatch(setProfile(profile));
     } else {

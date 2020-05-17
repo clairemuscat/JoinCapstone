@@ -9,6 +9,7 @@ const emptyProfile = {
   looking_for_work: false,
   hobbies_interests: '',
   about: '',
+  imageUrl: '',
 };
 
 export default emptyProfile;
