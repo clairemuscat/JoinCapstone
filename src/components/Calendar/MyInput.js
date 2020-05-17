@@ -1,55 +1,66 @@
 import React,{Component} from 'react'
-import ReactDOM from 'react-dom'
-import swal from '@sweetalert/with-react'
+// import ReactDOM from 'react-dom'
+// import swal from '@sweetalert/with-react'
 
-const DEFAULT_INPUT_TEXT = "";
+// const DEFAULT_INPUT_TEXT = "";
  
 class MyInput extends Component {
   constructor(props) {
     super(props);
  
     this.state = {
-      eventTitle: DEFAULT_INPUT_TEXT,
-      eventDate:this.props.date,
+      eventTitle: '',
       eventDescription:''
     };
     this.changeText=this.changeText.bind(this)
+    this.changeDescription=this.changeDescription.bind(this)
   }
  
   changeText(e) {
-    let title = e.target.title.value
-    let  description= e.target.description.value
+    let title = e.target.value
+    
  
     this.setState({
-      eventTitle,
-      eventDescription
+      eventTitle:title
     });
+    swal.setActionValue({
+        confirm: { value: title }
+      });
+
+}
+
+changeDescription(e){
+    let description = e.target.value
+    let title=this.state.eventTitle
+    let date=this.props.date.date
  
-    /*
-     * This will update the value that the confirm
-     * button resolves to:
-     */
-    swal.setActionValue({confirm:{
-        title,description
+    this.setState({
+      eventDescription:description
+    });
+
+    swal.setActionValue({
+        confirm: { 
+            value: {description:description,
+            title:title,
+            date:date}
     }});
-  }
+}
  
   render() {
-      console.log('hitting this ')
     return (
         <form id='event-form'>
             <label>Title: </label>
       <input
+      type='text'
         value={this.state.eventTitle}
         name='title'
         onChange={this.changeText}
     /><br/> 
     <br/>
-    <label>Date: </label> 
-    <input
-        value={this.state.eventDate}
-        name='date'
-        type='date'
+    <label>Date: </label>
+    <input 
+        type='datetime' name='dateTime'
+        value={this.props.date.date}
         />
         <br/>
         <br/>
@@ -60,7 +71,7 @@ class MyInput extends Component {
         type='text'
         value={this.state.eventDescription}
         name='description'
-        // 
+        onChange={this.changeDescription}
         /><br/>
         <br/>
         <div id='attendee'>
@@ -68,34 +79,9 @@ class MyInput extends Component {
      </div>
      </form>
      
-    )
-  }
+    )}
 }
  
-// We want to retrieve MyInput as a pure DOM node: 
-let wrapper = document.createElement('div');
-// ReactDOM.render(<MyInput />, wrapper);
-let el = wrapper.firstChild;
- 
-swal({
-  text: "Create Event",
-  content: el,
-  buttons: {
-    confirm: {
-      /*
-       * We need to initialize the value of the button to
-       * an empty string instead of "true":
-       */
-      value: 
-         DEFAULT_INPUT_TEXT
-        
-        
-    },
-  },
-})
-.then((value) => {
-  swal(`You typed: ${value}`);
-});
 
 
 export default MyInput

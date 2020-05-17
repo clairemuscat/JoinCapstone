@@ -4,8 +4,10 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import MyInput from './MyInput'
+import swal from '@sweetalert/with-react'
 
 import './main.scss' // webpack must be configured to do this
+
 
 
 // function Calendar(props){
@@ -69,8 +71,8 @@ class Calendar extends React.Component{
     this.state={
       calendarWeekends:true,
       calendarEvents:[{title: "Event Now", start: new Date()}],
-      displayPopup:false,
-      date: new Date()
+      // displayPopup:false,
+     
 
     }
     this.handleDateClick=this.handleDateClick.bind(this)
@@ -88,31 +90,16 @@ class Calendar extends React.Component{
         allDay: !evt.allDay
       }]
     });
-    return(<form>
-      <input type='text' name='testing'>
-        here
-      </input>
-    </form>)
-    
     
   }
 
   
+  
  
  render (){
-   console.log(this.state)
-  // const calendarComponentRef = React.createRef()
-  return (
-    <div className="demo-app-calendar">
-    
-      <figure>
- <img src="image.jpg" alt="cool image"/>
- <figcaption>
-      <h3>Cool Image</h3>
-      <a href="http://coolplace.com">http://coolplace.com</a>
- </figcaption>
-
-
+  
+ 
+   return(
     <FullCalendar
       defaultView="dayGridMonth"
       header={{
@@ -126,9 +113,30 @@ class Calendar extends React.Component{
       weekends={this.state.weekends}
       events={this.state.calendarEvents}
       eventClick={(info)=>console.log('strawberry', info.event.id)}
-      // dateClick={console.log('hey')}
-      dateClick={(evt)=> this.setState({displayPopup:true,
-      date:evt.date})}
+      dateClick={(evt)=>  swal({
+        title:"Create Event",
+        content:<MyInput date={evt}/>,
+        buttons:{
+          cancel:true,
+          confirm:'Add Event'
+        }
+
+      })
+   .then(val=>{
+     this.setState({calendarEvents:[...this.state.calendarEvents,{
+       title: val.value.title,
+       start:val.value.date,
+      //  allDay:val.value.date.allDay
+     }]})
+    swal({
+      title:'Event Created',
+      text:'Event: ' + val.value.title + ', was created!',
+      icon:'success'
+    })
+  })
+
+    
+    }
       // selectable={true}
       // selectOverlap={false}
       // selectMirror={true}
@@ -145,9 +153,7 @@ class Calendar extends React.Component{
       //   }
       // ]}
     />
-    {this.state.displayPopup && <MyInput date={this.state.date}/>}
-</figure>
-    </div>
+  
   )
 
    
@@ -156,8 +162,6 @@ class Calendar extends React.Component{
  
 
 }
-// function Calendar(props) {
-//   return <div>A Calendar will be here at some point</div>;
-// }
+
 
 export default Calendar;
