@@ -71,7 +71,7 @@ function MatchingInterface(props) {
         if (connectionInfo[targetUser.id]) {
           const matchDate = new Date();
           const newBaseUserMatches = [
-            ...user.matches,
+            ...profile.matches,
             createMatchObject(targetUser, matchDate),
           ];
           await baseUserRef.set(
@@ -80,7 +80,7 @@ function MatchingInterface(props) {
           );
           const newTargetUserMatches = [
             ...targetUser.matches,
-            createMatchObject(user, matchDate),
+            createMatchObject({ ...profile, id: user.uid }, matchDate),
           ];
           await targetUserRef.set(
             { matches: newTargetUserMatches },
