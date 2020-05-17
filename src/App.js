@@ -4,6 +4,7 @@ import {
   AccountPage,
   MatchingInterface,
   Navbar,
+  UserMandatoryForm,
   NewUser
 } from './components';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -51,7 +52,8 @@ function App(props) {
         </Switch>
         {isLoggedIn && (
           <Switch>
-            <Route path="newUser" component={NewUser} />
+            <Route path="/user" component={NewUser} />
+            <Route path="/newUser" component={UserMandatoryForm} />
             <Route path="/account" component={AccountPage} />
             <Route path="/connect" component={MatchingInterface} />
             <Route path="/newUser" component={UserMandatoryForm} />
