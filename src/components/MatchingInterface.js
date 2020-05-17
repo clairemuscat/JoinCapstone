@@ -43,6 +43,7 @@ function MatchingInterface(props) {
       setCurrent(current + 1);
     } else {
       dispatch(fetchOrCreateProfile(user));
+      setCurrent(0);
     }
   };
 
