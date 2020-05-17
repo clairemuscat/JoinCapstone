@@ -45,7 +45,11 @@ function App(props) {
         <Navbar />
         <div id="content">
           {authStateChecked && (
-            <Switch>
+            <Switch> 
+              <PrivateRoute 
+              isLoggedIn={isLoggedIn}
+              exact path='/account/calendar' 
+              component={Calendar}/>
               <PrivateRoute
                 isLoggedIn={isLoggedIn}
                 path="/account"
@@ -53,11 +57,12 @@ function App(props) {
               />
               <PrivateRoute
                 isLoggedIn={isLoggedIn}
-                path="/connect"
+                exact path="/connect"
                 component={MatchingInterface}
               />
+               
               <Route component={LandingPage} />
-              <Route exact path='/account/calendar' component={Calendar}/>
+             
             </Switch>
           )}
         </div>
