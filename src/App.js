@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   LandingPage,
   AccountPage,
@@ -23,6 +23,7 @@ function App(props) {
   const setUser = (user) => dispatch(setUserRedux(user));
   const getProfile = (user) => dispatch(fetchOrCreateProfile(user));
   const setProfile = (profile) => dispatch(setProfileRedux(profile));
+  const [authStateChecked, setAuthStateChecked] = useState(false);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(async (user) => {
@@ -33,6 +34,7 @@ function App(props) {
         setUser({});
         setProfile({});
       }
+      setAuthStateChecked(true);
     });
   }, []);
 
@@ -41,19 +43,21 @@ function App(props) {
       <div className="app">
         <Navbar />
         <div id="content">
-          <Switch>
-            <PrivateRoute
-              isLoggedIn={isLoggedIn}
-              path="/account"
-              component={AccountPage}
-            />
-            <PrivateRoute
-              isLoggedIn={isLoggedIn}
-              path="/connect"
-              component={MatchingInterface}
-            />
-            <Route component={LandingPage} />
-          </Switch>
+          {authStateChecked && (
+            <Switch>
+              <PrivateRoute
+                isLoggedIn={isLoggedIn}
+                path="/account"
+                component={AccountPage}
+              />
+              <PrivateRoute
+                isLoggedIn={isLoggedIn}
+                path="/connect"
+                component={MatchingInterface}
+              />
+              <Route component={LandingPage} />
+            </Switch>
+          )}
         </div>
       </div>
     </Router>
