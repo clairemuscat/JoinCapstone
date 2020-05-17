@@ -1,20 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
   LandingPage,
   AccountPage,
   MatchingInterface,
   Navbar,
   PrivateRoute,
+  Connections,
   Calendar
-} from './components';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import firebase from 'firebase';
-import { useDispatch, useSelector } from 'react-redux';
-import { setUser as setUserRedux } from './store/user';
+} from "./components";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import firebase from "firebase";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser as setUserRedux } from "./store/user";
 import {
   fetchOrCreateProfile,
   setProfile as setProfileRedux,
-} from './store/profile';
+} from "./store/profile";
 
 function App(props) {
   const isLoggedIn = useSelector((state) =>
@@ -57,10 +58,15 @@ function App(props) {
               />
               <PrivateRoute
                 isLoggedIn={isLoggedIn}
-                exact path="/connect"
+                exact
+                path="/connect"
                 component={MatchingInterface}
               />
-               
+              <PrivateRoute
+                isLoggedIn={isLoggedIn}
+                path="/connections"
+                component={Connections}
+              />
               <Route component={LandingPage} />
              
             </Switch>

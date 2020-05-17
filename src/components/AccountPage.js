@@ -1,6 +1,6 @@
-import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { Calendar, Connections, Profile } from '.';
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Calendar, Connections, Profile, StartVideoChat } from ".";
 
 function AccountPage(props) {
   return (

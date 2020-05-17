@@ -1,15 +1,15 @@
-const express = require('express');
-const path = require('path');
-const morgan = require('morgan');
-const { join } = require('path');
-const webpack = require('webpack');
-const middleware = require('webpack-dev-middleware');
-const webpackConfig = require('./webpack.config');
-const config = require('./config');
+const express = require("express");
+const path = require("path");
+const morgan = require("morgan");
+const { join } = require("path");
+const webpack = require("webpack");
+const middleware = require("webpack-dev-middleware");
+const webpackConfig = require("./webpack.config");
+// const config = require("./config");
 const app = express();
-require('dotenv').config();
+require("dotenv").config();
 
-const AccessToken = require('twilio').jwt.AccessToken;
+const AccessToken = require("twilio").jwt.AccessToken;
 const VideoGrant = AccessToken.VideoGrant;
 
 const MAX_ALLOWED_SESSION_DURATION = 1800;
@@ -17,11 +17,22 @@ const twilioAccountSid = process.env.TWILIO_ACCOUNT_SID;
 const twilioApiKeySID = process.env.TWILIO_API_KEY_SID;
 const twilioApiKeySecret = process.env.TWILIO_API_KEY_SECRET;
 
+let config = {
+  twilio: {
+    accountSid: process.env.TWILIO_ACCOUNT_SID,
+    apiKey: process.env.TWILIO_API_KEY_SID,
+    apiSecret: process.env.TWILIO_API_KEY_SECRET,
+    // chatService: process.env.TWILIO_CHAT_SERVICE_SID,
+    // outgoingApplicationSid: process.env.TWILIO_TWIML_APP_SID,
+    // incomingAllow: process.env.TWILIO_ALLOW_INCOMING_CALLS === "true"
+  },
+};
+
 app.use(express.json());
-app.use(morgan('dev'));
+app.use(morgan("dev"));
 
 const sendTokenResponse = (token, res) => {
-  res.set('Content-Type', 'application/json');
+  res.set("Content-Type", "application/json");
   res.send(
     JSON.stringify({
       token: token.toJwt(),
@@ -39,7 +50,7 @@ const generateToken = (config) => {
 
 const videoToken = (identity, room, config) => {
   let videoGrant;
-  if (typeof room !== 'undefined') {
+  if (typeof room !== "undefined") {
     videoGrant = new VideoGrant({ room });
   } else {
     videoGrant = new VideoGrant();
@@ -50,7 +61,7 @@ const videoToken = (identity, room, config) => {
   return token;
 };
 
-app.get('/token', (req, res) => {
+app.get("/token", (req, res) => {
   const { identity, roomName } = req.query;
   const token = new AccessToken(
     twilioAccountSid,
@@ -67,14 +78,14 @@ app.get('/token', (req, res) => {
   console.log(`issued token for ${identity} in room ${roomName}`);
 });
 
-app.post('/video/token', (req, res) => {
+app.post("/video/token", (req, res) => {
   const identity = req.body.identity;
   const room = req.body.room;
   const token = videoToken(identity, room, config);
   sendTokenResponse(token, res);
 });
 
-app.get('/video/token', (req, res) => {
+app.get("/video/token", (req, res) => {
   const identity = req.query.identity;
   const room = req.query.room;
   const token = videoToken(identity, room, config);
@@ -85,18 +96,18 @@ app.get('/video/token', (req, res) => {
 const compiler = webpack(webpackConfig);
 app.use(
   middleware(compiler, {
-    publicPath: join(__dirname, 'public'),
+    publicPath: join(__dirname, "public"),
     publicPath: webpackConfig.output.publicPath,
     writeToDisk: true,
   })
 );
 
 // static file-serving middleware
-app.use(express.static(join(__dirname, 'public')));
+app.use(express.static(join(__dirname, "public")));
 
 // sends index.html
-app.use('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/index.html'));
+app.use("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public/index.html"));
 });
 
 module.exports = app;
