@@ -8,14 +8,23 @@ import {
 } from './components';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import firebase from 'firebase';
-import { connect } from 'react-redux';
-import { setUser } from './store/user';
+import { connect, useDispatch, useSelector } from 'react-redux';
+import { setUser as setUserRedux } from './store/user';
 import { db } from '.';
-import { fetchOrCreateProfile, setProfile } from './store/profile';
+import {
+  fetchOrCreateProfile,
+  setProfile as setProfileRedux,
+} from './store/profile';
 import { generateNewProfile } from './utils';
 
 function App(props) {
-  const { setUser, getProfile, setProfileRedux, isLoggedIn } = props;
+  const isLoggedIn = useSelector((state) =>
+    state.user ? !!state.user.uid : false
+  );
+  const dispatch = useDispatch();
+  const setUser = (user) => dispatch(setUserRedux(user));
+  const getProfile = (user) => dispatch(fetchOrCreateProfile(user));
+  const setProfile = (profile) => dispatch(setProfileRedux(profile));
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(async (user) => {
@@ -24,7 +33,7 @@ function App(props) {
         getProfile(user);
       } else {
         setUser({});
-        setProfileRedux({});
+        setProfile({});
       }
     });
   }, []);
@@ -51,15 +60,4 @@ function App(props) {
   );
 }
 
-const mapState = (state) => ({
-  user: state.user,
-  isLoggedIn: state.user ? !!state.user.uid : false,
-});
-
-const mapDispatch = (dispatch) => ({
-  setUser: (user) => dispatch(setUser(user)),
-  getProfile: (user) => dispatch(fetchOrCreateProfile(user)),
-  setProfileRedux: (profile) => dispatch(setProfile(profile)),
-});
-
-export default connect(mapState, mapDispatch)(App);
+export default App;
