@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useReducer } from "react";
 import UserMandatoryForm from "./UserMandatoryForm";
-import { updateProfileEntry } from "../store/profile";
+// import { updateProfileEntry } from "../store/profile";
 import { connect } from "react-redux";
 import { generateNewProfile } from "../utils";
 import firebase from "firebase";
 import { db } from "..";
-import MatchProfileDisplay from "./MatchProfileDisplay";
+
 
 const NewUser = (props) => {
   const {

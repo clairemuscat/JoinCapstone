@@ -8,8 +8,8 @@ import { generateNewProfile } from '../utils';
 // Using react-hook-form https://react-hook-form.com/
 
 export default function UserMandatoryForm(props) {
-  const { register, setValue, errors } = useForm();
-  const { profile, handleChange, handleSubmit, userInput } = props;
+  const { register, setValue, handleSubmit, getValues, errors } = useForm();
+  const { profile, handleChange, userInput } = props;
   console.log(profile)
   const onSubmit = (data) => console.log(data)
 
