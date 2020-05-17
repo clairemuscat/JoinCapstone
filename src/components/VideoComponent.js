@@ -1,10 +1,10 @@
-import React, { useState, useCallback } from 'react';
-import axios from 'axios';
-import { Lobby, Room } from '.';
+import React, { useState, useCallback } from "react";
+import axios from "axios";
+import { Lobby } from ".";
 
 const VideoComponent = (props) => {
-  const [username, setUsername] = useState('');
-  const [roomName, setRoomName] = useState('');
+  const [username, setUsername] = useState("");
+  const [roomName, setRoomName] = useState("");
   const [token, setToken] = useState(null);
 
   const handleUsernameChange = useCallback((event) => {
@@ -19,7 +19,7 @@ const VideoComponent = (props) => {
     async (event) => {
       try {
         event.preventDefault();
-        const { data } = await axios.post('/video/token', {
+        const { data } = await axios.post("/video/token", {
           identity: username,
           room: roomName,
         });
@@ -38,9 +38,7 @@ const VideoComponent = (props) => {
 
   let render;
   if (token) {
-    render = (
-      <Room roomName={roomName} token={token} handleLogout={handleLogout} />
-    );
+    render = <div>test</div>;
   } else {
     render = (
       <Lobby
