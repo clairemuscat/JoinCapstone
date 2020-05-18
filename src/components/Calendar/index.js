@@ -17,35 +17,16 @@ class Calendar extends React.Component{
     this.state={
       calendarWeekends:true,
       calendarEvents:[{title: "Event Now", start: new Date()}],
-      // calendarEventsDescrptions:[]
+    
     }
-    // this.handleDateClick=this.handleDateClick.bind(this)
+ 
   }
 
-  // handleDateClick(evt){
-  //   console.log(evt)
-  //   console.log('calenadr state',this.state)
-  //   this.setState({
-  //     // add new event data
-  //     calendarEvents:[...this.state.calendarEvents,{
-  //       // creates a new array
-  //       title: "New Event",
-  //       start: evt.date,
-  //       allDay: !evt.allDay
-  //     }]
-  //   });
-    
-  // }
 
-  
-  
- 
- render (){
-  
- 
+ render(){
    return(
     <FullCalendar
-      defaultView="dayGridMonth"
+      defaultView="timeGridWeek"
       header={{
         left: "prev,next today",
         center: "title",
@@ -63,7 +44,11 @@ class Calendar extends React.Component{
         content: <UpdateEvent event={info}/>,
         buttons:{
           cancel:true,
-          confirm:'Update Event',
+          delete:{
+            text:'delete',
+            value:'delete'
+          },
+          confirm:'Update Event'
         }
       })}}
       dateClick={(evt)=>  swal({
@@ -89,10 +74,8 @@ class Calendar extends React.Component{
       text:'Event: ' + val.value.title + ', was created!',
       icon:'success'
     })
-  })
+  })}
 
-    
-    }
       // selectable={true}
       // selectOverlap={false}
       // selectMirror={true}
@@ -110,14 +93,12 @@ class Calendar extends React.Component{
       // ]}
     />
   
-  )
-
-   
- }
-
- 
+  )}
 
 }
 
 
-export default Calendar;
+
+export default Calendar
+
+
