@@ -1,6 +1,10 @@
 import React, { useState, useCallback } from "react";
 import axios from "axios";
+<<<<<<< HEAD
 import { Lobby, Room, } from ".";
+=======
+import { Lobby } from ".";
+>>>>>>> 8a8d2803e84df60efec50ace25659f9a053a6938
 
 const VideoComponent = (props) => {
   const [username, setUsername] = useState("");
@@ -19,8 +23,6 @@ const VideoComponent = (props) => {
     async (event) => {
       try {
         event.preventDefault();
-        console.log("is the post hitting???????");
-        console.log({ username, roomName });
         const { data } = await axios.post("/video/token", {
           identity: username,
           room: roomName,
@@ -28,7 +30,7 @@ const VideoComponent = (props) => {
 
         setToken(data.token);
       } catch (error) {
-        console.log("Oops I did it again", error);
+        console.error(error);
       }
     },
     [username, roomName]
@@ -40,9 +42,7 @@ const VideoComponent = (props) => {
 
   let render;
   if (token) {
-    render = (
-      <Room roomName={roomName} token={token} handleLogout={handleLogout} />
-    );
+    render = <div>test</div>;
   } else {
     render = (
       <Lobby

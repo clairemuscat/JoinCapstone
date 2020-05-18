@@ -1,75 +1,82 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from "react";
 import {
   LandingPage,
   AccountPage,
   MatchingInterface,
   Navbar,
-  UserMandatoryForm,
-  NewUser
-} from './components';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import firebase from 'firebase';
-import { connect } from 'react-redux';
-import { setUser } from './store/user';
-import { db } from '.';
-import { setProfile } from './store/profile';
-import { generateNewProfile } from './utils';
+  PrivateRoute,
+  Connections,
+  Calendar,
+  UserMandatoryForm
+} from "./components";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import firebase from "firebase";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser as setUserRedux } from "./store/user";
+import {
+  fetchOrCreateProfile,
+  setProfile as setProfileRedux,
+} from "./store/profile";
 
 function App(props) {
-  const { setUser, setProfile, isLoggedIn } = props;
+  const isLoggedIn = useSelector((state) =>
+    state.user ? !!state.user.uid : false
+  );
+  const dispatch = useDispatch();
+  const setUser = (user) => dispatch(setUserRedux(user));
+  const getProfile = (user) => dispatch(fetchOrCreateProfile(user));
+  const setProfile = (profile) => dispatch(setProfileRedux(profile));
+  const [authStateChecked, setAuthStateChecked] = useState(false);
 
-  // Listen for auth state change, set user and profile in state
   useEffect(() => {
     firebase.auth().onAuthStateChanged(async (user) => {
-      setUser(user);
-      //check firestore for a profile matching the user
-      const snap = await db.collection('users').doc(user.uid).get();
-      // if the user has a profile in the database, set that to redux
-      if (snap.exists) {
-        const profile = snap.data();
-        setProfile(profile);
-        //if not, create a new profile object and post it to firestore
+      if (user) {
+        setUser(user);
+        getProfile(user);
       } else {
-        await db
-          .collection('users')
-          .doc(user.uid)
-          .set(generateNewProfile(user));
-        const snap = await db.collection('users').doc(user.uid).get();
-        const profile = snap.data();
-        // set profile in redux
-        setProfile(profile);
+        setUser({});
+        setProfile({});
       }
+      setAuthStateChecked(true);
     });
   }, []);
 
   return (
-    <div className="app">
-      <Navbar />
-      <Router>
-        <Switch>
-          <Route exact path="/" component={LandingPage} />
-        </Switch>
-        {isLoggedIn && (
-          <Switch>
-            <Route path="/newUser" component={NewUser} />
-            <Route path="/account" component={AccountPage} />
-            <Route path="/connect" component={MatchingInterface} />
-            <Route path="/form" component={UserMandatoryForm} />
-          </Switch>
-        )}
-      </Router>
-    </div>
+    <Router>
+      <div className="app">
+        <Navbar />
+        <div id="content">
+          <Route path="/form" component={UserMandatoryForm} />
+          {authStateChecked && (
+            <Switch> 
+              <PrivateRoute 
+              isLoggedIn={isLoggedIn}
+              exact path='/account/calendar' 
+              component={Calendar}/>
+              <PrivateRoute
+                isLoggedIn={isLoggedIn}
+                path="/account"
+                component={AccountPage}
+              />
+              <PrivateRoute
+                isLoggedIn={isLoggedIn}
+                exact
+                path="/connect"
+                component={MatchingInterface}
+              />
+              <PrivateRoute
+                isLoggedIn={isLoggedIn}
+                path="/connections"
+                component={Connections}
+              />
+              <Route component={LandingPage} />
+             
+            </Switch>
+          )}
+        </div>
+      </div>
+    </Router>
   );
 }
 
-const mapState = (state) => ({
-  user: state.user,
-  isLoggedIn: state.user ? !!state.user.uid : false,
-});
-
-const mapDispatch = (dispatch) => ({
-  setUser: (user) => dispatch(setUser(user)),
-  setProfile: (profile) => dispatch(setProfile(profile)),
-});
-
-export default connect(mapState, mapDispatch)(App);
+export default App;

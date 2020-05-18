@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import Video from 'twilio-video';
-import { Participant } from '.';
+import React, { useState, useEffect } from "react";
+import Video from "twilio-video";
+import { Participant } from ".";
 
 const Room = ({ roomName, token, handleLogout }) => {
   const [room, setRoom] = useState(null);
@@ -8,7 +8,6 @@ const Room = ({ roomName, token, handleLogout }) => {
   // Renders remote participants
   const remoteParticipants = participants.map((participant) => (
     <Participant key={participant.sid} participant={participant} />
-    // <p key={participant.sid}>{participant.identity}</p>
   ));
   //
   useEffect(() => {
@@ -27,13 +26,13 @@ const Room = ({ roomName, token, handleLogout }) => {
       name: roomName,
     }).then((room) => {
       setRoom(room);
-      room.on('participantConnected', participantConnected);
-      room.on('participantDisconnected', participantDisconnected);
+      room.on("participantConnected", participantConnected);
+      room.on("participantDisconnected", participantDisconnected);
       room.participants.forEach(participantConnected);
     });
     return () => {
       setRoom((currentRoom) => {
-        if (currentRoom && currentRoom.localParticipant.state === 'connected') {
+        if (currentRoom && currentRoom.localParticipant.state === "connected") {
           currentRoom.localParticipant.tracks.forEach(function (
             trackPublication
           ) {
@@ -59,7 +58,7 @@ const Room = ({ roomName, token, handleLogout }) => {
             participant={room.localParticipant}
           />
         ) : (
-          ''
+          ""
         )}
       </div>
       <h3>Remote Participants</h3>
