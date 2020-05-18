@@ -10,41 +10,42 @@ class MyInput extends Component {
  
     this.state = {
       eventTitle: '',
-      eventDescription:''
+    //   eventDescription:''
     };
     this.changeText=this.changeText.bind(this)
-    this.changeDescription=this.changeDescription.bind(this)
+    // this.changeDescription=this.changeDescription.bind(this)
   }
  
   changeText(e) {
     let title = e.target.value
+    let date=this.props.date.date
     
  
     this.setState({
       eventTitle:title
     });
     swal.setActionValue({
-        confirm: { value: title }
+        confirm: { value:{title,date}  }
       });
 
 }
 
-changeDescription(e){
-    let description = e.target.value
-    let title=this.state.eventTitle
-    let date=this.props.date.date
+// changeDescription(e){
+//     // let description = e.target.value
+//     let title=this.state.eventTitle
+//     let date=this.props.date.date
  
-    this.setState({
-      eventDescription:description
-    });
+//     // this.setState({
+//     //   eventDescription:description
+//     // });
 
-    swal.setActionValue({
-        confirm: { 
-            value: {description:description,
-            title:title,
-            date:date}
-    }});
-}
+//     swal.setActionValue({
+//         confirm: { 
+//             value: {
+//             title:title,
+//             date:date}
+//     }});
+// }
  
   render() {
     return (
@@ -63,7 +64,7 @@ changeDescription(e){
         value={this.props.date.date}
         />
         <br/>
-        <br/>
+        {/* <br/>
         <label>
             Description:
         </label>
@@ -72,7 +73,7 @@ changeDescription(e){
         value={this.state.eventDescription}
         name='description'
         onChange={this.changeDescription}
-        /><br/>
+        /><br/> */}
         <br/>
         <div id='attendee'>
          Attendee(s): Brian

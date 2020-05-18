@@ -4,6 +4,7 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import MyInput from './MyInput'
+import UpdateEvent from './UpdateEvent'
 import swal from '@sweetalert/with-react'
 
 import './main.scss' // webpack must be configured to do this
@@ -16,10 +17,7 @@ class Calendar extends React.Component{
     this.state={
       calendarWeekends:true,
       calendarEvents:[{title: "Event Now", start: new Date()}],
-      calendarEventsDescrptions:[]
-      // displayPopup:false,
-     
-
+      // calendarEventsDescrptions:[]
     }
     // this.handleDateClick=this.handleDateClick.bind(this)
   }
@@ -58,7 +56,16 @@ class Calendar extends React.Component{
       editable={true}
       weekends={this.state.weekends}
       events={this.state.calendarEvents}
-      eventClick={(info)=>console.log('strawberry', info.event.id)}
+      eventClick={(info)=>{
+        console.log('limes',info.event)
+        swal({
+        title:info.event.title,
+        content: <UpdateEvent event={info}/>,
+        buttons:{
+          cancel:true,
+          confirm:'Update Event',
+        }
+      })}}
       dateClick={(evt)=>  swal({
         title:"Create Event",
         content:<MyInput date={evt}/>,
@@ -69,13 +76,14 @@ class Calendar extends React.Component{
 
       })
    .then(val=>{
-     console.log('plums',val)
+     console.log('oranges',val)
      this.setState({calendarEvents:[...this.state.calendarEvents,{
        title: val.value.title,
        start:val.value.date,
       //  allDay:val.value.date.allDay
-     }],
-    calendarEventsDescrptions:[...this.state.calendarEventsDescrptions,{eventId:1,eventDesciption:val.value.description}]})
+     }]})
+    // calendarEventsDescrptions:[...this.state.calendarEventsDescrptions,{eventId:1,eventDesciption:val.value.description}]})
+    // console.log('pineapples',this.state)
     swal({
       title:'Event Created',
       text:'Event: ' + val.value.title + ', was created!',
