@@ -43,12 +43,14 @@ function App(props) {
 
   return (
     <Router>
+
       <div className="app">
         <Navbar />
         <div id="content">
-          <Route path="/form" component={UserMandatoryForm} />
+          
           {authStateChecked && (
-            <Switch> 
+            <Switch>
+              <Route path="/form" component={UserMandatoryForm} />
               <PrivateRoute 
               isLoggedIn={isLoggedIn}
               exact path='/account/calendar' 

@@ -9,14 +9,6 @@ export const setProfile = (profile) => ({
   profile,
 });
 
-<<<<<<< HEAD
-export const updateProfile = (profile) => ({
-  type: UPDATE_PROFILE,
-  profile,
-})
-
-=======
->>>>>>> 8a8d2803e84df60efec50ace25659f9a053a6938
 export const fetchOrCreateProfile = (user) => {
   return async (dispatch) => {
     const snap = await db.collection('users').doc(user.uid).get();
@@ -32,17 +24,6 @@ export const fetchOrCreateProfile = (user) => {
   };
 };
 
-<<<<<<< HEAD
-export const updateProfileEntry = (user) => {
-  return async (dispatch) => {
-    const snap = await db.collection('users').doc(user.uid).get();
-    const profile = snap.data()
-    dispatch(updateProfile(profile.update()))
-  }
-}
-
-=======
->>>>>>> 8a8d2803e84df60efec50ace25659f9a053a6938
 export default (state = {}, action) => {
   switch (action.type) {
     case SET_PROFILE:

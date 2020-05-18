@@ -182,7 +182,16 @@ footer a {
   align-items: center;
 }
 
-<<<<<<< HEAD
+#content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#attendee{
+  text-align: left;
+}
+
 .user-form {
   max-width: 500px;
   margin: 0 auto;
@@ -222,14 +231,3 @@ footer a {
   font-size: 14px;
   font-weight: 200;
 }
-=======
-#content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-#attendee{
-  text-align: left;
-}
->>>>>>> 8a8d2803e84df60efec50ace25659f9a053a6938

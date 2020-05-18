@@ -1,10 +1,6 @@
 import React, { useState, useCallback } from "react";
 import axios from "axios";
-<<<<<<< HEAD
-import { Lobby, Room, } from ".";
-=======
 import { Lobby } from ".";
->>>>>>> 8a8d2803e84df60efec50ace25659f9a053a6938
 
 const VideoComponent = (props) => {
   const [username, setUsername] = useState("");
