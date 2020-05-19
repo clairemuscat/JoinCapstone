@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+// position: absolute;
 export const StyledMenu = styled.nav`
   display: flex;
   flex-direction: column;
@@ -8,8 +8,8 @@ export const StyledMenu = styled.nav`
   transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-100%)')};
   height: 33vh;
   text-align: left;
-  // padding: 2rem;
-  position: absolute;
+  padding: 2rem;
+
   top: 0;
   left: 0;
   transition: transform 0.3s ease-in-out;
@@ -19,7 +19,6 @@ export const StyledMenu = styled.nav`
   div {
     font-size: 0.5rem;
     text-transform: uppercase;
-    background-color: #0b132b;
     padding: 2rem 0;
     font-weight: bold;
     letter-spacing: 0.5rem;

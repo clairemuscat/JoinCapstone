@@ -225,14 +225,15 @@ footer a {
 #navbar {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   background-color: rgba(58, 80, 107, 0.2);
+  padding: 0 1rem;
 }
 
 #content {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
 }
@@ -247,9 +248,9 @@ footer a {
   max-width: 90%;
 }
 
-#logo {
+/* #logo {
   border-left: ;
-}
+} */
 
 #logo:hover {
   cursor: pointer;

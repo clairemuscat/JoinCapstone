@@ -6,15 +6,7 @@ import { withRouter } from 'react-router-dom';
 import firebase from 'firebase';
 
 const Navbar = withRouter(function (props) {
-  const [open, setOpen] = useState(false);
-
-  const handleSignOut = () => {
-    try {
-      firebase.auth().signOut();
-      props.history.push('/');
-    } catch (error) {}
-  };
-
+  const { open, setOpen } = props;
   return (
     <div id="navbar">
       <div id="burger-nav">
@@ -25,7 +17,6 @@ const Navbar = withRouter(function (props) {
       <div id="logo" onClick={() => props.history.push('/')}>
         <img src="/logo.png" />
       </div>
-      <Menu open={open} setOpen={setOpen} handleSignOut={handleSignOut} />
     </div>
   );
 });

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
   LandingPage,
   AccountPage,
@@ -6,16 +6,17 @@ import {
   Navbar,
   PrivateRoute,
   Connections,
-  Calendar
-} from "./components";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import firebase from "firebase";
-import { useDispatch, useSelector } from "react-redux";
-import { setUser as setUserRedux } from "./store/user";
+  Calendar,
+} from './components';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import firebase from 'firebase';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser as setUserRedux } from './store/user';
 import {
   fetchOrCreateProfile,
   setProfile as setProfileRedux,
-} from "./store/profile";
+} from './store/profile';
+import { Menu } from './components/Burger';
 
 function App(props) {
   const isLoggedIn = useSelector((state) =>
@@ -26,6 +27,7 @@ function App(props) {
   const getProfile = (user) => dispatch(fetchOrCreateProfile(user));
   const setProfile = (profile) => dispatch(setProfileRedux(profile));
   const [authStateChecked, setAuthStateChecked] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(async (user) => {
@@ -40,17 +42,27 @@ function App(props) {
     });
   }, []);
 
+  const handleSignOut = () => {
+    try {
+      firebase.auth().signOut();
+      props.history.push('/');
+    } catch (error) {}
+  };
+
   return (
     <Router>
       <div className="app">
-        <Navbar />
+        <Navbar open={open} setOpen={setOpen} />
         <div id="content">
+          <Menu open={open} setOpen={setOpen} handleSignOut={handleSignOut} />
           {authStateChecked && (
-            <Switch> 
-              <PrivateRoute 
-              isLoggedIn={isLoggedIn}
-              exact path='/account/calendar' 
-              component={Calendar}/>
+            <Switch>
+              <PrivateRoute
+                isLoggedIn={isLoggedIn}
+                exact
+                path="/account/calendar"
+                component={Calendar}
+              />
               <PrivateRoute
                 isLoggedIn={isLoggedIn}
                 path="/account"
@@ -68,7 +80,6 @@ function App(props) {
                 component={Connections}
               />
               <Route component={LandingPage} />
-             
             </Switch>
           )}
         </div>
