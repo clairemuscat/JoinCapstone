@@ -17,10 +17,14 @@ const Navbar = withRouter(function (props) {
 
   return (
     <div id="navbar">
-      <ThemeProvider theme={theme}>
-        <Burger open={open} setOpen={setOpen} />
-      </ThemeProvider>
-      <img src="/logo.png" />
+      <div id="burger-nav">
+        <ThemeProvider theme={theme}>
+          <Burger open={open} setOpen={setOpen} />
+        </ThemeProvider>
+      </div>
+      <div id="logo" onClick={() => props.history.push('/')}>
+        <img src="/logo.png" />
+      </div>
       <Menu open={open} setOpen={setOpen} handleSignOut={handleSignOut} />
     </div>
   );
