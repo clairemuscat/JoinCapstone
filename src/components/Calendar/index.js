@@ -6,6 +6,9 @@ import interactionPlugin from '@fullcalendar/interaction'
 import MyInput from './MyInput'
 import UpdateEvent from './UpdateEvent'
 import swal from '@sweetalert/with-react'
+import {connect} from 'react-redux'
+import  {fetchEvents,newEvent} from '../../store/events'
+
 
 import './main.scss' // webpack must be configured to do this
 
@@ -14,16 +17,17 @@ import './main.scss' // webpack must be configured to do this
 class Calendar extends React.Component{
   constructor(props){
     super(props)
-    this.state={
-      calendarWeekends:true,
-      calendarEvents:[{title: "Event Now", start: new Date()}],
-    
-    }
  
   }
 
+ componentDidMount(){
+  this.props.getCalendar(this.props.user)
+ }
 
  render(){
+   console.log('peaches',this.props.events)
+  //  const theseEvents = this.props.events.map(event=> event.start = new Date(event.start))
+  //  console.log('mORE',theseEvents)
    return(
     <FullCalendar
       defaultView="timeGridWeek"
@@ -35,8 +39,8 @@ class Calendar extends React.Component{
       plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
       // ref={calendarComponentRef}
       editable={true}
-      weekends={this.state.weekends}
-      events={this.state.calendarEvents}
+      weekends={true}
+      events={this.props.events}
       eventClick={(info)=>{
         console.log('limes',info.event)
         swal({
@@ -61,12 +65,9 @@ class Calendar extends React.Component{
 
       })
    .then(val=>{
-     console.log('oranges',val)
-     this.setState({calendarEvents:[...this.state.calendarEvents,{
-       title: val.value.title,
-       start:val.value.date,
-      //  allDay:val.value.date.allDay
-     }]})
+     console.log('oranges',val.value)
+    this.props.addEvent(this.props.user,val.value)
+     
     // calendarEventsDescrptions:[...this.state.calendarEventsDescrptions,{eventId:1,eventDesciption:val.value.description}]})
     // console.log('pineapples',this.state)
     swal({
@@ -96,9 +97,17 @@ class Calendar extends React.Component{
   )}
 
 }
+const mapDispatch=(dispatch)=>({
+  getCalendar: (user)=>dispatch(fetchEvents(user)),
+  addEvent:(user,event)=>dispatch(newEvent(user,event))
+})
+const mapState=(state)=>({
+  user:state.user,
+  events:state.calendar
+})
+
+export default connect(mapState,mapDispatch)(Calendar)
 
 
-
-export default Calendar
-
+// export default Calendar
 

@@ -64,16 +64,6 @@ class MyInput extends Component {
         value={this.props.date.date}
         />
         <br/>
-        {/* <br/>
-        <label>
-            Description:
-        </label>
-        <input
-        type='text'
-        value={this.state.eventDescription}
-        name='description'
-        onChange={this.changeDescription}
-        /><br/> */}
         <br/>
         <div id='attendee'>
          Attendee(s): Brian
