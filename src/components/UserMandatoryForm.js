@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import firebase from "firebase";
 import { db } from "..";
 import { connect } from "react-redux";
 
@@ -9,8 +8,7 @@ import { connect } from "react-redux";
 function UserMandatoryForm(props) {
   const { register, handleSubmit, setValue, errors } = useForm();
   const { profile, user } = props;
-  // console.log(user);
-  // console.log(profile);
+
   const onSubmit = async (data) => {
     let userRef = db.collection("users").doc(user.uid);
     console.log(data)

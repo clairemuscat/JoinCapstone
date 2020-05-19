@@ -7,7 +7,8 @@ import {
   PrivateRoute,
   Connections,
   Calendar,
-  UserMandatoryForm
+  UserMandatoryForm,
+  CloudUpload
 } from "./components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import firebase from "firebase";
@@ -51,6 +52,7 @@ function App(props) {
           {authStateChecked && (
             <Switch>
               <Route path="/form" component={UserMandatoryForm} />
+              <Route path="/widge" component={CloudUpload} />
               <PrivateRoute 
               isLoggedIn={isLoggedIn}
               exact path='/account/calendar' 
