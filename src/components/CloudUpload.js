@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import cloudinary from "cloudinary"
 
 export default class CloudUpload extends Component {
   constructor(props) {
