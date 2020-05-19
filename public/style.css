@@ -205,6 +205,12 @@ footer a {
 
 .match-card-controls {
   width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.match-card-container {
+  position: relative;
 }
 
 #card-image-container {
@@ -236,4 +242,10 @@ footer a {
 }
 #attendee {
   text-align: left;
+}
+
+#calendar {
+  margin: 5rem 5rem;
+  max-height: 80%;
+  max-width: 90%;
 }

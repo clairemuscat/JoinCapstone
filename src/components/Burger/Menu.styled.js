@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StyledMenu = styled.nav`
   display: flex;
   flex-direction: column;
   justify-content: center;
   transform: translateX(-100%);
-  transform: ${({ open }) => (open ? "translateX(0)" : "translateX(-100%)")};
+  transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-100%)')};
   height: 33vh;
   text-align: left;
   // padding: 2rem;
@@ -16,9 +16,10 @@ export const StyledMenu = styled.nav`
   @media (max-width: ${({ theme }) => theme.mobile}) {
     width: 100%;
   }
-  a {
-    font-size: .5rem;
+  div {
+    font-size: 0.5rem;
     text-transform: uppercase;
+    background-color: #0b132b;
     padding: 2rem 0;
     font-weight: bold;
     letter-spacing: 0.5rem;
