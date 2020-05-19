@@ -6,8 +6,22 @@ function MatchCard(props) {
   return (
     <div className="match-card">
       <MatchProfileDisplay userProfile={userB} />
-      <button onClick={() => handleConnect(userB)}>Connect</button>
-      <button onClick={() => handleReject(userB.id)}>Don't Connect</button>
+      <div className="match-card-controls">
+        <button
+          className="button match-card-button"
+          id="connect"
+          onClick={() => handleConnect(userB)}
+        >
+          CONNECT
+        </button>
+        <button
+          className="button match-card-button"
+          id="skip"
+          onClick={() => handleReject(userB.id)}
+        >
+          SKIP
+        </button>
+      </div>
     </div>
   );
 }
