@@ -7,7 +7,7 @@ import MyInput from './MyInput'
 import UpdateEvent from './UpdateEvent'
 import swal from '@sweetalert/with-react'
 import {connect} from 'react-redux'
-import  {fetchEvents,newEvent,changeEvent} from '../../store/events'
+import  {fetchEvents,newEvent,changeEvent,deleteEvent} from '../../store/events'
 
 
 import './main.scss' // webpack must be configured to do this
@@ -41,21 +41,20 @@ class Calendar extends React.Component{
       eventClick={(info)=>{
         swal({
         title:info.event.title,
-        content: <UpdateEvent event={info} user={this.props.user}/>,
+        content: <UpdateEvent event={info.event} user={this.props.user} update={this.props.updateEvent}/>,
         buttons:{
           cancel:true,
-          delete:{
-            text:'delete',
-            value:'delete'
-          },
-          confirm:'Update Event'
+         confirm:{
+           text:'delete',
+           value:info}
         }
-      }).then(val=>{
-        this.props.updateEvent(this.props.user,val.value)
-        swal({
-          title:'Event Updated',
-          icon:'success'
-        }) //change when you get date to update
+      }).then(info =>{
+        console.log('red', info.event)
+          this.props.removeEvent(info.event)
+          swal({
+            title:'Event Deleted',
+            icon:'success'
+          })
       })}}
 
       dateClick={(evt)=>  swal({
@@ -98,7 +97,8 @@ class Calendar extends React.Component{
 const mapDispatch=(dispatch)=>({
   getCalendar: (user)=>dispatch(fetchEvents(user)),
   addEvent:(user,event)=>dispatch(newEvent(user,event)),
-  updateEvent:(user,event)=>dispatch(changeEvent(user,event))
+  updateEvent:(user,event)=>dispatch(changeEvent(user,event)),
+  removeEvent:(event)=>dispatch(deleteEvent(event))
 })
 const mapState=(state)=>({
   user:state.user,

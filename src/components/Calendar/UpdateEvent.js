@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-
+import swal from '@sweetalert/with-react'
 
 
 
@@ -7,12 +7,22 @@ class UpdateEvent extends Component{
     constructor(props){
         super(props)
         this.state = {
-            eventTitle: this.props.event.event.title,
-            eventDate:  this.props.event.event.start,
-            eventId:this.props.event.event.id
+            eventTitle: this.props.event.title,
+            eventDate:  this.props.event.start,
+            eventId:this.props.event.id
           };
           this.changeText=this.changeText.bind(this)
           this.changeTime=this.changeTime.bind(this)
+          this.updatingEvent=this.updatingEvent.bind(this)
+        }
+
+        updatingEvent(){
+          const data = {title:this.state.eventTitle,date:this.state.eventDate ,id:this.state.eventId }
+          this.props.update(this.props.user,data)
+          swal({
+            title:'Event Updated',
+            icon:'success'
+          })
         }
        
         changeText(e) {
@@ -22,9 +32,7 @@ class UpdateEvent extends Component{
           this.setState({
             eventTitle:title
           });
-          swal.setActionValue({
-              confirm: { value: {title:title,date:this.state.eventDate ,id:this.state.eventId }}  // need to do this for changeTime 
-            });
+         
       
       }
       changeTime(e){
@@ -35,9 +43,9 @@ class UpdateEvent extends Component{
           eventDate:date
         })
 
-        swal.setActionValue({
-          confirm: { value: date,}
-        });
+        // swal.setActionValue({
+        //   confirm: { value: date,}
+        // });
 
       }
     //   changeDescription(e){
@@ -60,7 +68,8 @@ class UpdateEvent extends Component{
 
 
         render(){
-                return(<form id='event-form'>
+          
+                return(<div><form id='event-form'>
                             <label>Title: </label>
                                 <input
 type='text'
@@ -90,7 +99,10 @@ onChange={this.changeDescription}
 <div id='attendee'>
  Attendee(s): Brian
 </div>
-</form>)
+</form>
+<button type='button' onClick={this.updatingEvent}>Update Event</button>
+</div>
+)
 }
 
 }

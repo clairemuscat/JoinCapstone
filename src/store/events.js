@@ -4,6 +4,7 @@ import { db } from '..';
 const SET_EVENTS ='SET_EVENTS'
 const CREATE_EVENT='CREATE_EVENT'
 const UPDATE_EVENT='UPDATE_EVENT'
+const REMOVE_EVENT = 'REMOVE_EVENT'
 
 export const setEvents = (events)=>({
     type:SET_EVENTS,
@@ -20,6 +21,10 @@ export const updateEvent =(event)=>({
     event
 })
 
+export const removeEvent = (event)=>({
+    type:REMOVE_EVENT,
+    event
+})
 
 export const fetchEvents =(user)=>{
     return async(dispatch)=>{
@@ -83,6 +88,19 @@ export const changeEvent=(user,event)=>{
 }
 
 
+export const deleteEvent =(event)=>{
+    return async (dispatch)=>{
+        try{
+            console.log('green',event)
+         await db.collection('events').doc(event.id).delete()
+         dispatch(removeEvent(event))
+        }
+        catch(err){
+            console.log('Error deleting event',err)
+        }
+    }
+}
+
 
 export default (state=[],action)=>{ //eventually want to get rid of repetative code for create and update
     switch(action.type){
@@ -101,6 +119,8 @@ export default (state=[],action)=>{ //eventually want to get rid of repetative c
                   return event
                 }
               })
+        case REMOVE_EVENT:
+            return state.filter(event=>event.id!==action.event.id)
         default:
             return state
     }
