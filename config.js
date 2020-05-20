@@ -7,8 +7,4 @@ module.exports = {
     // outgoingApplicationSid: process.env.TWILIO_TWIML_APP_SID,
     // incomingAllow: process.env.TWILIO_ALLOW_INCOMING_CALLS === "true"
   },
-  cloudinary: {
-    // Has secret, name, and key
-    cloudUrl: process.env.CLOUDINARY_URL
-  }
 };

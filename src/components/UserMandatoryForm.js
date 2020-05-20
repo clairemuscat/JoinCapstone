@@ -1,44 +1,41 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
-import { db } from "..";
 import { connect } from "react-redux";
-
+import { db } from "..";
 // Using react-hook-form https://react-hook-form.com/
-
 function UserMandatoryForm(props) {
-  const { register, handleSubmit, setValue, errors } = useForm();
-  const { profile, user } = props;
-
+  const { register, handleSubmit, errors } = useForm();
+  const { user } = props;
   const onSubmit = async (data) => {
     let userRef = db.collection("users").doc(user.uid);
-    console.log(data)
+    console.log(data);
     let userSubmission = await userRef.set(data, { merge: true });
-    
   };
-
   return (
     <form className="user-form" onSubmit={handleSubmit(onSubmit)}>
       <h1 className="user-greeting">Create your .join() profile</h1>
       <label className="user-labels"></label>
-
+      <input
+        className="form-inputs"
+        type="text"
+        placeholder="First Name"
+        name="first_name"
+        ref={register({ required: true, maxLength: 20 })}
+      />
+      {errors.firstName && errors.firstName.type === "required" && (
+        <p className="required"> This is required </p>
+      )}
       <label className="user-labels"></label>
       <input
         className="form-inputs"
         type="text"
-        placeholder="City"
-        name="city"
-        ref={register}
+        placeholder="Last Name"
+        name="last_name"
+        ref={register({ required: true, maxLength: 20 })}
       />
-
-      <label className="user-labels"></label>
-      <input
-        className="form-inputs"
-        type="text"
-        placeholder="State/Province"
-        name="state_province"
-        ref={register}
-      />
-
+      {errors.lastName && errors.lastName.type === "required" && (
+        <p className="required"> This is required </p>
+      )}
       <label className="user-labels"></label>
       <input
         className="form-inputs"
@@ -47,16 +44,22 @@ function UserMandatoryForm(props) {
         name="country"
         ref={register}
       />
-
       <label className="user-labels"></label>
       <input
         className="form-inputs"
         type="text"
-        placeholder="Role"
-        name="role"
+        placeholder="State/Province"
+        name="state_province"
         ref={register}
       />
-
+      <label className="user-labels"></label>
+      <input
+        className="form-inputs"
+        type="text"
+        placeholder="City"
+        name="city"
+        ref={register}
+      />
       <label className="user-labels"></label>
       <input
         className="form-inputs"
@@ -65,7 +68,6 @@ function UserMandatoryForm(props) {
         name="programming_languages"
         ref={register}
       />
-
       <label className="user-labels"></label>
       <input
         className="form-inputs"
@@ -74,7 +76,6 @@ function UserMandatoryForm(props) {
         name="libraries_frameworks"
         ref={register}
       />
-
       <label className="user-labels"></label>
       <input
         className="form-inputs"
@@ -83,7 +84,6 @@ function UserMandatoryForm(props) {
         name="company"
         ref={register}
       />
-
       <label className="user-labels">Looking For Work?</label>
       <input
         className="form-inputs"
@@ -92,7 +92,6 @@ function UserMandatoryForm(props) {
         name="looking_for_work"
         ref={register}
       />
-
       <label className="user-labels"></label>
       <input
         className="form-inputs"
@@ -101,7 +100,6 @@ function UserMandatoryForm(props) {
         name="hobbies_interests"
         ref={register}
       />
-
       <label className="user-labels"></label>
       <input
         className="form-inputs"
@@ -110,23 +108,18 @@ function UserMandatoryForm(props) {
         name="about"
         ref={register}
       />
-
-      <label className="user-labels">Profile Picture: </label>
+      <label className="user-labels">Profile Picture</label>
       <input
         className="form-inputs"
-        type="img"
-        placeholder="Profile Picture"
+        type="file"
         name="imageUrl"
         ref={register}
       />
-
       <input className="form-inputs" type="submit" />
     </form>
   );
 }
 const mapState = (state) => ({
-  profile: state.profile,
   user: state.user,
 });
-
 export default connect(mapState)(UserMandatoryForm);
