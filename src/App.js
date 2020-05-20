@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
   LandingPage,
   AccountPage,
@@ -6,16 +6,17 @@ import {
   Navbar,
   PrivateRoute,
   Connections,
-  Calendar
-} from "./components";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import firebase from "firebase";
-import { useDispatch, useSelector } from "react-redux";
-import { setUser as setUserRedux } from "./store/user";
+  Calendar,
+  Chat,
+} from './components';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import firebase from 'firebase';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser as setUserRedux } from './store/user';
 import {
   fetchOrCreateProfile,
   setProfile as setProfileRedux,
-} from "./store/profile";
+} from './store/profile';
 
 function App(props) {
   const isLoggedIn = useSelector((state) =>
@@ -46,11 +47,13 @@ function App(props) {
         <Navbar />
         <div id="content">
           {authStateChecked && (
-            <Switch> 
-              <PrivateRoute 
-              isLoggedIn={isLoggedIn}
-              exact path='/account/calendar' 
-              component={Calendar}/>
+            <Switch>
+              <PrivateRoute
+                isLoggedIn={isLoggedIn}
+                exact
+                path="/account/calendar"
+                component={Calendar}
+              />
               <PrivateRoute
                 isLoggedIn={isLoggedIn}
                 path="/account"
@@ -67,8 +70,12 @@ function App(props) {
                 path="/connections"
                 component={Connections}
               />
+              <PrivateRoute
+                isLoggedIn={isLoggedIn}
+                path="/chat"
+                component={Chat}
+              />
               <Route component={LandingPage} />
-             
             </Switch>
           )}
         </div>
