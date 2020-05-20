@@ -17,6 +17,7 @@ import {
   fetchOrCreateProfile,
   setProfile as setProfileRedux,
 } from "./store/profile";
+import CloudWidget from "./components/CloudWidget";
 
 function App(props) {
   const isLoggedIn = useSelector((state) =>
@@ -73,6 +74,11 @@ function App(props) {
                 isLoggedIn={isLoggedIn}
                 path="/connections"
                 component={Connections}
+              />
+               <PrivateRoute
+                isLoggedIn={isLoggedIn}
+                path="/widge"
+                component={CloudWidget}
               />
               <Route component={LandingPage} />
              
