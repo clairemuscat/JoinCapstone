@@ -1,15 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { db } from '..';
+import { generateCompoundSlice } from '../utils';
 
 function Chat(props) {
   const user = useSelector((state) => state.user);
+  const [messages, setMessages] = useState([]);
+  // console.log(db.collection('chats').doc().id);
+  // console.log(
+  //   generateCompoundSlice(
+  //     'vLNoNsSou4Sn8bihqgDjYWeJPAq2_UkE4Xxh3wwQPWAWICu1dU28mH9q2'
+  //   )
+  // );
   db.collection('chats')
-    .doc('example')
-    .onSnapshot({ includeMetadataChanges: false }, (doc) =>
-      console.log(doc.data())
-    );
-  return <div>Chat</div>;
+    .doc('vLNoNsSou4Sn8bihqgDjYWeJPAq2_UkE4Xxh3wwQPWAWICu1dU28mH9q2')
+    .collection('messages')
+    .onSnapshot((snap) => {
+      const msg = [];
+      snap.forEach((message) => msg.push(message.data()));
+      setMessages(msg);
+    });
+
+  console.log(messages);
+  return <div>{messages.map((message) => console.log(message.content))}</div>;
 }
 
 export default Chat;

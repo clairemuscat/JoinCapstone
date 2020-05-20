@@ -8,6 +8,7 @@ import {
   Connections,
   Calendar,
   Chat,
+  SingleChat,
 } from './components';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import firebase from 'firebase';
@@ -72,8 +73,14 @@ function App(props) {
               />
               <PrivateRoute
                 isLoggedIn={isLoggedIn}
+                exact
                 path="/chat"
                 component={Chat}
+              />
+              <PrivateRoute
+                isLoggedIn={isLoggedIn}
+                path="/chat/:compoundSlice"
+                component={SingleChat}
               />
               <Route component={LandingPage} />
             </Switch>
