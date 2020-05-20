@@ -50,11 +50,25 @@ class Calendar extends React.Component{
         }
       }).then(info =>{
         console.log('red', info.event)
-          this.props.removeEvent(info.event)
+        swal({  title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this event!",
+        icon: "warning",
+        buttons: {
+          cancel:true,
+          delete:{
+            value:info
+          }
+        },
+        dangerMode: true,}). 
+        then((value)=>{
+          if(value){
+            this.props.removeEvent(value.event)
           swal({
             title:'Event Deleted',
             icon:'success'
           })
+          }
+        })
       })}}
 
       dateClick={(evt)=>  swal({
