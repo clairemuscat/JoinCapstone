@@ -1,28 +1,40 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { db } from '..';
-import { generateCompoundSlice } from '../utils';
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { db } from "..";
+import { setMessage } from "../store/messages";
 
 function Chat(props) {
   const user = useSelector((state) => state.user);
-  const [messages, setMessages] = useState([]);
-  // console.log(db.collection('chats').doc().id);
-  // console.log(
-  //   generateCompoundSlice(
-  //     'vLNoNsSou4Sn8bihqgDjYWeJPAq2_UkE4Xxh3wwQPWAWICu1dU28mH9q2'
-  //   )
-  // );
-  db.collection('chats')
-    .doc('vLNoNsSou4Sn8bihqgDjYWeJPAq2_UkE4Xxh3wwQPWAWICu1dU28mH9q2')
-    .collection('messages')
-    .onSnapshot((snap) => {
-      const msg = [];
-      snap.forEach((message) => msg.push(message.data()));
-      setMessages(msg);
-    });
+  const currentChat = useSelector((state) => state.currentChat);
+  const messages = useSelector((state) => state.messages);
+  const dispatch = useDispatch();
 
+  useEffect(() => {
+    const msg = [];
+    let unsubscribe = db
+      .collection("chats")
+      .doc("compoundUID")
+      .collection("messages")
+      .onSnapshot((snap) => {
+        snap.forEach((message) => msg.push(message.data()));
+      });
+    dispatch(setMessage(msg.sort((a, b) => (a.date < b.date ? 1 : -1))));
+    return unsubscribe;
+  }, []);
   console.log(messages);
-  return <div>{messages.map((message) => console.log(message.content))}</div>;
+  return (
+    <div>
+      <h1>CHAT</h1>
+      {messages.length > 0 ? (
+        messages.map((message) => {
+          console.log(message);
+          return <div>{message.content}</div>;
+        })
+      ) : (
+        <h1>...Loading</h1>
+      )}
+    </div>
+  );
 }
 
 export default Chat;
