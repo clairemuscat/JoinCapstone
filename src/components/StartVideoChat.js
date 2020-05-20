@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import Drawer from "react-drag-drawer";
 import Room from "./room";
 
 function StartVideoChat(props) {
@@ -25,11 +26,13 @@ function StartVideoChat(props) {
   let render;
   if (token) {
     render = (
-      <Room
-        roomName={props.compoundUid}
-        token={token}
-        handleLogout={handleLogout}
-      />
+      <Drawer open={open}>
+        <Room
+          roomName={props.compoundUid}
+          token={token}
+          handleLogout={handleLogout}
+        />
+      </Drawer>
     );
   } else {
     render = (
