@@ -2,31 +2,46 @@ import React,{Component} from 'react'
 
 
 
+
 class UpdateEvent extends Component{
     constructor(props){
         super(props)
         this.state = {
             eventTitle: this.props.event.event.title,
-            eventDate:  this.props.event.event.start
+            eventDate:  this.props.event.event.start,
+            eventId:this.props.event.event.id
             // eventDescription:this.props.event.event.title.description
           };
           this.changeText=this.changeText.bind(this)
+          this.changeTime=this.changeTime.bind(this)
         //   this.changeDescription=this.changeDescription.bind(this)
         }
        
         changeText(e) {
           let title = e.target.value
           
-       
+          
           this.setState({
             eventTitle:title
           });
           swal.setActionValue({
-              confirm: { value: title }
+              confirm: { value: {title:title,date:this.state.eventDate ,id:this.state.eventId }}
             });
       
       }
-      
+      changeTime(e){
+        console.log('changing time',e.target.value)
+        // let title=this.state.eventTitle
+        let date= e.target.value
+        this.setState({
+          eventDate:date
+        })
+
+        swal.setActionValue({
+          confirm: { value: date,}
+        });
+
+      }
     //   changeDescription(e){
     //       let description = e.target.value
     //       let title=this.state.eventTitle
@@ -47,6 +62,7 @@ class UpdateEvent extends Component{
 
 
         render(){
+          console.log(this.props.event.event.id)
                 return(<form id='event-form'>
                             <label>Title: </label>
                                 <input
@@ -60,6 +76,7 @@ onChange={this.changeText}
 <input 
 type='datetime' name='dateTime'
 value={this.state.eventDate}
+onChange={this.changeTime}
 />
 <br/>
 {/* <br/>
@@ -81,4 +98,4 @@ onChange={this.changeDescription}
 
 }
 
-export default UpdateEvent
+export default  UpdateEvent

@@ -7,7 +7,7 @@ import MyInput from './MyInput'
 import UpdateEvent from './UpdateEvent'
 import swal from '@sweetalert/with-react'
 import {connect} from 'react-redux'
-import  {fetchEvents,newEvent} from '../../store/events'
+import  {fetchEvents,newEvent,changeEvent} from '../../store/events'
 
 
 import './main.scss' // webpack must be configured to do this
@@ -45,7 +45,7 @@ class Calendar extends React.Component{
         console.log('limes',info.event)
         swal({
         title:info.event.title,
-        content: <UpdateEvent event={info}/>,
+        content: <UpdateEvent event={info} user={this.props.user}/>,
         buttons:{
           cancel:true,
           delete:{
@@ -54,22 +54,26 @@ class Calendar extends React.Component{
           },
           confirm:'Update Event'
         }
+      }).then(val=>{
+        console.log('corn',val.value)
+        this.props.updateEvent(this.props.user,val.value)
+        swal({
+          title:'Event Updated',
+          icon:'success'
+        }) //change when you get date to update
       })}}
+
       dateClick={(evt)=>  swal({
         title:"Create Event",
-        content:<MyInput date={evt}/>,
+        content:<MyInput date={evt} />,
         buttons:{
           cancel:true,
           confirm:'Add Event'
         }
-
       })
    .then(val=>{
-     console.log('oranges',val.value)
+     console.log('oranges',val)
     this.props.addEvent(this.props.user,val.value)
-     
-    // calendarEventsDescrptions:[...this.state.calendarEventsDescrptions,{eventId:1,eventDesciption:val.value.description}]})
-    // console.log('pineapples',this.state)
     swal({
       title:'Event Created',
       text:'Event: ' + val.value.title + ', was created!',
@@ -99,7 +103,8 @@ class Calendar extends React.Component{
 }
 const mapDispatch=(dispatch)=>({
   getCalendar: (user)=>dispatch(fetchEvents(user)),
-  addEvent:(user,event)=>dispatch(newEvent(user,event))
+  addEvent:(user,event)=>dispatch(newEvent(user,event)),
+  updateEvent:(user,event)=>dispatch(changeEvent(user,event))
 })
 const mapState=(state)=>({
   user:state.user,
