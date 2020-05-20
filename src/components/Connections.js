@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { generateCompoundUid } from "../utils";
 import StartVideoChat from "./StartVideoChat";
+import AddCalendarEvent from './AddCalendarEvent'
 function Connections(props) {
   const profile = useSelector((state) => state.profile);
   const user = useSelector((state) => state.user);
@@ -16,7 +17,10 @@ function Connections(props) {
               <h1>
                 {match.firstName} {match.lastName}
               </h1>
+              <div className='connection-meeting-options'>
               <StartVideoChat compoundUid={compound} />
+              <AddCalendarEvent/>
+              </div>
             </div>
           );
         })
