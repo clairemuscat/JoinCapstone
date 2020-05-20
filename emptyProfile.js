@@ -1,6 +1,6 @@
 const emptyProfile = {
-  first_name: '',
-  last_name: '',
+  firstName: '',
+  lastName: '',
   city: '',
   state_province: '',
   country: '',

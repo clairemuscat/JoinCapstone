@@ -19,7 +19,7 @@ function UserMandatoryForm(props) {
         className="form-inputs"
         type="text"
         placeholder="First Name"
-        name="first_name"
+        name="firstName"
         ref={register({ required: true, maxLength: 20 })}
       />
       {errors.firstName && errors.firstName.type === "required" && (
@@ -30,7 +30,7 @@ function UserMandatoryForm(props) {
         className="form-inputs"
         type="text"
         placeholder="Last Name"
-        name="last_name"
+        name="lastName"
         ref={register({ required: true, maxLength: 20 })}
       />
       {errors.lastName && errors.lastName.type === "required" && (
@@ -111,7 +111,7 @@ function UserMandatoryForm(props) {
       <label className="user-labels">Profile Picture</label>
       <input
         className="form-inputs"
-        type="file"
+        type="text"
         name="imageUrl"
         ref={register}
       />
