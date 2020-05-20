@@ -6,7 +6,8 @@ import {
   Navbar,
   PrivateRoute,
   Connections,
-  Calendar
+  Calendar,
+  UserMandatoryForm,
 } from "./components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import firebase from "firebase";
@@ -42,11 +43,17 @@ function App(props) {
 
   return (
     <Router>
+
       <div className="app">
         <Navbar />
         <div id="content">
+          
           {authStateChecked && (
-            <Switch> 
+            <Switch>
+              <PrivateRoute 
+              isLoggedIn={isLoggedIn}
+              exact path='/form' 
+              component={UserMandatoryForm}/>
               <PrivateRoute 
               isLoggedIn={isLoggedIn}
               exact path='/account/calendar' 
