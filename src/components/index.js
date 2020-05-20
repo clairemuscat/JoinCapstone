@@ -17,3 +17,4 @@ export { default as Navbar } from "./Navbar";
 export { default as MatchProfileDisplay } from "./MatchProfileDisplay";
 export { default as PrivateRoute } from "./PrivateRoute";
 export { default as StartVideoChat } from "./StartVideoChat";
+export { default as UserMandatoryForm } from "./UserMandatoryForm"
