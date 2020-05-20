@@ -10,11 +10,9 @@ class UpdateEvent extends Component{
             eventTitle: this.props.event.event.title,
             eventDate:  this.props.event.event.start,
             eventId:this.props.event.event.id
-            // eventDescription:this.props.event.event.title.description
           };
           this.changeText=this.changeText.bind(this)
           this.changeTime=this.changeTime.bind(this)
-        //   this.changeDescription=this.changeDescription.bind(this)
         }
        
         changeText(e) {
@@ -25,7 +23,7 @@ class UpdateEvent extends Component{
             eventTitle:title
           });
           swal.setActionValue({
-              confirm: { value: {title:title,date:this.state.eventDate ,id:this.state.eventId }}
+              confirm: { value: {title:title,date:this.state.eventDate ,id:this.state.eventId }}  // need to do this for changeTime 
             });
       
       }
@@ -62,7 +60,6 @@ class UpdateEvent extends Component{
 
 
         render(){
-          console.log(this.props.event.event.id)
                 return(<form id='event-form'>
                             <label>Title: </label>
                                 <input

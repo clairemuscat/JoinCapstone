@@ -25,9 +25,6 @@ class Calendar extends React.Component{
  }
 
  render(){
-   console.log('peaches',this.props.events)
-  //  const theseEvents = this.props.events.map(event=> event.start = new Date(event.start))
-  //  console.log('mORE',theseEvents)
    return(
     <FullCalendar
       defaultView="timeGridWeek"
@@ -42,7 +39,6 @@ class Calendar extends React.Component{
       weekends={true}
       events={this.props.events}
       eventClick={(info)=>{
-        console.log('limes',info.event)
         swal({
         title:info.event.title,
         content: <UpdateEvent event={info} user={this.props.user}/>,
@@ -55,7 +51,6 @@ class Calendar extends React.Component{
           confirm:'Update Event'
         }
       }).then(val=>{
-        console.log('corn',val.value)
         this.props.updateEvent(this.props.user,val.value)
         swal({
           title:'Event Updated',
@@ -72,7 +67,6 @@ class Calendar extends React.Component{
         }
       })
    .then(val=>{
-     console.log('oranges',val)
     this.props.addEvent(this.props.user,val.value)
     swal({
       title:'Event Created',

@@ -52,7 +52,6 @@ export const newEvent = (user,event)=>{
            })
             const snap=await db.collection('events').doc(id).get();
             const calendarEvent=snap.data()
-            console.log('let hope this has an id',calendarEvent)
              dispatch(createEvent(calendarEvent))
 
         }
@@ -66,7 +65,6 @@ export const newEvent = (user,event)=>{
 export const changeEvent=(user,event)=>{
     return async(dispatch)=>{
         try{
-            console.log('grapes',event)
             let data={
                 attendees:[user.uid],
                 title:event.title,
@@ -74,11 +72,9 @@ export const changeEvent=(user,event)=>{
                 id:event.id
             }
             await db.collection('events').doc(event.id).set(data,{merge:true})
-            console.log('does out promise finish?')
             const snap = await db.collection('events').doc(event.id).get();
             const updatedEvent = snap.data()
             dispatch(updateEvent(updatedEvent))
-
         }
         catch(err){
             console.log('Problem updating your event',err)
