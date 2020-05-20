@@ -1,15 +1,24 @@
-import React from "react";
-import { useForm } from "react-hook-form";
-import { connect } from "react-redux";
-import { db } from "..";
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { connect, useDispatch } from 'react-redux';
+import { db } from '..';
+import { withRouter } from 'react-router-dom';
+import { fetchOrCreateProfile } from '../store/profile';
+
 // Using react-hook-form https://react-hook-form.com/
-function UserMandatoryForm(props) {
+const UserMandatoryForm = withRouter(function (props) {
   const { register, handleSubmit, errors } = useForm();
   const { user } = props;
+  const dispatch = useDispatch();
   const onSubmit = async (data) => {
-    let userRef = db.collection("users").doc(user.uid);
-    console.log(data);
-    let userSubmission = await userRef.set(data, { merge: true });
+    try {
+      let userRef = db.collection('users').doc(user.uid);
+      await userRef.set(data, { merge: true });
+      dispatch(fetchOrCreateProfile(user));
+      props.history.push('/connect');
+    } catch (error) {
+      console.error(error);
+    }
   };
   return (
     <form className="user-form" onSubmit={handleSubmit(onSubmit)}>
@@ -22,7 +31,7 @@ function UserMandatoryForm(props) {
         name="firstName"
         ref={register({ required: true, maxLength: 20 })}
       />
-      {errors.firstName && errors.firstName.type === "required" && (
+      {errors.firstName && errors.firstName.type === 'required' && (
         <p className="required"> This is required </p>
       )}
       <label className="user-labels"></label>
@@ -33,7 +42,7 @@ function UserMandatoryForm(props) {
         name="lastName"
         ref={register({ required: true, maxLength: 20 })}
       />
-      {errors.lastName && errors.lastName.type === "required" && (
+      {errors.lastName && errors.lastName.type === 'required' && (
         <p className="required"> This is required </p>
       )}
       <label className="user-labels"></label>
@@ -118,8 +127,10 @@ function UserMandatoryForm(props) {
       <input className="form-inputs" type="submit" />
     </form>
   );
-}
+});
+
 const mapState = (state) => ({
   user: state.user,
 });
+
 export default connect(mapState)(UserMandatoryForm);
