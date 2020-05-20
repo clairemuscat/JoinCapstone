@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { ThemeProvider } from 'styled-components';
-import { theme } from '../theme';
-import { Burger, Menu } from '.';
-import { withRouter } from 'react-router-dom';
-import firebase from 'firebase';
+import React, { useState } from "react";
+import { ThemeProvider } from "styled-components";
+import { theme } from "../theme";
+import { Burger, Menu } from ".";
+import { withRouter } from "react-router-dom";
+import firebase from "firebase";
 
 const Navbar = withRouter(function (props) {
   const [open, setOpen] = useState(false);
@@ -11,7 +11,7 @@ const Navbar = withRouter(function (props) {
   const handleSignOut = () => {
     try {
       firebase.auth().signOut();
-      props.history.push('/');
+      props.history.push("/");
     } catch (error) {}
   };
 

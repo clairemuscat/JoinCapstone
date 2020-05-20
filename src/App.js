@@ -6,7 +6,8 @@ import {
   Navbar,
   PrivateRoute,
   Connections,
-  Calendar
+  Calendar,
+  VideoComponent,
 } from "./components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import firebase from "firebase";
@@ -46,11 +47,13 @@ function App(props) {
         <Navbar />
         <div id="content">
           {authStateChecked && (
-            <Switch> 
-              <PrivateRoute 
-              isLoggedIn={isLoggedIn}
-              exact path='/account/calendar' 
-              component={Calendar}/>
+            <Switch>
+              <PrivateRoute
+                isLoggedIn={isLoggedIn}
+                exact
+                path="/account/calendar"
+                component={Calendar}
+              />
               <PrivateRoute
                 isLoggedIn={isLoggedIn}
                 path="/account"
@@ -67,8 +70,12 @@ function App(props) {
                 path="/connections"
                 component={Connections}
               />
+              <PrivateRoute
+                isLoggedIn={isLoggedIn}
+                path="/videochat"
+                component={VideoComponent}
+              />
               <Route component={LandingPage} />
-             
             </Switch>
           )}
         </div>

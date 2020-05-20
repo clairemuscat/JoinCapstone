@@ -5,7 +5,6 @@ import StartVideoChat from "./StartVideoChat";
 function Connections(props) {
   const profile = useSelector((state) => state.profile);
   const user = useSelector((state) => state.user);
-
   return (
     <div>
       {profile.matches ? (
