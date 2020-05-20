@@ -91,7 +91,6 @@ export const changeEvent=(user,event)=>{
 export const deleteEvent =(event)=>{
     return async (dispatch)=>{
         try{
-            console.log('green',event)
          await db.collection('events').doc(event.id).delete()
          dispatch(removeEvent(event))
         }

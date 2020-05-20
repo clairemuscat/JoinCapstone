@@ -46,10 +46,9 @@ class Calendar extends React.Component{
           cancel:true,
          confirm:{
            text:'delete',
-           value:info}
+           value:info,}
         }
       }).then(info =>{
-        console.log('red', info.event)
         swal({  title: "Are you sure?",
         text: "Once deleted, you will not be able to recover this event!",
         icon: "warning",
