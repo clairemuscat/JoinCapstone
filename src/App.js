@@ -7,6 +7,9 @@ import {
   PrivateRoute,
   Connections,
   Calendar,
+  Chat,
+  SingleChat,
+  UserMandatoryForm,
 } from './components';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import firebase from 'firebase';
@@ -60,6 +63,12 @@ function App(props) {
               <PrivateRoute
                 isLoggedIn={isLoggedIn}
                 exact
+                path="/form"
+                component={UserMandatoryForm}
+              />
+              <PrivateRoute
+                isLoggedIn={isLoggedIn}
+                exact
                 path="/account/calendar"
                 component={Calendar}
               />
@@ -78,6 +87,17 @@ function App(props) {
                 isLoggedIn={isLoggedIn}
                 path="/connections"
                 component={Connections}
+              />
+              <PrivateRoute
+                isLoggedIn={isLoggedIn}
+                exact
+                path="/chat"
+                component={Chat}
+              />
+              <PrivateRoute
+                isLoggedIn={isLoggedIn}
+                path="/chat/:compoundSlice"
+                component={SingleChat}
               />
               <Route component={LandingPage} />
             </Switch>

@@ -1,10 +1,19 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { generateCompoundUid } from '../utils';
 import StartVideoChat from './StartVideoChat';
-function Connections(props) {
+import { withRouter } from 'react-router-dom';
+import { setCurrentChat } from '../store/chats';
+
+const Connections = withRouter(function (props) {
   const profile = useSelector((state) => state.profile);
   const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  const handleChat = (compound) => {
+    dispatch(setCurrentChat(compound));
+    props.history.push('/chat');
+  };
 
   return (
     <div>
@@ -24,7 +33,11 @@ function Connections(props) {
               </div>
               <div className="connection-controls">
                 <StartVideoChat compoundUid={compound} />
-                <button className="button" id="chat-button">
+                <button
+                  className="button"
+                  onClick={() => handleChat(compound)}
+                  id="chat-button"
+                >
                   Chat
                 </button>
               </div>
@@ -36,6 +49,6 @@ function Connections(props) {
       )}
     </div>
   );
-}
+});
 
 export default Connections;
