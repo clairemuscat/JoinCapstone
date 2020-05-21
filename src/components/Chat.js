@@ -1,38 +1,60 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { db } from "..";
-import { setMessage } from "../store/messages";
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { db } from '..';
+import { setMessage } from '../store/messages';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
+
+// msg.sort((a, b) => (a.date < b.date ? 1 : -1))
 
 function Chat(props) {
   const user = useSelector((state) => state.user);
   const currentChat = useSelector((state) => state.currentChat);
   const messages = useSelector((state) => state.messages);
   const dispatch = useDispatch();
+  const [newMessage, setNewMessage] = useState('');
 
-  useEffect(() => {
-    const msg = [];
-    let unsubscribe = db
-      .collection("chats")
-      .doc("compoundUID")
-      .collection("messages")
-      .onSnapshot((snap) => {
-        snap.forEach((message) => msg.push(message.data()));
-      });
-    dispatch(setMessage(msg.sort((a, b) => (a.date < b.date ? 1 : -1))));
-    return unsubscribe;
-  }, []);
-  console.log(messages);
+  const [values, loading, error] = useCollectionData(
+    db.collection('chats').doc(currentChat).collection('messages')
+  );
+
+  if (loading || error) return <div>Loading...</div>;
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const message = {
+      date: new Date(),
+      sentBy: user.uid,
+      content: newMessage,
+    };
+
+    await db
+      .collection('chats')
+      .doc(currentChat)
+      .collection('messages')
+      .add(message);
+
+    setNewMessage('');
+  };
+
   return (
     <div>
       <h1>CHAT</h1>
-      {messages.length > 0 ? (
-        messages.map((message) => {
-          console.log(message);
-          return <div>{message.content}</div>;
-        })
-      ) : (
-        <h1>...Loading</h1>
-      )}
+      <div id="messages">
+        {values.map((value) => (
+          <div>{value.content}</div>
+        ))}
+      </div>
+      <form onSubmit={handleSubmit}>
+        <label>
+          New Message:
+          <input
+            type="text"
+            value={newMessage}
+            onChange={(event) => setNewMessage(event.target.value)}
+          />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
     </div>
   );
 }
