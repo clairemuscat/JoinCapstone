@@ -65,8 +65,9 @@ form {
   color: white;
   box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.3);
   border-radius: 5px;
-  margin: 1px;
+  margin: 0.5rem 1rem;
   overflow-wrap: break-word;
+  padding: 0.5rem 0.5rem;
 }
 
 .incoming {
@@ -78,6 +79,8 @@ form {
   background-color: springgreen;
   text-align: right;
   width: 200px;
+  margin-left: auto;
+  margin-right: 0.5rem;
 }
 
 #chat-view {
@@ -214,6 +217,7 @@ footer a {
   justify-content: center;
   align-items: center;
 }
+
 #attendee {
   text-align: left;
 }
