@@ -1,21 +1,32 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState, useEffect, useRef } from "react";
+import { useSelector } from "react-redux";
 import { db } from "..";
-import { setMessage } from "../store/messages";
 import { useCollectionData } from "react-firebase-hooks/firestore";
-// msg.sort((a, b) => (a.date < b.date ? 1 : -1))
 
 function Chat(props) {
   const user = useSelector((state) => state.user);
   const currentChat = useSelector((state) => state.currentChat);
-
+  const profile = useSelector((state) => state.profile);
   const [newMessage, setNewMessage] = useState("");
-  å;
   const [values, loading, error] = useCollectionData(
     db.collection("chats").doc(currentChat).collection("messages")
   );
 
-  if (loading || error) return <div>Loading...</div>;
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView({
+      behavior: "auto",
+      block: "center",
+      inline: "center",
+    });
+  };
+
+  useEffect(() => {
+    if (values && values.length > 0) {
+      scrollToBottom();
+    }
+  }, [values]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -23,6 +34,7 @@ function Chat(props) {
       date: new Date(),
       sentBy: user.uid,
       content: newMessage,
+      name: profile.firstName,
     };
 
     await db
@@ -30,19 +42,28 @@ function Chat(props) {
       .doc(currentChat)
       .collection("messages")
       .add(message);
-
     setNewMessage("");
   };
-
+  if (loading || error) return <div>Loading...</div>;
   return currentChat !== "default" ? (
     <div>
       <h1>CHAT</h1>
-      <div id="messages">
+      <div id="chat-view">
         {values
           .sort((a, b) => (a.date < b.date ? -1 : 1))
           .map((value) => (
-            <div>{value.content}</div>
+            <div
+              className={
+                value.sentBy === user.uid
+                  ? "outgoing singleMessage"
+                  : "incoming singleMessage"
+              }
+            >
+              <h5>{value.name}</h5>
+              <div>{value.content}</div>
+            </div>
           ))}
+        <div ref={messagesEndRef} />
       </div>
       <form onSubmit={handleSubmit}>
         <label>
