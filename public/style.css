@@ -231,3 +231,9 @@ footer a {
   font-size: 14px;
   font-weight: 200;
 }
+
+.connection-meeting-options{
+  display: grid;
+  grid-row: 1fr;
+  grid-column: auto;
+}

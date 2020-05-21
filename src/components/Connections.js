@@ -19,7 +19,7 @@ function Connections(props) {
               </h1>
               <div className='connection-meeting-options'>
               <StartVideoChat compoundUid={compound} />
-              <AddCalendarEvent/>
+              <AddCalendarEvent match={match} user={user}/>
               </div>
             </div>
           );

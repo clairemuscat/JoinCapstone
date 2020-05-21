@@ -1,4 +1,5 @@
 import React,{Component} from 'react'
+import swal from 'sweetalert';
 // import ReactDOM from 'react-dom'
 // import swal from '@sweetalert/with-react'
 
@@ -10,15 +11,16 @@ class MyInput extends Component {
  
     this.state = {
       eventTitle: '',
+      eventDate: this.props.date?this.props.date.date:new Date()
     //   eventDescription:''
     };
     this.changeText=this.changeText.bind(this)
-    // this.changeDescription=this.changeDescription.bind(this)
+   this.changeDate=this.changeDate.bind(this)
   }
  
   changeText(e) {
     let title = e.target.value
-    let date=this.props.date.date
+    let date=this.state.eventDate
     
  
     this.setState({
@@ -30,24 +32,26 @@ class MyInput extends Component {
 
 }
 
-// changeDescription(e){
-//     // let description = e.target.value
-//     let title=this.state.eventTitle
-//     let date=this.props.date.date
- 
-//     // this.setState({
-//     //   eventDescription:description
-//     // });
+changeDate(e){
+  let newDate =e.target.value
+  let title=this.state.eventTitle
 
-//     swal.setActionValue({
-//         confirm: { 
-//             value: {
-//             title:title,
-//             date:date}
-//     }});
-// }
+
+  this.setState({
+    eventDate:newDate
+  })
+  let date= this.state.eventDate
+  console.log('nooo', date)
+  swal.setActionValue({
+    confirm:{value:{title,date}}
+  })
+}
  
   render() {
+    // let date = new Date()
+    // if(this.props.date){
+    //   date=this.props.date.date
+    // }
     return (
         <form id='event-form'>
             <label>Title: </label>
@@ -60,8 +64,10 @@ class MyInput extends Component {
     <br/>
     <label>Date: </label>
     <input 
-        type='datetime' name='dateTime'
-        value={this.props.date.date}
+        type='datetime' 
+        name='dateTime'
+        value={this.state.eventDate}
+        onChange={this.changeDate}
         />
         <br/>
         <br/>

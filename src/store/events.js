@@ -40,7 +40,7 @@ export const fetchEvents =(user)=>{
     }
 }
 
-export const newEvent = (user,event)=>{
+export const newEvent = (match,user,event)=>{
     return async(dispatch)=>{
         try{
             const newThing = await db.collection('events').add({
@@ -52,7 +52,7 @@ export const newEvent = (user,event)=>{
            await db.collection('events').doc(id).set({
             title:event.title,
             start:event.date.valueOf(),
-            attendees:[user.uid],
+            attendees:match?[user.uid,match.id]:[user.uid],
             id:id
            })
             const snap=await db.collection('events').doc(id).get();
@@ -67,11 +67,11 @@ export const newEvent = (user,event)=>{
 }
 
 
-export const changeEvent=(user,event)=>{
+export const changeEvent=(match,user,event)=>{
     return async(dispatch)=>{
         try{
             let data={
-                attendees:[user.uid],
+                attendees: match?[user.uid,match.id]:[user.uid],
                 title:event.title,
                 start:event.date.valueOf(),
                 id:event.id
