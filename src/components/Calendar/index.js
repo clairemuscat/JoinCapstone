@@ -41,7 +41,7 @@ class Calendar extends React.Component{
       eventClick={(info)=>{
         swal({
         title:info.event.title,
-        content: <UpdateEvent event={info.event} user={this.props.user} update={this.props.updateEvent}/>,
+        content: <UpdateEvent event={info.event}update={this.props.updateEvent}/>,
         buttons:{
           cancel:true,
          confirm:{
@@ -54,11 +54,12 @@ class Calendar extends React.Component{
         icon: "warning",
         buttons: {
           cancel:true,
-          delete:{
+          confirm:{
+            text:'delete',
             value:info
           }
         },
-        dangerMode: true,}). 
+        }). 
         then((value)=>{
           if(value){
             this.props.removeEvent(value.event)

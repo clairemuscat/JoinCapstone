@@ -67,11 +67,10 @@ export const newEvent = (match,user,event)=>{
 }
 
 
-export const changeEvent=(match,user,event)=>{
+export const changeEvent=(event)=>{
     return async(dispatch)=>{
         try{
             let data={
-                attendees: match?[user.uid,match.id]:[user.uid],
                 title:event.title,
                 start:event.date.valueOf(),
                 id:event.id

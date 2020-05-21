@@ -12,13 +12,16 @@ class UpdateEvent extends Component{
             eventId:this.props.event.id
           };
           this.changeText=this.changeText.bind(this)
-          this.changeTime=this.changeTime.bind(this)
+          this.changeDate=this.changeDate.bind(this)
           this.updatingEvent=this.updatingEvent.bind(this)
         }
 
         updatingEvent(){
-          const data = {title:this.state.eventTitle,date:this.state.eventDate ,id:this.state.eventId }
-          this.props.update(this.props.user,data)
+          let date = this.state.eventDate
+          date = new Date(date)
+          date = date.valueOf()
+          const data = {title:this.state.eventTitle,date:date,id:this.state.eventId }
+          this.props.update(data)
           swal({
             title:'Event Updated',
             icon:'success'
@@ -35,19 +38,18 @@ class UpdateEvent extends Component{
          
       
       }
-      changeTime(e){
-        console.log('changing time',e.target.value)
-        // let title=this.state.eventTitle
-        let date= e.target.value
-        this.setState({
-          eventDate:date
-        })
+      
 
-        // swal.setActionValue({
-        //   confirm: { value: date,}
-        // });
+       
+changeDate(e){
+  let newDate = e.target.value
+  this.setState({
+    eventDate:newDate
+  })
+  
+ 
+}
 
-      }
     //   changeDescription(e){
     //       let description = e.target.value
     //       let title=this.state.eventTitle
@@ -82,7 +84,7 @@ onChange={this.changeText}
 <input 
 type='datetime' name='dateTime'
 value={this.state.eventDate}
-onChange={this.changeTime}
+onChange={this.changeDate}
 />
 <br/>
 {/* <br/>
