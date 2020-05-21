@@ -127,6 +127,7 @@ button:hover {
   display: inline-block;
   margin-right: 10px;
 }
+
 .participant:last-child {
   margin-right: 0;
 }
