@@ -9,8 +9,7 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 function Chat(props) {
   const user = useSelector((state) => state.user);
   const currentChat = useSelector((state) => state.currentChat);
-  const messages = useSelector((state) => state.messages);
-  const dispatch = useDispatch();
+
   const [newMessage, setNewMessage] = useState('');
 
   const [values, loading, error] = useCollectionData(
@@ -36,13 +35,15 @@ function Chat(props) {
     setNewMessage('');
   };
 
-  return (
+  return currentChat !== 'default' ? (
     <div>
       <h1>CHAT</h1>
       <div id="messages">
-        {values.map((value) => (
-          <div>{value.content}</div>
-        ))}
+        {values
+          .sort((a, b) => (a.date < b.date ? -1 : 1))
+          .map((value) => (
+            <div>{value.content}</div>
+          ))}
       </div>
       <form onSubmit={handleSubmit}>
         <label>
@@ -56,6 +57,8 @@ function Chat(props) {
         <input type="submit" value="Submit" />
       </form>
     </div>
+  ) : (
+    <div>Go to your connections to find someone to chat with!</div>
   );
 }
 
