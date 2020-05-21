@@ -13,11 +13,21 @@ function Connections(props) {
         profile.matches.map((match) => {
           let compound = generateCompoundUid(user.uid, match.id);
           return (
-            <div key={match.id}>
-              <h1>
-                {match.firstName} {match.lastName}
-              </h1>
-              <StartVideoChat compoundUid={compound} />
+            <div key={match.id} className="connection">
+              <div className="connection-content">
+                <div className="connection-img-container">
+                  <img src="/default-user.jpg" />
+                </div>
+                <h2>
+                  {match.firstName} {match.lastName}
+                </h2>
+              </div>
+              <div className="connection-controls">
+                <StartVideoChat compoundUid={compound} />
+                <button className="button" id="chat-button">
+                  Chat
+                </button>
+              </div>
             </div>
           );
         })
