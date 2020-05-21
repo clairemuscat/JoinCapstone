@@ -9,6 +9,7 @@ import {
   Calendar,
   Chat,
   SingleChat,
+  UserMandatoryForm,
 } from './components';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import firebase from 'firebase';
@@ -49,6 +50,12 @@ function App(props) {
         <div id="content">
           {authStateChecked && (
             <Switch>
+              <PrivateRoute
+                isLoggedIn={isLoggedIn}
+                exact
+                path="/form"
+                component={UserMandatoryForm}
+              />
               <PrivateRoute
                 isLoggedIn={isLoggedIn}
                 exact
