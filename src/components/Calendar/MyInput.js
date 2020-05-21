@@ -41,17 +41,14 @@ changeDate(e){
     eventDate:newDate
   })
   let date= this.state.eventDate
-  console.log('nooo', date)
+  date = new Date(date)
+  date = date.valueOf()
   swal.setActionValue({
     confirm:{value:{title,date}}
   })
 }
  
   render() {
-    // let date = new Date()
-    // if(this.props.date){
-    //   date=this.props.date.date
-    // }
     return (
         <form id='event-form'>
             <label>Title: </label>
