@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { db } from '..';
-import { setMessage } from '../store/messages';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
-
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { db } from "..";
+import { setMessage } from "../store/messages";
+import { useCollectionData } from "react-firebase-hooks/firestore";
 // msg.sort((a, b) => (a.date < b.date ? 1 : -1))
 
 function Chat(props) {
@@ -11,10 +10,10 @@ function Chat(props) {
   const currentChat = useSelector((state) => state.currentChat);
   const messages = useSelector((state) => state.messages);
   const dispatch = useDispatch();
-  const [newMessage, setNewMessage] = useState('');
+  const [newMessage, setNewMessage] = useState("");
 
   const [values, loading, error] = useCollectionData(
-    db.collection('chats').doc(currentChat).collection('messages')
+    db.collection("chats").doc(currentChat).collection("messages")
   );
 
   if (loading || error) return <div>Loading...</div>;
@@ -28,21 +27,23 @@ function Chat(props) {
     };
 
     await db
-      .collection('chats')
+      .collection("chats")
       .doc(currentChat)
-      .collection('messages')
+      .collection("messages")
       .add(message);
 
-    setNewMessage('');
+    setNewMessage("");
   };
 
   return (
     <div>
       <h1>CHAT</h1>
       <div id="messages">
-        {values.map((value) => (
-          <div>{value.content}</div>
-        ))}
+        {values
+          .sort((a, b) => (a.date < b.date ? 1 : -1))
+          .map((value) => (
+            <div>{value.content}</div>
+          ))}
       </div>
       <form onSubmit={handleSubmit}>
         <label>

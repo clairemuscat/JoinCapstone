@@ -5,7 +5,9 @@ export const setMessage = (messages) => ({
   messages,
 });
 
-export default (state = [], action) => {
+const initialState = [];
+
+export default (state = initialState, action) => {
   switch (action.type) {
     case SET_MESSAGES:
       return action.messages;
