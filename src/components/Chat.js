@@ -1,24 +1,24 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useSelector } from "react-redux";
-import { db } from "..";
-import { useCollectionData } from "react-firebase-hooks/firestore";
+import React, { useState, useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
+import { db } from '..';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 function Chat(props) {
   const user = useSelector((state) => state.user);
   const currentChat = useSelector((state) => state.currentChat);
   const profile = useSelector((state) => state.profile);
-  const [newMessage, setNewMessage] = useState("");
+  const [newMessage, setNewMessage] = useState('');
   const [values, loading, error] = useCollectionData(
-    db.collection("chats").doc(currentChat).collection("messages")
+    db.collection('chats').doc(currentChat).collection('messages')
   );
 
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current.scrollIntoView({
-      behavior: "auto",
-      block: "center",
-      inline: "center",
+      behavior: 'auto',
+      block: 'center',
+      inline: 'center',
     });
   };
 
@@ -38,44 +38,46 @@ function Chat(props) {
     };
 
     await db
-      .collection("chats")
+      .collection('chats')
       .doc(currentChat)
-      .collection("messages")
+      .collection('messages')
       .add(message);
-    setNewMessage("");
+    setNewMessage('');
   };
+
   if (loading || error) return <div>Loading...</div>;
-  return currentChat !== "default" ? (
+  console.log(values);
+  return currentChat !== 'default' ? (
     <div>
       <h1>CHAT</h1>
-      <div id="chat-view">
-        {values
-          .sort((a, b) => (a.date < b.date ? -1 : 1))
-          .map((value) => (
-            <div
-              className={
-                value.sentBy === user.uid
-                  ? "outgoing singleMessage"
-                  : "incoming singleMessage"
-              }
-            >
-              <h5>{value.name}</h5>
-              <div>{value.content}</div>
-            </div>
-          ))}
-        <div ref={messagesEndRef} />
-      </div>
-      <form onSubmit={handleSubmit}>
-        <label>
-          New Message:
+      <div id="chat">
+        <div id="chat-view">
+          {values
+            .sort((a, b) => (a.date < b.date ? -1 : 1))
+            .map((value) => (
+              <div
+                key={value.date}
+                className={
+                  value.sentBy === user.uid
+                    ? 'outgoing singleMessage'
+                    : 'incoming singleMessage'
+                }
+              >
+                <h5>{value.name}</h5>
+                <div>{value.content}</div>
+              </div>
+            ))}
+          <div ref={messagesEndRef} />
+        </div>
+        <form onSubmit={handleSubmit} id="chat-input">
           <input
             type="text"
             value={newMessage}
+            placeholder="Write a message here"
             onChange={(event) => setNewMessage(event.target.value)}
           />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
+        </form>
+      </div>
     </div>
   ) : (
     <div>Go to your connections to find someone to chat with!</div>
