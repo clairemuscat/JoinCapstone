@@ -15,6 +15,10 @@ export function generateCompoundUid(uid1, uid2) {
   return uid1 > uid2 ? `${uid1}_${uid2}` : `${uid2}_${uid1}`;
 }
 
+export function generateCompoundSlice(compoundUid) {
+  return `${compoundUid.slice(0, 5)}${compoundUid.slice(-5)}`;
+}
+
 export function randomEqualitySign() {
   return Math.round(Math.random()) ? '>=' : '<=';
 }
