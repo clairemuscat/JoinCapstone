@@ -48,6 +48,7 @@ const UserProfile = () => {
 					})}
 				</ul>
 			</div>
+            <button type='button'>Edit Profile</button>
 		</div>
 	);
 };
