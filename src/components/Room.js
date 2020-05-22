@@ -52,10 +52,12 @@ const Room = ({ roomName, token, handleLogout }) => {
       <button onClick={handleLogout}>Log out</button>
       <div className="local-participant">
         {room ? (
-          <Participant
-            key={room.localParticipant.sid}
-            participant={room.localParticipant}
-          />
+          <>
+            <Participant
+              key={room.localParticipant.sid}
+              participant={room.localParticipant}
+            />
+          </>
         ) : (
           ""
         )}

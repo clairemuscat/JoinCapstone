@@ -2,6 +2,7 @@ import { db } from '..';
 import { generateNewProfile } from '../utils';
 
 const SET_PROFILE = 'SET_PROFILE';
+const UPDATE_PROFILE = 'UPDATE_PROFILE'
 
 export const setProfile = (profile) => ({
   type: SET_PROFILE,
@@ -27,6 +28,8 @@ export default (state = {}, action) => {
   switch (action.type) {
     case SET_PROFILE:
       return action.profile;
+    case UPDATE_PROFILE:
+      return action.profile
     default:
       return state;
   }

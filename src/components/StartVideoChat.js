@@ -26,7 +26,7 @@ function StartVideoChat(props) {
   let render;
   if (token) {
     render = (
-      <Drawer open={open}>
+      <Drawer open={true}>
         <Room
           roomName={props.compoundUid}
           token={token}

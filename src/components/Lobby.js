@@ -20,7 +20,6 @@ const Lobby = ({
           required
         />
       </div>
-
       <div>
         <label htmlFor="room">Room name:</label>
         <input

@@ -8,8 +8,8 @@ export { default as AccountPage } from "./AccountPage";
 export { default as Calendar } from "./Calendar";
 export { default as Connections } from "./Connections";
 export { default as MatchingInterface } from "./MatchingInterface";
-
 export { default as Chat } from "./Chat";
+export { default as SingleChat } from "./SingleChat";
 export { default as Burger } from "./Burger";
 export { Menu } from "./Burger";
 export { default as MatchCard } from "./MatchCard";
@@ -17,3 +17,4 @@ export { default as Navbar } from "./Navbar";
 export { default as MatchProfileDisplay } from "./MatchProfileDisplay";
 export { default as PrivateRoute } from "./PrivateRoute";
 export { default as StartVideoChat } from "./StartVideoChat";
+export { default as UserMandatoryForm } from "./UserMandatoryForm";
