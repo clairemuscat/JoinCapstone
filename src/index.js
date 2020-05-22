@@ -6,7 +6,7 @@ import 'firebase/auth';
 import firebaseConfig from '../firebaseConfig';
 import { Provider } from 'react-redux';
 import store from './store';
-import { generateNewProfile } from './utils';
+import { generateNewProfile, generateSeedProfile } from './utils';
 
 firebase.initializeApp(firebaseConfig);
 export const db = firebase.firestore();
@@ -65,7 +65,7 @@ export const db = firebase.firestore();
 // ];
 
 // const makeRando = async (user) => {
-//   await db.collection('users').doc(user.uid).set(generateNewProfile(user));
+//   await db.collection('users').doc(user.uid).set(generateSeedProfile(user));
 // };
 
 // newUsers.forEach((user) => {
