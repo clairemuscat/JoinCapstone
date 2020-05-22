@@ -1,16 +1,32 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { useEffect } from "react";
+import { connect, useDispatch } from "react-redux";
 import {
   Image,
   Video,
   Transformation,
   CloudinaryContext,
 } from "cloudinary-react";
-import axios from "axios";
+import { db } from ".."
+import { fetchOrCreateProfile } from "../store/profile";
 
-// CLOUDINARY_URL = process.env.CLOUDINARY_URL
+const CloudWidget = (props) => {
 
-const CloudWidget = () => {
+  let fbImage = db.storage().ref()
+  const dispatch = useDispatch()
+  const { user } = props;
+  console.log(user.uid)
+  const 
+
+  // useEffect(() =>  {
+  //   if(user.uid) {
+  //     result = db.collection("users").doc(user.uid)
+  //     await result.set(data, { merge: true })
+  //   } else {
+  //     console.log("Image Not found.")
+  //   }
+
+  // }, [])
+
   const myWidget = window.cloudinary.createUploadWidget(
     {
       cloudName: "dplovxaof",
@@ -18,17 +34,33 @@ const CloudWidget = () => {
     },
     (error, result) => {
       if (!error && result && result.event === "success") {
-        console.log("Done! Here is the image info: ", result.info);
+        console.log("Done! Here is the image info: ", result.info.url);
       }
     }
+    
   );
+
+  // const handleSubmit = async (data) => {
+  //   try {
+  //     let userRef = db.collection("users").doc(user.uid);
+  //     await userRef.set(data, { merge: true});
+  //     dispatchEvent(fetchOrCreateProfile(user))
+  //   } catch(error) {
+  //     console.error(error)
+  //   }
+  // }
+
   return (
-    <div id="photo-form-conatiner">
-      <button className="uploadWidget" onClick={() => myWidget.open()}>
+    <div id="photo-form-container">
+      <button className="uploadWidget" onClick={() => myWidget.open() }>
         Upload Photo
       </button>
     </div>
   );
 };
 
-export default CloudWidget;
+const mapState = (state) => ({
+  user: state.user,
+});
+
+export default connect(mapState)(CloudWidget);
