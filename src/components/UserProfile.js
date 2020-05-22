@@ -13,7 +13,7 @@ const UserProfile = () => {
 				</h1>
 			</div>
 			<div id="user-profile-img">
-				<img src={profile.id} />
+				<img src={profile.imageUrl} />
 			</div>
 			<br />
 			<div>
@@ -32,7 +32,7 @@ const UserProfile = () => {
 				<br />
 				<ul>
 					{profile.programming_languages.map((language) => {
-						return <li key={profile.id}>{language}</li>;
+						return <li>{language}</li>;
 					})}
 				</ul>
 			</div>
@@ -44,7 +44,7 @@ const UserProfile = () => {
 				<br />
 				<ul>
 					{profile.hobbies_interests.map((hobby) => {
-						return <li key={interestKey++}>{hobby}</li>;
+						return <li>{hobby}</li>;
 					})}
 				</ul>
 			</div>
