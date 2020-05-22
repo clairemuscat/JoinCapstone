@@ -3,7 +3,10 @@ import { useSelector } from "react-redux";
 
 const UserProfile = () => {
 	const profile = useSelector((state) => state.profile);
-	console.log("lemon", profile.hobbies_interests);
+    console.log("lemon", profile.hobbies_interests);
+    //giving the map elements keys
+    const interestKey=0; 
+    const languagesKey=0
 
 	return (
 		<div id="user-profile">
@@ -32,7 +35,7 @@ const UserProfile = () => {
 				<br />
 				<ul>
 					{profile.programming_languages.map((language) => {
-						return <li>{language}</li>;
+						return <li key={languagesKey++}>{language}</li>;
 					})}
 				</ul>
 			</div>
@@ -44,7 +47,7 @@ const UserProfile = () => {
 				<br />
 				<ul>
 					{profile.hobbies_interests.map((hobby) => {
-						return <li>{hobby}</li>;
+						return <li key={interestKey++}>{hobby}</li>;
 					})}
 				</ul>
 			</div>
