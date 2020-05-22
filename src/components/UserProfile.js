@@ -4,9 +4,6 @@ import { useSelector } from "react-redux";
 const UserProfile = () => {
 	const profile = useSelector((state) => state.profile);
     console.log("lemon", profile.hobbies_interests);
-    //giving the map elements keys
-    const interestKey=0; 
-    const languagesKey=0
 
 	return (
 		<div id="user-profile">
@@ -16,7 +13,7 @@ const UserProfile = () => {
 				</h1>
 			</div>
 			<div id="user-profile-img">
-				<img src={profile.imageUrl} />
+				<img src={profile.id} />
 			</div>
 			<br />
 			<div>
@@ -35,7 +32,7 @@ const UserProfile = () => {
 				<br />
 				<ul>
 					{profile.programming_languages.map((language) => {
-						return <li key={languagesKey++}>{language}</li>;
+						return <li key={profile.id}>{language}</li>;
 					})}
 				</ul>
 			</div>
