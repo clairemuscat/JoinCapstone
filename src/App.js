@@ -8,6 +8,7 @@ import {
   Connections,
   Calendar,
   UserMandatoryForm,
+  UserProfile
 } from "./components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import firebase from "firebase";
@@ -62,6 +63,12 @@ function App(props) {
                 isLoggedIn={isLoggedIn}
                 path="/account"
                 component={AccountPage}
+              />
+              <PrivateRoute
+                isLoggedIn={isLoggedIn}
+                exact
+                path="/profile"
+                component={UserProfile}
               />
               <PrivateRoute
                 isLoggedIn={isLoggedIn}

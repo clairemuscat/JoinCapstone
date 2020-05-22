@@ -24,7 +24,7 @@ export const fetchOrCreateProfile = (user) => {
   };
 };
 
-export default (state = {}, action) => {
+export default (state = {hobbies_interests:[''], programming_languages:['']}, action) => {
   switch (action.type) {
     case SET_PROFILE:
       return action.profile;

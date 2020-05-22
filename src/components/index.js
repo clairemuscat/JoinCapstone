@@ -1,3 +1,5 @@
+import { format } from "morgan";
+
 export { default as VideoComponent } from "./VideoComponent";
 export { default as Lobby } from "./Lobby";
 export { default as Room } from "./Room";
@@ -17,4 +19,5 @@ export { default as Navbar } from "./Navbar";
 export { default as MatchProfileDisplay } from "./MatchProfileDisplay";
 export { default as PrivateRoute } from "./PrivateRoute";
 export { default as StartVideoChat } from "./StartVideoChat";
+export{default as UserProfile} from './UserProfile'
 export { default as UserMandatoryForm } from "./UserMandatoryForm"

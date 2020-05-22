@@ -237,3 +237,15 @@ footer a {
   grid-row: 1fr;
   grid-column: auto;
 }
+
+#user-profile{
+  text-align: center;
+}
+
+.listed-items > ul{
+  text-align: left;
+  text-indent: 1rem;
+}.listed-items{
+  text-align: left;
+}
+
