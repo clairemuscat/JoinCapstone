@@ -9,7 +9,7 @@ const UserProfile = () => {
 		<div id="user-profile">
 			<div>
 				<h1>
-					{profile.firstName} {profile.lastName}
+					{profile.firstName} {profile.lastName} (she/her/hers)
 				</h1>
 			</div>
 			<div id="user-profile-img">
