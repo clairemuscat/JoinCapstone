@@ -118,7 +118,7 @@ const UserMandatoryForm = withRouter(function (props) {
         name="about"
         ref={register}
       />
-
+         <CloudWidget>
         <label className="user-labels">Profile Picture</label>
         <input
           className="form-inputs"
@@ -126,6 +126,7 @@ const UserMandatoryForm = withRouter(function (props) {
           name="imageUrl"
           ref={register}
         />
+        </CloudWidget>
       <input className="form-inputs" type="submit" />
     </form>
   );
