@@ -1,9 +1,30 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector ,useDispatch} from "react-redux";
+import swal from "sweetalert";
+import swal from "@sweetalert/with-react";
+import UpdateProfile from './UpdateProfile'
+import updateUserProfile from '../store/profile'
 
 const UserProfile = () => {
-	const profile = useSelector((state) => state.profile);
+    const profile = useSelector((state) => state.profile);
+    const updateUser= useDispatch((dispatch)=>{})
     console.log("lemon", profile.hobbies_interests);
+
+    const updateEvent = () =>{
+        swal({  title: "Profile",
+        content: <UpdateProfile profile={profile}/>,
+        buttons: {
+          cancel:true,
+          confirm:{
+            text:'Update Profile',
+          }
+        }
+        })
+        .then(val=>{
+            updateUser(val.value)
+        })
+       
+    }
 
 	return (
 		<div id="user-profile">
@@ -48,7 +69,7 @@ const UserProfile = () => {
 					})}
 				</ul>
 			</div>
-            <button type='button'>Edit Profile</button>
+            <button type='button' onClick={this.updateEvent}>Edit Profile</button>
 		</div>
 	);
 };
