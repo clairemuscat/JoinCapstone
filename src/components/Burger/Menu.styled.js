@@ -1,28 +1,31 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StyledMenu = styled.nav`
   display: flex;
   flex-direction: column;
+  width: 20rem;
   justify-content: center;
   transform: translateX(-100%);
-  transform: ${({ open }) => (open ? "translateX(0)" : "translateX(-100%)")};
+  background: #1c2541;
+  transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-100%)')};
   height: 33vh;
   text-align: left;
-  // padding: 2rem;
+  padding: 2rem;
   position: absolute;
-  top: 0;
+  top: 8rem;
   left: 0;
+  z-index: 10;
   transition: transform 0.3s ease-in-out;
   @media (max-width: ${({ theme }) => theme.mobile}) {
     width: 100%;
   }
-  a {
-    font-size: .5rem;
+  div {
+    font-size: 1rem;
     text-transform: uppercase;
     padding: 2rem 0;
     font-weight: bold;
     letter-spacing: 0.5rem;
-    color: ${({ theme }) => theme.primaryDark};
+    color: white;
     text-decoration: none;
     transition: color 0.3s linear;
     @media (max-width: ${({ theme }) => theme.mobile}) {
@@ -31,6 +34,7 @@ export const StyledMenu = styled.nav`
     }
     &:hover {
       color: ${({ theme }) => theme.primaryHover};
+      cursor: pointer;
     }
   }
 `;
