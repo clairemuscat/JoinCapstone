@@ -94,7 +94,7 @@ const Participant = ({ participant, handleLogout }) => {
       </Tooltip>
       <Tooltip title={"Toggle Video"}>
         <Fab color="secondary">
-          <VideoCam />
+          <Videocam />
         </Fab>
       </Tooltip>
     </div>
