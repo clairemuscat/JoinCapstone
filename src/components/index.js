@@ -6,6 +6,7 @@ export { default as Auth } from './Auth';
 export { default as LandingPage } from './LandingPage';
 export { default as Calendar } from './Calendar';
 export { default as Connections } from './Connections';
+export { default as SingleConnection } from './SingleConnection';
 export { default as MatchingInterface } from './MatchingInterface';
 export { default as Profile } from './Profile';
 export { default as Chat } from './Chat';

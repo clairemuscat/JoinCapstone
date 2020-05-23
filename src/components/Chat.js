@@ -3,13 +3,12 @@ import { useSelector } from 'react-redux';
 import { db } from '..';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
-function Chat(props) {
+function Chat({ chatId }) {
   const user = useSelector((state) => state.user);
-  const currentChat = useSelector((state) => state.currentChat);
   const profile = useSelector((state) => state.profile);
   const [newMessage, setNewMessage] = useState('');
   const [values, loading, error] = useCollectionData(
-    db.collection('chats').doc(currentChat).collection('messages')
+    db.collection('chats').doc(chatId).collection('messages')
   );
 
   const messagesEndRef = useRef(null);
@@ -39,7 +38,7 @@ function Chat(props) {
 
     await db
       .collection('chats')
-      .doc(currentChat)
+      .doc(chatId)
       .collection('messages')
       .add(message);
     setNewMessage('');
@@ -47,7 +46,7 @@ function Chat(props) {
 
   if (loading || error) return <div>Loading...</div>;
 
-  return currentChat !== 'default' ? (
+  return (
     <div>
       <div id="chat">
         <div id="chat-view">
@@ -78,8 +77,6 @@ function Chat(props) {
         </form>
       </div>
     </div>
-  ) : (
-    <div>Go to your connections to find someone to chat with!</div>
   );
 }
 
