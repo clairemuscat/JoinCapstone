@@ -4,7 +4,6 @@ export { default as Room } from './room';
 export { default as Participant } from './Participant';
 export { default as Auth } from './Auth';
 export { default as LandingPage } from './LandingPage';
-export { default as AccountPage } from './AccountPage';
 export { default as Calendar } from './Calendar';
 export { default as Connections } from './Connections';
 export { default as MatchingInterface } from './MatchingInterface';

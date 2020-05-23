@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
   LandingPage,
-  AccountPage,
   MatchingInterface,
   Navbar,
   PrivateRoute,
@@ -64,11 +63,6 @@ function App(props) {
               />
               <PrivateRoute
                 isLoggedIn={isLoggedIn}
-                path="/account"
-                component={AccountPage}
-              />
-              <PrivateRoute
-                isLoggedIn={isLoggedIn}
                 exact
                 path="/connect"
                 component={MatchingInterface}
@@ -83,11 +77,6 @@ function App(props) {
                 exact
                 path="/chat"
                 component={Chat}
-              />
-              <PrivateRoute
-                isLoggedIn={isLoggedIn}
-                path="/chat/:compoundSlice"
-                component={SingleChat}
               />
               <Route component={LandingPage} />
             </Switch>
