@@ -46,10 +46,9 @@ function Chat(props) {
   };
 
   if (loading || error) return <div>Loading...</div>;
-  console.log(values);
+
   return currentChat !== 'default' ? (
     <div>
-      <h1>CHAT</h1>
       <div id="chat">
         <div id="chat-view">
           {values
@@ -85,14 +84,3 @@ function Chat(props) {
 }
 
 export default Chat;
-
-// What views will we have for chat?
-
-// Will there be a chat section with all of your conversations, or will you have
-// to navigate to a specific connection in order to chat with them?
-
-// What should we store as subcollections vs. maps?
-
-// How to access all chats from all matches?
-// Map through matches array, get ids of each, make compound-uid
-// query chat for any chats matching any of those compounds? oof lots of queries

@@ -7,7 +7,6 @@ import {
   Connections,
   Calendar,
   Chat,
-  SingleChat,
   UserMandatoryForm,
 } from './components';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
