@@ -5,7 +5,7 @@ import { Participant } from ".";
 const Room = ({ roomName, token, handleLogout }) => {
   const [room, setRoom] = useState(null);
   const [participants, setParticipants] = useState([]);
-  // Renders remote participants
+
   const remoteParticipants = participants.map((participant) => (
     <Participant key={participant.sid} participant={participant} />
   ));
@@ -49,7 +49,9 @@ const Room = ({ roomName, token, handleLogout }) => {
 
   return (
     <div className="room">
-      <button onClick={handleLogout}>Log out</button>
+      <button className="logoutButton" onClick={handleLogout}>
+        End Video Chat
+      </button>
       <div className="local-participant">
         {room ? (
           <>

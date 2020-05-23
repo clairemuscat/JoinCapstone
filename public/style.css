@@ -152,7 +152,7 @@ button:hover {
   display: flex;
   justify-content: space-between;
 }
-.room button {
+.logoutButton {
   position: absolute;
   top: -50px;
   right: 50px;
@@ -188,6 +188,10 @@ button:hover {
   text-align: center;
   padding-bottom: 0.5em;
   color: #fff;
+}
+
+.audio-button-icon {
+  align-self: baseline;
 }
 
 video {

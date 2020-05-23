@@ -1,8 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
+import { Mic, MicOff } from "@material-ui/icons";
+import { Fab, Tooltip } from "@material-ui/core";
 
 const Participant = ({ participant }) => {
   const [videoTracks, setVideoTracks] = useState([]);
   const [audioTracks, setAudioTracks] = useState([]);
+  const [toggleState, setToggleState] = useState("off");
 
   const videoRef = useRef();
   const audioRef = useRef();
@@ -62,11 +65,25 @@ const Participant = ({ participant }) => {
     }
   }, [audioTracks]);
 
+  function toggleAudio() {
+    setToggleState(toggleState === "off" ? "on" : "off");
+  }
+
   return (
     <div className="participant">
       <h3>{participant.identity}</h3>
       <video ref={videoRef} autoPlay={true} />
-      <audio ref={audioRef} autoPlay={true} muted={false} />
+      <audio
+        id="aud"
+        ref={audioRef}
+        autoPlay={true}
+        muted={toggleState === "on" ? false : true}
+      />
+      <Tooltip title="Toggle Audio" placement="top" id="audio-button-icon">
+        <Fab onClick={toggleAudio}>
+          {toggleState === "on" ? <Mic /> : <MicOff />}
+        </Fab>
+      </Tooltip>
     </div>
   );
 };
