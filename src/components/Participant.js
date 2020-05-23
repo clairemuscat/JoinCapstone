@@ -79,7 +79,11 @@ const Participant = ({ participant }) => {
         autoPlay={true}
         muted={toggleState === "on" ? false : true}
       />
-      <Tooltip title="Toggle Audio" placement="top" id="audio-button-icon">
+      <Tooltip
+        title="Toggle Audio"
+        placement="top"
+        className="audio-button-icon"
+      >
         <Fab onClick={toggleAudio}>
           {toggleState === "on" ? <Mic /> : <MicOff />}
         </Fab>
