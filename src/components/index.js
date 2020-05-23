@@ -11,8 +11,6 @@ export { default as MatchingInterface } from './MatchingInterface';
 export { default as Profile } from './Profile';
 export { default as Chat } from './Chat';
 export { default as SingleChat } from './SingleChat';
-export { default as Burger } from './Burger';
-export { Menu } from './Burger';
 export { default as MatchCard } from './MatchCard';
 export { default as Navbar } from './Navbar';
 export { default as MatchProfileDisplay } from './MatchProfileDisplay';
