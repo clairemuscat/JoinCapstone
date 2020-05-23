@@ -6,12 +6,14 @@ import user from './user';
 import profile from './profile';
 import toConnect from './toConnect';
 import events from './events'
+import meetings from './meetings'
 
 const reducer = combineReducers({
   user,
   profile,
   toConnect,
-  calendar:events
+  calendar:events,
+  meetings
 });
 
 const middleware = composeWithDevTools(

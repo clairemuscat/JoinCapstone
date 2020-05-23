@@ -27,6 +27,7 @@ class Calendar extends React.Component{
  }
 
  render(){
+   console.log('legos', this.props.meetings)
    return(
      <div className='calendar'>
     <Sidebar/>
@@ -124,7 +125,8 @@ const mapDispatch=(dispatch)=>({
 })
 const mapState=(state)=>({
   user:state.user,
-  events:state.calendar
+  events:state.calendar,
+  meetings:state.meetings
 })
 
 export default connect(mapState,mapDispatch)(Calendar)

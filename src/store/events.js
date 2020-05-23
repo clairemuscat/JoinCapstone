@@ -47,12 +47,14 @@ export const newEvent = (match,user,event)=>{
                 title:event.title,
                     start:event.date.valueOf(),
                     attendees:match?[user.uid,match.id]:[user.uid],
+                    status:true
             })
            const id =newThing.id
            await db.collection('events').doc(id).set({
             title:event.title,
             start:event.date.valueOf(),
             attendees:match?[user.uid,match.id]:[user.uid],
+            status:true,
             id:id
            })
             const snap=await db.collection('events').doc(id).get();
@@ -103,7 +105,7 @@ export const deleteEvent =(event)=>{
 export default (state=[],action)=>{ //eventually want to get rid of repetative code for create and update
     switch(action.type){
         case SET_EVENTS:
-            return action.events
+            return action.events.filter(event=>event.status)
         case CREATE_EVENT:
             return [...state,action.event]
         case UPDATE_EVENT:

@@ -17,6 +17,15 @@
  
 }
 
+
+.meeting{
+  border: 1px solid navy;
+  border-radius: .5rem;
+  padding:1px
+}
+.meeting-list{
+  margin-top: 1rem;
+}
 .fullcalendar{
   width:77%
 }

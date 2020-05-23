@@ -1,5 +1,5 @@
 import React from 'react'
-import {newEvent} from '../store/events'
+import { addMeeting} from '../store/meetings'
 import {connect} from 'react-redux'
 import swal from '@sweetalert/with-react'
 import MyInput from './Calendar/MyInput'
@@ -43,7 +43,7 @@ addCalendarEvent(){
 // })
 
 const mapDispatch=(dispatch)=>({
-    makeAppointment:(match,user,event)=>dispatch(newEvent(match,user,event))
+    makeAppointment:(match,user,event)=>dispatch(addMeeting(match,user,event))
 })
 
 
