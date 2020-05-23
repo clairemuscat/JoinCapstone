@@ -4,9 +4,11 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import MyInput from './MyInput'
+import Sidebar from './Sidebar'
 import UpdateEvent from './UpdateEvent'
 import swal from '@sweetalert/with-react'
 import {connect} from 'react-redux'
+import './sidebar.css'
 import  {fetchEvents,newEvent,changeEvent,deleteEvent} from '../../store/events'
 
 
@@ -26,6 +28,9 @@ class Calendar extends React.Component{
 
  render(){
    return(
+     <div className='calendar'>
+    <Sidebar/>
+    <div className='fullcalendar'>
     <FullCalendar
       defaultView="timeGridWeek"
       header={{
@@ -105,6 +110,8 @@ class Calendar extends React.Component{
       //   }
       // ]}
     />
+    </div>
+   </div>
   
   )}
 
