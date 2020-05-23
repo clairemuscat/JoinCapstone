@@ -2,6 +2,7 @@ import React from 'react'
 import './sidebar.css'
 import {fetchMeetings} from '../../store/meetings'
 import {connect} from 'react-redux'
+import DeleteMeeting from './DeleteMeeting'
 
 class Sidebar extends React.Component{
     constructor(){
@@ -16,6 +17,7 @@ class Sidebar extends React.Component{
 
     render(){
         const meetings = this.props.meetings
+        console.log('hot', this.props.user)
         const user=this.props.user
         console.log('mangos', this.props.meetings)
         console.log('pepper',user.uid)
@@ -32,7 +34,7 @@ class Sidebar extends React.Component{
         </div>
         <div>
         <h5 className='meeting-list'>PENDING</h5>
-        {meetings.map(meeting=>{if(meeting.host=== (user.uid)) { return <div className='meeting'>{meeting.title}<button type='button'>delete</button></div>} 
+        {meetings.map(meeting=>{if(meeting.host=== (user.uid)) {return <div className='meeting'>{meeting.title} <DeleteMeeting meeting={meeting}/> </div>} 
         else{return <div className='meeting'>{meeting.title}<div><button type='button'>Accept</button> <button type='button'> Decline</button></div></div>}})}
         </div>
         </div>

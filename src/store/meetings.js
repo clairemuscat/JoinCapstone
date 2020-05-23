@@ -2,6 +2,7 @@ import { db } from '..';
 
 const CREATE_MEETING ='CREATE_MEETING'
 const GET_MEETINGS ='GET_MEETINGS'
+const REMOVE_MEETING='REMOVE_MEETING'
 
 
 export const createMeeting =(meeting) =>({
@@ -12,6 +13,11 @@ export const createMeeting =(meeting) =>({
 export const getMeetings =(meetings)=>({
     type: GET_MEETINGS,
     meetings
+})
+
+export const removeMeeting=(meeting)=>({
+    type:REMOVE_MEETING,
+    meeting
 })
 
 export const fetchMeetings = (user) =>{
@@ -63,6 +69,18 @@ return async(dispatch)=>{
 }
 }
 
+export const deleteMeeting =(meeting)=>{
+    return async (dispatch)=>{
+        try{
+         await db.collection('events').doc(meeting.id).delete()
+         dispatch(removeMeeting(meeting))
+        }
+        catch(err){
+            console.log('Error deleting meeting',err)
+        }
+    }
+}
+
 
 export default (state=[], action) =>{
     switch(action.type){
@@ -70,6 +88,8 @@ export default (state=[], action) =>{
             return action.meetings.filter(meeting=>meeting.status===false)
         case CREATE_MEETING:
             return [...state,action.meeting]
+        case REMOVE_MEETING:
+            return state.filter(meeting=>meeting.id!==action.meeting.id)
         default:
             return state
     }
