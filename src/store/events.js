@@ -75,6 +75,7 @@ export const changeEvent=(event)=>{
             let data={
                 title:event.title,
                 start:event.date.valueOf(),
+                status:true,
                 id:event.id
             }
             await db.collection('events').doc(event.id).set(data,{merge:true})
