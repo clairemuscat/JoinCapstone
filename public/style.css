@@ -153,9 +153,7 @@ button:hover {
   justify-content: space-between;
 }
 .logoutButton {
-  position: absolute;
-  top: -50px;
-  right: 50px;
+  align-self: baseline;
 }
 .room > h3 {
   text-align: center;

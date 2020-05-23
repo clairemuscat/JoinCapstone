@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Mic, MicOff } from "@material-ui/icons";
 import { Fab, Tooltip } from "@material-ui/core";
+import CallEnd from "@material-ui/icons/CallEnd";
 
-const Participant = ({ participant }) => {
+const Participant = ({ participant, handleLogout }) => {
   const [videoTracks, setVideoTracks] = useState([]);
   const [audioTracks, setAudioTracks] = useState([]);
   const [toggleState, setToggleState] = useState("off");
@@ -79,6 +80,12 @@ const Participant = ({ participant }) => {
         autoPlay={true}
         muted={toggleState === "on" ? false : true}
       />
+      <Tooltip className="logoutButton" onClick={handleLogout} title="End Call">
+        <Fab color="primary">
+          <CallEnd />
+        </Fab>
+      </Tooltip>
+
       <Tooltip
         title="Toggle Audio"
         placement="top"
