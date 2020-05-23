@@ -23,7 +23,7 @@ export const StyledMenu = styled.nav`
     font-size: 1rem;
     text-transform: uppercase;
     padding: 2rem 0;
-    font-weight: bold;
+    font-weight: bold;git ch
     letter-spacing: 0.5rem;
     color: white;
     text-decoration: none;

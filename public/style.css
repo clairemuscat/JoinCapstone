@@ -275,8 +275,25 @@ footer a {
 #navbar {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
+  border-bottom: 0.15rem solid black;
+}
+
+#navbar-link-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: auto 2rem;
+}
+
+.navbar-link {
+  margin: auto 1rem;
+}
+
+.navbar-link:hover {
+  cursor: pointer;
 }
 
 #content {
