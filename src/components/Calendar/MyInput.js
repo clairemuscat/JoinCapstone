@@ -1,4 +1,5 @@
 import React,{Component} from 'react'
+import swal from 'sweetalert';
 // import ReactDOM from 'react-dom'
 // import swal from '@sweetalert/with-react'
 
@@ -10,40 +11,41 @@ class MyInput extends Component {
  
     this.state = {
       eventTitle: '',
-      eventDescription:''
+      eventDate: this.props.date?this.props.date.date:new Date()
+    //   eventDescription:''
     };
     this.changeText=this.changeText.bind(this)
-    this.changeDescription=this.changeDescription.bind(this)
+   this.changeDate=this.changeDate.bind(this)
   }
  
   changeText(e) {
     let title = e.target.value
+    let date=this.state.eventDate
     
  
     this.setState({
       eventTitle:title
     });
     swal.setActionValue({
-        confirm: { value: title }
+        confirm: { value:{title,date}  }
       });
 
 }
 
-changeDescription(e){
-    let description = e.target.value
-    let title=this.state.eventTitle
-    let date=this.props.date.date
- 
-    this.setState({
-      eventDescription:description
-    });
+changeDate(e){
+  let newDate =e.target.value
+  let title=this.state.eventTitle
 
-    swal.setActionValue({
-        confirm: { 
-            value: {description:description,
-            title:title,
-            date:date}
-    }});
+
+  this.setState({
+    eventDate:newDate
+  })
+  let date= this.state.eventDate
+  date = new Date(date)
+  date = date.valueOf()
+  swal.setActionValue({
+    confirm:{value:{title,date}}
+  })
 }
  
   render() {
@@ -59,20 +61,12 @@ changeDescription(e){
     <br/>
     <label>Date: </label>
     <input 
-        type='datetime' name='dateTime'
-        value={this.props.date.date}
+        type='datetime' 
+        name='dateTime'
+        value={this.state.eventDate}
+        onChange={this.changeDate}
         />
         <br/>
-        <br/>
-        <label>
-            Description:
-        </label>
-        <input
-        type='text'
-        value={this.state.eventDescription}
-        name='description'
-        onChange={this.changeDescription}
-        /><br/>
         <br/>
         <div id='attendee'>
          Attendee(s): Brian
