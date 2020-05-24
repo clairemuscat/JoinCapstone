@@ -147,11 +147,12 @@ button:hover {
 
 .room {
   position: relative;
+  display: flex;
+  justify-content: space-between;
 }
-.room button {
-  position: absolute;
-  top: 0;
-  right: 20px;
+.logoutButton {
+  align-self: baseline;
+  margin-top: 1em;
 }
 .room > h3 {
   text-align: center;
@@ -162,12 +163,13 @@ button:hover {
 .local-participant {
   text-align: center;
   margin-bottom: 2em;
+  flex-direction: row;
+  flex-grow: 3;
 }
 .remote-participants {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-between;
   padding: 0 2em 2em;
+  flex-direction: column;
+  flex-grow: 1;
 }
 .participant {
   background: #333e5a;
@@ -183,6 +185,11 @@ button:hover {
   text-align: center;
   padding-bottom: 0.5em;
   color: #fff;
+}
+
+.audio-button-icon {
+  align-self: baseline;
+  margin-top: 1em;
 }
 
 video {
