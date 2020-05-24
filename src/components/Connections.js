@@ -1,14 +1,17 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { generateCompoundUid } from "../utils";
-import StartVideoChat from "./StartVideoChat";
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { generateCompoundUid } from '../utils';
+import { withRouter } from 'react-router-dom';
+import { setCurrentChat } from '../store/chats';
+import { SingleConnection } from '.';
 import AddCalendarEvent from './AddCalendarEvent'
-function Connections(props) {
+const Connections = withRouter(function (props) {
   const profile = useSelector((state) => state.profile);
   const user = useSelector((state) => state.user);
 
   return (
     <div>
+      <h1>Connections</h1>
       {profile.matches ? (
         profile.matches.map((match) => {
           let compound = generateCompoundUid(user.uid, match.id);
@@ -25,10 +28,10 @@ function Connections(props) {
           );
         })
       ) : (
-        <h1>Loading...</h1>
+        <h2>Loading...</h2>
       )}
     </div>
   );
-}
+});
 
 export default Connections;

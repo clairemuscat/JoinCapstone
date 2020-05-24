@@ -58,8 +58,8 @@ function MatchingInterface(props) {
     }
   };
 
-  const createMatchObject = (user, matchDate) => {
-    return { ...user, matchDate };
+  const createMatchObject = (user, matchDate, compoundUid) => {
+    return { ...user, matchDate, compoundUid };
   };
 
   const handleConnect = async (targetUser) => {
@@ -76,7 +76,7 @@ function MatchingInterface(props) {
           const matchDate = new Date();
           const newBaseUserMatches = [
             ...profile.matches,
-            createMatchObject(targetUser, matchDate),
+            createMatchObject(targetUser, matchDate, compoundUid),
           ];
           await baseUserRef.set(
             { matches: newBaseUserMatches },
@@ -84,7 +84,11 @@ function MatchingInterface(props) {
           );
           const newTargetUserMatches = [
             ...targetUser.matches,
-            createMatchObject({ ...profile, id: user.uid }, matchDate),
+            createMatchObject(
+              { ...profile, id: user.uid },
+              matchDate,
+              compoundUid
+            ),
           ];
           await targetUserRef.set(
             { matches: newTargetUserMatches },
@@ -111,7 +115,7 @@ function MatchingInterface(props) {
   };
 
   return (
-    <div>
+    <div id="matching-interface">
       {toConnect.length ? (
         <MatchCard
           userB={toConnect[current]}

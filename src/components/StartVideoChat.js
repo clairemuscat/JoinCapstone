@@ -13,13 +13,13 @@ function StartVideoChat(props) {
   const handleClick = async (event) => {
     try {
       event.preventDefault();
-      const { data } = await axios.post("/video/token", {
+      const { data } = await axios.post('/video/token', {
         identity: user.displayName,
         room: props.compoundUid,
       });
       setToken(data.token);
     } catch (error) {
-      console.log("Oops I did it again", error);
+      console.log('Oops I did it again', error);
     }
   };
   let render;
@@ -34,7 +34,12 @@ function StartVideoChat(props) {
   } else {
     render = (
       <div>
-        <button type="button" onClick={handleClick}>
+        <button
+          type="button"
+          onClick={handleClick}
+          className="button"
+          id="video-button"
+        >
           Start Video Call
         </button>
       </div>

@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React from 'react'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
@@ -12,7 +12,7 @@ import './sidebar.css'
 import  {fetchEvents,newEvent,changeEvent,deleteEvent} from '../../store/events'
 
 
-import './main.scss' // webpack must be configured to do this
+import './main.scss'; // webpack must be configured to do this
 
 
 

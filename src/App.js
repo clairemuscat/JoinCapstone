@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
   LandingPage,
-  AccountPage,
   MatchingInterface,
   Navbar,
   PrivateRoute,
   Connections,
   Calendar,
+  Chat,
   UserMandatoryForm,
-} from "./components";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import firebase from "firebase";
-import { useDispatch, useSelector } from "react-redux";
-import { setUser as setUserRedux } from "./store/user";
+} from './components';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import firebase from 'firebase';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser as setUserRedux } from './store/user';
 import {
   fetchOrCreateProfile,
   setProfile as setProfileRedux,
-} from "./store/profile";
+} from './store/profile';
 
 function App(props) {
   const isLoggedIn = useSelector((state) =>
@@ -43,25 +43,22 @@ function App(props) {
 
   return (
     <Router>
-
       <div className="app">
         <Navbar />
         <div id="content">
-          
           {authStateChecked && (
             <Switch>
-              <PrivateRoute 
-              isLoggedIn={isLoggedIn}
-              exact path='/form' 
-              component={UserMandatoryForm}/>
-              <PrivateRoute 
-              isLoggedIn={isLoggedIn}
-              exact path='/account/calendar' 
-              component={Calendar}/>
               <PrivateRoute
                 isLoggedIn={isLoggedIn}
-                path="/account"
-                component={AccountPage}
+                exact
+                path="/form"
+                component={UserMandatoryForm}
+              />
+              <PrivateRoute
+                isLoggedIn={isLoggedIn}
+                exact
+                path="/account/calendar"
+                component={Calendar}
               />
               <PrivateRoute
                 isLoggedIn={isLoggedIn}
@@ -74,8 +71,13 @@ function App(props) {
                 path="/connections"
                 component={Connections}
               />
+              <PrivateRoute
+                isLoggedIn={isLoggedIn}
+                exact
+                path="/chat"
+                component={Chat}
+              />
               <Route component={LandingPage} />
-             
             </Switch>
           )}
         </div>
