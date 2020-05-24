@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { withRouter } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { db } from '..';
 import { setToConnect } from '../store/toConnect';
 import { randomEqualitySign, randomLimit, generateCompoundUid } from '../utils';
 import { MatchCard } from '.';
 import { fetchOrCreateProfile } from '../store/profile';
+import swal from '@sweetalert/with-react';
 
 function MatchingInterface(props) {
   const [current, setCurrent] = useState(0);
@@ -94,6 +96,15 @@ function MatchingInterface(props) {
             { matches: newTargetUserMatches },
             { merge: true }
           );
+          swal({
+            title: '.join() Alert!',
+            buttons: ['Keep Connecting', 'Go to Connections'],
+          }).then((redirect) => {
+            if (redirect) {
+              dispatch(fetchOrCreateProfile(user));
+              props.history.push('/connections');
+            }
+          });
         }
         // redirect to matches
       } else {
@@ -129,4 +140,4 @@ function MatchingInterface(props) {
   );
 }
 
-export default MatchingInterface;
+export default withRouter(MatchingInterface);
