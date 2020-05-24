@@ -1,35 +1,53 @@
-import { db } from '..';
-import { generateNewProfile } from '../utils';
+import { db } from "..";
+import { generateNewProfile } from "../utils";
 
-const SET_PROFILE = 'SET_PROFILE';
-const UPDATE_PROFILE = 'UPDATE_PROFILE'
+const SET_PROFILE = "SET_PROFILE";
+const UPDATE_PROFILE = "UPDATE_PROFILE";
+const DELETE_PROFILE = "UPDATE_PROFILE";
 
 export const setProfile = (profile) => ({
   type: SET_PROFILE,
   profile,
 });
 
+export const deleteProfile = (profile) => ({
+  type: DELETE_PROFILE,
+  profile,
+});
+
 export const fetchOrCreateProfile = (user) => {
   return async (dispatch) => {
-    const snap = await db.collection('users').doc(user.uid).get();
+    const snap = await db.collection("users").doc(user.uid).get();
     if (snap.exists) {
       const profile = snap.data();
       dispatch(setProfile(profile));
     } else {
-      await db.collection('users').doc(user.uid).set(generateNewProfile(user));
-      const snap = await db.collection('users').doc(user.uid).get();
+      await db.collection("users").doc(user.uid).set(generateNewProfile(user));
+      const snap = await db.collection("users").doc(user.uid).get();
       const profile = snap.data();
       setProfile(profile);
     }
   };
 };
 
-export default (state = {hobbies_interests:[''], programming_languages:['']}, action) => {
+export const deleteProfileThunk = (user) => {
+  return async (dispatch) => {
+    const snap = await db.collection("users").doc(user.uid).get();
+    if (snap.exists) {
+      const profile = snap.data().delete();
+      dispatch(deleteProfile(profile))
+    }
+  };
+};
+
+export default (state = {}, action) => {
   switch (action.type) {
     case SET_PROFILE:
       return action.profile;
     case UPDATE_PROFILE:
-      return action.profile
+      return action.profile;
+    case DELETE_PROFILE:
+      return action.profile;
     default:
       return state;
   }
