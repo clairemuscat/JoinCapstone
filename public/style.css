@@ -89,6 +89,7 @@ main {
 #chat-view {
   max-height: 400px;
   width: 100%;
+  min-height: 400px;
   /* box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.3); */
   /* border-top-left-radius: 5px; */
   /* border-top-right-radius: 5px; */
@@ -113,6 +114,10 @@ main {
 h2 {
   font-weight: 300;
   margin-bottom: 1em;
+  text-align: center;
+}
+
+h3 {
   text-align: center;
 }
 
@@ -437,13 +442,17 @@ footer a {
   margin: auto auto;
 }
 
-.connection-meeting-options{
+.swal-footer {
+  text-align: center;
+}
+
+.connection-meeting-options {
   display: grid;
   grid-row: 1fr;
   grid-column: auto;
 }
 
-#user-profile{
+#user-profile {
   text-align: center;
 }
 
@@ -461,10 +470,11 @@ footer a {
   margin: 50px;
 }
 
-.listed-items > ul{
+.listed-items > ul {
   text-align: left;
   text-indent: 1rem;
-}.listed-items{
+}
+.listed-items {
   text-align: left;
 }
 
