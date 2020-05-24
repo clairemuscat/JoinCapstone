@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Mic, MicOff } from "@material-ui/icons";
-import { Fab, Tooltip } from "@material-ui/core";
-import CallEnd from "@material-ui/icons/CallEnd";
-import Videocam from "@material-ui/icons/Videocam";
-import VideocamOff from "@material-ui/icons/VideocamOff";
+// import { Mic, MicOff } from "@material-ui/icons";
+// import { Fab, Tooltip } from "@material-ui/core";
+// import CallEnd from "@material-ui/icons/CallEnd";
+// import Videocam from "@material-ui/icons/Videocam";
+// import VideocamOff from "@material-ui/icons/VideocamOff";
 
 const Participant = ({ participant, handleLogout }) => {
   const [videoTracks, setVideoTracks] = useState([]);
@@ -82,21 +82,6 @@ const Participant = ({ participant, handleLogout }) => {
         autoPlay={true}
         muted={toggleState === "on" ? false : true}
       />
-      <Tooltip className="logoutButton" onClick={handleLogout} title="End Call">
-        <Fab color="secondary">
-          <CallEnd />
-        </Fab>
-      </Tooltip>
-      <Tooltip title="Toggle Audio" className="audio-button-icon">
-        <Fab onClick={toggleAudio} color="secondary">
-          {toggleState === "on" ? <Mic /> : <MicOff />}
-        </Fab>
-      </Tooltip>
-      <Tooltip title={"Toggle Video"}>
-        <Fab color="secondary">
-          <Videocam />
-        </Fab>
-      </Tooltip>
     </div>
   );
 };
