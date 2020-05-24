@@ -4,7 +4,7 @@ import { connect, useDispatch } from "react-redux";
 import { db } from "..";
 import { withRouter } from "react-router-dom";
 import { fetchOrCreateProfile } from "../store/profile";
-import CloudWidget from "./CloudWidget";
+// import CloudWidget from "./CloudWidget";
 
 // Using react-hook-form https://react-hook-form.com/
 const UserMandatoryForm = withRouter(function (props) {
@@ -126,7 +126,7 @@ const UserMandatoryForm = withRouter(function (props) {
         name="about"
         ref={register}
       />
-         <CloudWidget>
+         
         <label className="user-labels">Profile Picture</label>
         <input
           className="form-inputs"
@@ -134,7 +134,6 @@ const UserMandatoryForm = withRouter(function (props) {
           name="imageUrl"
           ref={register}
         />
-        </CloudWidget>
       <input className="form-inputs" type="submit" />
     </form>
   );
