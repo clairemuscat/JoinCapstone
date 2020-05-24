@@ -4,7 +4,6 @@ import { connect, useDispatch } from "react-redux";
 import { db } from "..";
 import { fetchOrCreateProfile } from "../store/profile";
 
-
 const UpdateProfile = (props) => {
   const { register, handleSubmit } = useForm();
   const { user, profile } = props;

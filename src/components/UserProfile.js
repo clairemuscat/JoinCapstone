@@ -1,11 +1,10 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-// import UpdateProfile from "./UpdateProfile";
 import { isPropsEqual } from "@fullcalendar/core";
 import { withRouter } from "react-router-dom";
 import { db } from "..";
-import { connect, useDispatch } from 'react-redux';
+import { connect, useDispatch } from "react-redux";
 import { deleteProfileThunk } from "../store/profile";
 
 const UserProfile = withRouter(function (props) {
@@ -13,8 +12,6 @@ const UserProfile = withRouter(function (props) {
   const { user } = props;
   const dispatch = useDispatch();
   let history = useHistory();
-  // console.log("lemon", profile.hobbies_interests);
-  // console.log(user.uid)
 
   const handleClick = () => {
     history.push("/updateProfile");
@@ -25,8 +22,8 @@ const UserProfile = withRouter(function (props) {
       window.confirm("This action will remove your profile.");
       if (confirm("Are you sure you want to delete your profile?")) {
         let docToDelete = db.collection("users").doc(user.uid);
-		await docToDelete.delete();
-		dispatch(deleteProfileThunk(user))
+        await docToDelete.delete();
+        dispatch(deleteProfileThunk(user));
         window.alert("Profile Deleted.");
         history.push("/connect");
       } else {
@@ -48,7 +45,6 @@ const UserProfile = withRouter(function (props) {
         <div id="user-profile-img">
           <img src={profile.imageUrl} />
         </div>
-
         <br />
         <div>
           <b>
@@ -91,7 +87,6 @@ const UserProfile = withRouter(function (props) {
           <br />
           <ul>{profile.hobbies_interests}</ul>
         </div>
-
         <br />
         <button type="button" onClick={handleClick}>
           Edit Profile
@@ -106,7 +101,7 @@ const UserProfile = withRouter(function (props) {
 });
 
 const mapState = (state) => ({
-	user: state.user,
-  });
+  user: state.user,
+});
 
 export default connect(mapState)(UserProfile);

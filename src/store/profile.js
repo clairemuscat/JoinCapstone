@@ -35,7 +35,7 @@ export const deleteProfileThunk = (user) => {
     const snap = await db.collection("users").doc(user.uid).get();
     if (snap.exists) {
       const profile = snap.data().delete();
-      dispatch(deleteProfile(profile))
+      dispatch(deleteProfile(profile));
     }
   };
 };
