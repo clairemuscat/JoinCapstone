@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from "react";
-import Video from "twilio-video";
+import Video, { LocalVideoTrackPublication } from "twilio-video";
 import { Participant } from ".";
+import { Mic, MicOff } from "@material-ui/icons";
+import { Fab, Tooltip } from "@material-ui/core";
+import CallEnd from "@material-ui/icons/CallEnd";
+import Videocam from "@material-ui/icons/Videocam";
+import VideocamOff from "@material-ui/icons/VideocamOff";
 
 const Room = ({ roomName, token, handleLogout }) => {
   const [room, setRoom] = useState(null);
   const [participants, setParticipants] = useState([]);
-  // Renders remote participants
+  const [toggleAudio, setToggleAudio] = useState("muted");
+  const [toggleVideo, setToggleVideo] = useState("on");
+
   const remoteParticipants = participants.map((participant) => (
     <Participant key={participant.sid} participant={participant} />
   ));
@@ -47,21 +54,74 @@ const Room = ({ roomName, token, handleLogout }) => {
     };
   }, [roomName, token]);
 
+  function muteOrUnmuteYourMedia(room, kind, action) {
+    const publications =
+      kind === "audio"
+        ? room.localParticipant.audioTracks
+        : room.localParticipant.videoTracks;
+    publications.forEach(function (publication) {
+      if (action === "mute") {
+        publication.track.disable();
+      } else {
+        publication.track.enable();
+      }
+    });
+  }
+
+  function toggleYourAudio() {
+    if (toggleAudio === "unmuted") {
+      muteOrUnmuteYourMedia(room, "audio", "mute");
+      setToggleAudio("muted");
+    } else {
+      muteOrUnmuteYourMedia(room, "audio", "unmute");
+      setToggleAudio("unmuted");
+    }
+  }
+
+  function toggleYourVideo() {
+    if (toggleVideo === "on") {
+      muteOrUnmuteYourMedia(room, "video", "mute");
+      setToggleVideo("off");
+    } else {
+      muteOrUnmuteYourMedia(room, "video", "unmute");
+      setToggleVideo("on");
+    }
+  }
+
   return (
     <div className="room">
-      <h2>Room: {roomName}</h2>
-      <button onClick={handleLogout}>Log out</button>
       <div className="local-participant">
         {room ? (
-          <Participant
-            key={room.localParticipant.sid}
-            participant={room.localParticipant}
-          />
+          <>
+            <Participant
+              key={room.localParticipant.sid}
+              participant={room.localParticipant}
+              handleLogout={handleLogout}
+            />
+            <Tooltip
+              className="logoutButton"
+              onClick={handleLogout}
+              title="End Call"
+            >
+              <Fab color="secondary">
+                <CallEnd />
+              </Fab>
+            </Tooltip>
+            <Tooltip title="Toggle Audio" className="audio-button-icon">
+              <Fab onClick={toggleYourAudio} color="secondary">
+                {toggleAudio === "unmuted" ? <Mic /> : <MicOff />}
+              </Fab>
+            </Tooltip>
+            <Tooltip title={"Toggle Video"}>
+              <Fab onClick={toggleYourVideo} color="secondary">
+                {toggleVideo === "on" ? <Videocam /> : <VideocamOff />}
+              </Fab>
+            </Tooltip>
+          </>
         ) : (
           ""
         )}
       </div>
-      <h3>Remote Participants</h3>
       <div className="remote-participants">{remoteParticipants}</div>
     </div>
   );

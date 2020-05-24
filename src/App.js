@@ -1,26 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
   LandingPage,
-  AccountPage,
   MatchingInterface,
   Navbar,
   PrivateRoute,
   Connections,
   Calendar,
   Chat,
-  SingleChat,
   UserMandatoryForm,
   UserProfile,
   UpdateProfile
-} from './components';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import firebase from 'firebase';
-import { useDispatch, useSelector } from 'react-redux';
-import { setUser as setUserRedux } from './store/user';
+} from "./components";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import firebase from "firebase";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser as setUserRedux } from "./store/user";
 import {
   fetchOrCreateProfile,
   setProfile as setProfileRedux,
-} from './store/profile';
+} from "./store/profile";
 
 function App(props) {
   const isLoggedIn = useSelector((state) =>
@@ -66,11 +64,6 @@ function App(props) {
               />
               <PrivateRoute
                 isLoggedIn={isLoggedIn}
-                path="/account"
-                component={AccountPage}
-              />
-              <PrivateRoute
-                isLoggedIn={isLoggedIn}
                 exact
                 path="/profile"
                 component={UserProfile}
@@ -97,11 +90,6 @@ function App(props) {
                 exact
                 path="/chat"
                 component={Chat}
-              />
-              <PrivateRoute
-                isLoggedIn={isLoggedIn}
-                path="/chat/:compoundSlice"
-                component={SingleChat}
               />
               <Route component={LandingPage} />
             </Switch>
