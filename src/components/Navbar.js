@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { withRouter } from 'react-router-dom';
-import firebase from 'firebase';
+import React, { useState } from "react";
+import { withRouter } from "react-router-dom";
+import firebase from "firebase";
 
 const Navbar = withRouter(function ({ history }) {
   const linkTo = (path) => {
@@ -10,7 +10,7 @@ const Navbar = withRouter(function ({ history }) {
   const handleSignOut = () => {
     try {
       firebase.auth().signOut();
-      history.push('/');
+      history.push("/");
     } catch (error) {}
   };
 
@@ -18,16 +18,16 @@ const Navbar = withRouter(function ({ history }) {
     <div id="navbar">
       <img src="/logo.png" />
       <div id="navbar-link-container">
-        <div className="navbar-link" onClick={() => linkTo('/connect')}>
+        <div className="navbar-link" onClick={() => linkTo("/connect")}>
           Connect
         </div>
         <div
           className="navbar-link"
-          onClick={() => linkTo('/account/calendar')}
+          onClick={() => linkTo("/account/calendar")}
         >
           Calendar
         </div>
-        <div className="navbar-link" onClick={() => linkTo('/connections')}>
+        <div className="navbar-link" onClick={() => linkTo("/connections")}>
           Connections
         </div>
         <div className="navbar-link" onClick={handleSignOut}>

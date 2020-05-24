@@ -1,12 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import * as firebase from 'firebase/app';
-import 'firebase/auth';
-import firebaseConfig from '../firebaseConfig';
-import { Provider } from 'react-redux';
-import store from './store';
-import { generateNewProfile, generateSeedProfile } from './utils';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import * as firebase from "firebase/app";
+import "firebase/auth";
+import firebaseConfig from "../firebaseConfig";
+import { Provider } from "react-redux";
+import store from "./store";
+import { generateNewProfile, generateSeedProfile } from "./utils";
 
 firebase.initializeApp(firebaseConfig);
 export const db = firebase.firestore();
@@ -78,5 +78,5 @@ ReactDOM.render(
       <App />
     </Provider>
   </React.StrictMode>,
-  document.getElementById('app')
+  document.getElementById("app")
 );
