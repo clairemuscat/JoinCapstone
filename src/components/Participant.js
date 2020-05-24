@@ -1,14 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-// import { Mic, MicOff } from "@material-ui/icons";
-// import { Fab, Tooltip } from "@material-ui/core";
-// import CallEnd from "@material-ui/icons/CallEnd";
-// import Videocam from "@material-ui/icons/Videocam";
-// import VideocamOff from "@material-ui/icons/VideocamOff";
 
 const Participant = ({ participant, handleLogout }) => {
   const [videoTracks, setVideoTracks] = useState([]);
   const [audioTracks, setAudioTracks] = useState([]);
-  const [toggleState, setToggleState] = useState("off");
 
   const videoRef = useRef();
   const audioRef = useRef();
@@ -68,20 +62,11 @@ const Participant = ({ participant, handleLogout }) => {
     }
   }, [audioTracks]);
 
-  function toggleAudio() {
-    setToggleState(toggleState === "off" ? "on" : "off");
-  }
-
   return (
     <div className="participant">
       <h3>{participant.identity}</h3>
-      <video ref={videoRef} autoPlay={true} muted={true} />
-      <audio
-        id="aud"
-        ref={audioRef}
-        autoPlay={true}
-        muted={toggleState === "on" ? false : true}
-      />
+      <video ref={videoRef} autoPlay={true} />
+      <audio id="aud" ref={audioRef} autoPlay={true} muted={true} />
     </div>
   );
 };
