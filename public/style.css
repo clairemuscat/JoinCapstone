@@ -9,7 +9,7 @@ html {
 }
 
 body {
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
   color: #333e5a;
   min-height: 100%;
 }
@@ -23,23 +23,23 @@ nav {
   /* background-color: teal; */
 }
 
-header {
+/* header {
   background: #f0293e;
   color: #fff;
   text-align: center;
   flex-grow: 0;
   margin-bottom: 2em;
-}
+} */
 
 /* nav a {
   display: inline-block;
   margin: 1em;
 } */
-
+/*
 h1 {
   font-weight: 300;
   padding: 0.4em 0;
-}
+} */
 
 #root {
   min-height: 100vh;
@@ -99,8 +99,8 @@ main {
 #chat-input {
   width: 600px;
   /* box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.3); */
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
+  border-radius: 10px;
+  margin-top: 0.2rem;
 }
 
 #chat-input input {
@@ -108,8 +108,7 @@ main {
   height: 100%;
   padding: 0.5rem;
   box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.3);
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
+  border-radius: 10px;
 }
 
 h2 {
@@ -218,13 +217,61 @@ footer a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid grey;
-  width: 600px;
+  max-height: 700px;
+  max-width: 414px;
+  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  overflow: auto;
+}
+
+.match-card-header {
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.match-card-content {
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.button {
+  padding: 0.5rem;
+  background-color: #66b3ba;
+  color: white;
+  border: none;
+  font-size: 14pt;
+}
+
+.button:hover {
+  background-color: #42cafd;
+  transition: 300ms;
+  cursor: pointer;
+}
+
+.match-card-button {
+  width: 100%;
+}
+
+#skip {
+  background-color: #3a506b;
+}
+
+#skip:hover {
+  background-color: #42cafd;
+  transition: 300ms;
+}
+
+.match-card-controls {
+  width: 100%;
 }
 
 #card-image-container {
-  width: 400px;
-  height: 400px;
+  width: 414px;
+  height: 414px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #card-image-container img {
@@ -244,6 +291,7 @@ footer a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 3rem;
 }
 
 #attendee {
@@ -287,4 +335,67 @@ footer a {
   color: black;
   font-size: 14px;
   font-weight: 200;
+}
+
+#calendar {
+  margin: 5rem 5rem;
+  max-height: 80%;
+  max-width: 90%;
+}
+
+/* #logo {
+  border-left: ;
+} */
+
+#logo:hover {
+  cursor: pointer;
+}
+
+.connection {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  margin: 2rem;
+  width: 50rem;
+}
+
+#chat-button {
+  background-color: #3a506b;
+  width: 100%;
+  border-radius: 0;
+}
+
+#video-button {
+  width: 100%;
+  border-radius: 0;
+}
+
+#meeting-button {
+  width: 100%;
+  border-radius: 0;
+}
+
+#chat-button:hover {
+  background-color: #42cafd;
+  transition: 300ms;
+}
+
+.connection-img-container {
+  height: 200px;
+  width: 200px;
+  border-top-left-radius: 5px;
+}
+
+.connection-img-container img {
+  width: 100%;
+  height: 100%;
+  border-top-left-radius: 5px;
+}
+
+.connection-controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

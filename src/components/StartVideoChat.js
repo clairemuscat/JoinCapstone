@@ -37,7 +37,12 @@ function StartVideoChat(props) {
   } else {
     render = (
       <div>
-        <button type="button" onClick={handleClick}>
+        <button
+          type="button"
+          onClick={handleClick}
+          className="button"
+          id="video-button"
+        >
           Start Video Call
         </button>
       </div>
