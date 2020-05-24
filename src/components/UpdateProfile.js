@@ -108,7 +108,6 @@ const UpdateProfile = (props) => {
         className="update-inputs"
         type="checkbox"
         name="looking_for_work"
-        defaultValue="checked"
         ref={register}
       />
 

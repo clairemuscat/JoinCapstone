@@ -40,6 +40,15 @@ const UserProfile = withRouter(function(props) {
 			<br />
 			<br />
 			<div className="listed-items">
+				<b>Looking For Work?</b>
+				<br />
+				<br />
+				<ul>
+					{profile.looking_for_work ? "Yes" : "Just looking for new connections!"}
+				</ul>
+			</div>
+			<br />
+			<div className="listed-items">
 				<b>Programming Languages:</b>
 				<br />
 				<br />
@@ -47,7 +56,6 @@ const UserProfile = withRouter(function(props) {
 					{profile.programming_languages}
 				</ul>
 			</div>
-			<br />
 			<br />
 			<div className="listed-items">
 				<b>Hobbies and Interests:</b>
