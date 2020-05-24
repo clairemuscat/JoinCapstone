@@ -20,6 +20,7 @@ class Sidebar extends React.Component{
     render(){
         const upcoming = this.props.upcoming
         const meetings = this.props.meetings
+        console.log('lime',meetings)
         const user=this.props.user
         return( <section className="sidebar">
         <div className="sidebar-header">
@@ -30,7 +31,7 @@ class Sidebar extends React.Component{
         <div className='meeting-section'>
         <div className='meeting-list'>
         <h5>UPCOMING</h5>
-        {upcoming.map(meeting=> {return <div>{meeting.title}<br/>{meeting.attendees.map(attendee=>{return attendee.firstName})} <button type='button' id='start-call-button'>Start Meeting</button></div>})}
+        {upcoming.map(meeting=> meeting.inviteFirst ? <div>{meeting.title}<br/>attendee(s): {meeting.host},{meeting.invite? meeting.inviteFirst.firstName:''} <button type='button' id='start-call-button'>Start Meeting</button><button type='button'>Reschedule</button><button type='button'>Cancel</button></div>:<div>{meeting.title}<br/>attendee(s): {meeting.host}</div>)}
         </div>
         <div>
         <h5 className='meeting-list'>PENDING</h5>

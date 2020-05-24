@@ -41,9 +41,11 @@ return async(dispatch)=>{
         const newThing = await db.collection('events').add({
             title:event.title,
                 start:event.date.valueOf(),
-                host:user.uid,
-                invite:match.id,
-                attendees:match?[user,match]:[user],
+                hostFirst:user.firstName,
+                hostLast:user.lastName,
+                inviteFirst:match.firstName,
+                inviteLast:match.lastName,
+                attendees:match?[user.uid,match.id]:[user.uid],
                 status:false
         })
         console.log('two')
@@ -51,9 +53,11 @@ return async(dispatch)=>{
        await db.collection('events').doc(id).set({
         title:event.title,
         start:event.date.valueOf(),
-        host:user.uid,  //doesn't like the entire user input
-        invite:match.id,
-        attendees:match?[user,match]:[user],
+        hostFirst:user.firstName,
+        hostLast:user.lastName,
+        inviteFirst:match.firstName,
+        inviteLast:match.lastName,
+        attendees:match?[user.uid,match.id]:[user.uid],
         status:false,
         id:id
        })
@@ -82,7 +86,7 @@ export const deleteMeeting =(meeting)=>{
 }
 
 
-export default (state=[], action) =>{
+export default (state=[{host:''}], action) =>{
     switch(action.type){
         case GET_MEETINGS:
             return action.meetings.filter(meeting=>meeting.status===false)

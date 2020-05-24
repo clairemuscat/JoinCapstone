@@ -86,7 +86,7 @@ class Calendar extends React.Component{
       })
    .then(val=>{
      console.log('oranges', val.value)
-    this.props.addEvent(null,this.props.user,val.value)
+    this.props.addEvent(this.props.user,val.value)
     swal({
       title:'Event Created',
       text:'Event: ' + val.value.title + ', was created!',
@@ -102,7 +102,7 @@ class Calendar extends React.Component{
 }
 const mapDispatch=(dispatch)=>({
   getCalendar: (user)=>dispatch(fetchEvents(user)),
-  addEvent:(match,user,event)=>dispatch(newEvent(match,user,event)),
+  addEvent:(user,event)=>dispatch(newEvent(user,event)),
   updateEvent:(user,event)=>dispatch(changeEvent(user,event)),
   removeEvent:(event)=>dispatch(deleteEvent(event))
 })
