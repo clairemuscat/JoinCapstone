@@ -54,6 +54,14 @@ const UserMandatoryForm = withRouter(function (props) {
         ref={register}
       />
       <label className="user-labels"></label>
+      <input // Did we remove role for a reason? Still exists in empyty profile object
+        className="form-inputs"
+        type="text"
+        placeholder="Role"
+        name="role"
+        ref={register}
+      />
+      <label className="user-labels"></label>
       <input
         className="form-inputs"
         type="text"

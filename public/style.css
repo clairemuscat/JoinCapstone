@@ -273,13 +273,13 @@ footer a {
   font-size: 14px;
 }
 
-.update-inputs {
+.update-labels {
   line-height: 2;
   text-align: left;
   display: block;
   margin-bottom: 13px;
   margin-top: 20px;
-  color: black;
+  color: mediumaquamarine;
   font-size: 14px;
   font-weight: 200;
 }

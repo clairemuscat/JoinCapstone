@@ -8,10 +8,14 @@ import { withRouter } from "react-router-dom";
 const UserProfile = withRouter(function(props) {
 	const profile = useSelector((state) => state.profile);
 	let history = useHistory();
-	console.log("lemon", profile.hobbies_interests);
+	// console.log("lemon", profile.hobbies_interests);
 	
 	const handleClick = () => {
 		history.push("/updateProfile")
+	}
+
+	const handleDelete = () => {
+		history.delete("/profile")
 	}
 
 	return (
@@ -55,6 +59,7 @@ const UserProfile = withRouter(function(props) {
 			</div>
 			
 	<button type='button' onClick={handleClick}>Edit Profile</button>
+	<button type='button' onClick={handleDelete}>Delete Profile</button>
 		</div>
 	);
 });

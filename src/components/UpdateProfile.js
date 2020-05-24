@@ -22,7 +22,7 @@ const UpdateProfile = (props) => {
   return (
     <form className="user-update" onSubmit={handleSubmit(onSubmit)}>
       <h1 className="profile-greeting">Update your Profile</h1>
-      <label className="update-labels"></label>
+      <label className="update-labels">First Name</label>
       <input
         className="update-inputs"
         type="text"
@@ -31,7 +31,7 @@ const UpdateProfile = (props) => {
         ref={register}
       />
 
-      <label className="update-labels"></label>
+      <label className="update-labels">Last Name</label>
       <input
         className="update-inputs"
         type="text"
@@ -40,7 +40,7 @@ const UpdateProfile = (props) => {
         ref={register}
       />
 
-      <label className="update-labels"></label>
+      <label className="update-labels">Country</label>
       <input
         className="update-inputs"
         type="text"
@@ -49,7 +49,7 @@ const UpdateProfile = (props) => {
         ref={register}
       />
 
-      <label className="update-labels"></label>
+      <label className="update-labels">State/Province</label>
       <input
         className="update-inputs"
         type="text"
@@ -58,7 +58,7 @@ const UpdateProfile = (props) => {
         ref={register}
       />
 
-      <label className="update-labels"></label>
+      <label className="update-labels">City</label>
       <input
         className="update-inputs"
         type="text"
@@ -67,7 +67,16 @@ const UpdateProfile = (props) => {
         ref={register}
       />
 
-      <label className="update-labels"></label>
+      <label className="update-labels">Role</label>
+      <input // Did we remove role for a reason? Still exists in empyty profile object
+        className="update-inputs"
+        type="text"
+        defaultValue={profile.role}
+        name="role"
+        ref={register}
+      />
+
+      <label className="update-labels">Programming Languages</label>
       <input
         className="update-inputs"
         type="text"
@@ -76,7 +85,7 @@ const UpdateProfile = (props) => {
         ref={register}
       />
 
-      <label className="update-labels"></label>
+      <label className="update-labels">Libraries and FrameWorks</label>
       <input
         className="update-inputs"
         type="text"
@@ -85,7 +94,7 @@ const UpdateProfile = (props) => {
         ref={register}
       />
 
-      <label className="update-labels"></label>
+      <label className="update-labels">Company</label>
       <input
         className="update-inputs"
         type="text"
@@ -97,13 +106,13 @@ const UpdateProfile = (props) => {
       <label className="update-labels">Looking For Work?</label>
       <input
         className="update-inputs"
-        type="text"
+        type="checkbox"
         name="looking_for_work"
-        defaultValue="yes"
+        defaultValue="checked"
         ref={register}
       />
 
-      <label className="update-labels"></label>
+      <label className="update-labels">Hobbies and Interests</label>
       <input
         className="update-inputs"
         type="text"
@@ -112,7 +121,7 @@ const UpdateProfile = (props) => {
         ref={register}
       />
 
-      <label className="update-labels"></label>
+      <label className="update-labels">About</label>
       <input
         className="update-inputs"
         type="text"
@@ -121,7 +130,7 @@ const UpdateProfile = (props) => {
         ref={register}
       />
 
-      <label className="update-labels"></label>
+      <label className="update-labels">Profile Picture</label>
       <input
         className="update-inputs"
         type="text"
@@ -136,7 +145,7 @@ const UpdateProfile = (props) => {
 
 const mapState = (state) => ({
   user: state.user,
-  profile: state.profile
+  profile: state.profile,
 });
 
 export default connect(mapState)(UpdateProfile);
