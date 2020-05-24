@@ -26,6 +26,7 @@ const UserProfile = withRouter(function (props) {
 
   return (
     <div id="user-profile">
+		<div id="upper-user-div">
       <div>
         <h1>
           {profile.firstName} {profile.lastName}
@@ -34,14 +35,16 @@ const UserProfile = withRouter(function (props) {
       <div id="user-profile-img">
         <img src={profile.imageUrl} />
       </div>
-      <br />
-      <div>
-        <p className="paragraph">{profile.about}</p>
+	  
+	  <br />
+	  <div>
+        <b>{profile.city}, {profile.state_province}, {profile.country} |{" "}
+        {profile.company} | {profile.role}{" "}</b>
       </div>
-      <br />
+	  </div>
+	  <div id="user-profile-info">
       <div>
-        {profile.city}, {profile.state_province}, {profile.country} |{" "}
-        {profile.company} | {profile.role}{" "}
+        <p className="paragraph"><b>About Me: </b><br />{profile.about}</p>
       </div>
       <br />
       <br />
@@ -70,12 +73,15 @@ const UserProfile = withRouter(function (props) {
         <ul>{profile.hobbies_interests}</ul>
       </div>
 
+	  <br />
       <button type="button" onClick={handleClick}>
         Edit Profile
       </button>
+	  <br />
       <button type="button" onClick={handleDelete}>
         Delete My Profile
       </button>
+	  </div>
     </div>
   );
 });
