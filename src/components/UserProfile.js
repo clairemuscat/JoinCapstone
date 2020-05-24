@@ -58,10 +58,10 @@ const UserProfile = withRouter(function (props) {
           <p className="paragraph">
             <b>About Me: </b>
             <br />
+            <br />
             {profile.about}
           </p>
         </div>
-        <br />
         <br />
         <div className="listed-items">
           <b>Looking For Work?</b>
