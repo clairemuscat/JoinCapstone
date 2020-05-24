@@ -66,7 +66,7 @@ const Participant = ({ participant, handleLogout }) => {
     <div className="participant">
       <h3>{participant.identity}</h3>
       <video ref={videoRef} autoPlay={true} />
-      <audio id="aud" ref={audioRef} autoPlay={true} muted={true} />
+      <audio id="aud" ref={audioRef} autoPlay={true} muted={false} />
     </div>
   );
 };
