@@ -2,8 +2,8 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { connect, useDispatch } from "react-redux";
 import { db } from "..";
-// import { withRouter } from "react-router-dom";
 import { fetchOrCreateProfile } from "../store/profile";
+
 
 const UpdateProfile = (props) => {
   const { register, handleSubmit } = useForm();
