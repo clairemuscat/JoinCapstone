@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import {
   LandingPage,
-  AccountPage,
   MatchingInterface,
   Navbar,
   PrivateRoute,
   Connections,
   Calendar,
   Chat,
-  SingleChat,
   UserMandatoryForm,
 } from './components';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -64,11 +62,6 @@ function App(props) {
               />
               <PrivateRoute
                 isLoggedIn={isLoggedIn}
-                path="/account"
-                component={AccountPage}
-              />
-              <PrivateRoute
-                isLoggedIn={isLoggedIn}
                 exact
                 path="/connect"
                 component={MatchingInterface}
@@ -83,11 +76,6 @@ function App(props) {
                 exact
                 path="/chat"
                 component={Chat}
-              />
-              <PrivateRoute
-                isLoggedIn={isLoggedIn}
-                path="/chat/:compoundSlice"
-                component={SingleChat}
               />
               <Route component={LandingPage} />
             </Switch>

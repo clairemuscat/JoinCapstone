@@ -1,27 +1,39 @@
 import React, { useState } from 'react';
-import { ThemeProvider } from 'styled-components';
-import { theme } from '../theme';
-import { Burger, Menu } from '.';
 import { withRouter } from 'react-router-dom';
 import firebase from 'firebase';
 
-const Navbar = withRouter(function (props) {
-  const [open, setOpen] = useState(false);
+const Navbar = withRouter(function ({ history }) {
+  const linkTo = (path) => {
+    history.push(path);
+  };
 
   const handleSignOut = () => {
     try {
       firebase.auth().signOut();
-      props.history.push('/');
+      history.push('/');
     } catch (error) {}
   };
 
   return (
     <div id="navbar">
-      <ThemeProvider theme={theme}>
-        <Burger open={open} setOpen={setOpen} />
-      </ThemeProvider>
       <img src="/logo.png" />
-      <Menu open={open} setOpen={setOpen} handleSignOut={handleSignOut} />
+      <div id="navbar-link-container">
+        <div className="navbar-link" onClick={() => linkTo('/connect')}>
+          Connect
+        </div>
+        <div
+          className="navbar-link"
+          onClick={() => linkTo('/account/calendar')}
+        >
+          Calendar
+        </div>
+        <div className="navbar-link" onClick={() => linkTo('/connections')}>
+          Connections
+        </div>
+        <div className="navbar-link" onClick={handleSignOut}>
+          Sign Out
+        </div>
+      </div>
     </div>
   );
 });
