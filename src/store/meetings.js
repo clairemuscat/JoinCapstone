@@ -43,7 +43,7 @@ return async(dispatch)=>{
                 start:event.date.valueOf(),
                 host:user.uid,
                 invite:match.id,
-                attendees:match?[user.uid,match.id]:[user.uid],
+                attendees:match?[user,match]:[user],
                 status:false
         })
         console.log('two')
@@ -53,7 +53,7 @@ return async(dispatch)=>{
         start:event.date.valueOf(),
         host:user.uid,  //doesn't like the entire user input
         invite:match.id,
-        attendees:match?[user.uid,match.id]:[user.uid],
+        attendees:match?[user,match]:[user],
         status:false,
         id:id
        })

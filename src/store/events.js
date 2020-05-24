@@ -46,14 +46,14 @@ export const newEvent = (match,user,event)=>{
             const newThing = await db.collection('events').add({
                 title:event.title,
                     start:event.date.valueOf(),
-                    attendees:match?[user.uid,match.id]:[user.uid],
+                    attendees:match?[user,match]:[user],
                     status:true
             })
            const id =newThing.id
            await db.collection('events').doc(id).set({
             title:event.title,
             start:event.date.valueOf(),
-            attendees:match?[user.uid,match.id]:[user.uid],
+            attendees:match?[user,match]:[user],
             status:true,
             id:id
            })

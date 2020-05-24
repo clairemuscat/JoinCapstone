@@ -9,6 +9,7 @@ import currentChat from "./chats";
 import messages from "./messages";
 import events from './events'
 import meetings from './meetings'
+import upcomingMeetings from './upcomingMeetings'
 
 const reducer = combineReducers({
   user,
@@ -18,6 +19,7 @@ const reducer = combineReducers({
   meetings,
   currentChat,
   messages,
+  upcomingMeetings
 });
 
 const middleware = composeWithDevTools(

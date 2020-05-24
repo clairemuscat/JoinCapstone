@@ -68,7 +68,7 @@ class UpdateEvent extends Component {
 					<br />
 					<br />
 					<div id="attendee">
-						Attendee(s):{this.props.event.invite ? this.props.event.attendees : ""}
+						Attendee(s):{this.props.event.attendees}
 					</div>
 				</form>
 				<button type="button" onClick={this.updatingEvent}>

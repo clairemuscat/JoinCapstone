@@ -40,7 +40,6 @@ class Calendar extends React.Component{
         right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek"
       }}
       plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-      // ref={calendarComponentRef}
       editable={true}
       weekends={true}
       events={this.props.events}
@@ -94,22 +93,6 @@ class Calendar extends React.Component{
       icon:'success'
     })
   })}
-
-      // selectable={true}
-      // selectOverlap={false}
-      // selectMirror={true}
-      // businessHours={[ // specify an array instead
-      //   {
-      //     daysOfWeek: [0, 1, 2, 3,6  ], // Monday, Tuesday, Wednesday
-      //     startTime: '08:00', // 8am
-      //     endTime: '18:00' // 6pm
-      //   },
-      //   {
-      //     daysOfWeek: [ 4, 5 ], // Thursday, Friday
-      //     startTime: '10:00', // 10am
-      //     endTime: '16:00' // 4pm
-      //   }
-      // ]}
     />
     </div>
    </div>
