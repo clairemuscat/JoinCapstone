@@ -68,9 +68,6 @@ changeDate(e){
         />
         <br/>
         <br/>
-        <div id='attendee'>
-         Attendee(s): Brian
-     </div>
      </form>
      
     )}
