@@ -1,7 +1,8 @@
 import React from 'react'
 import swal from '@sweetalert/with-react'
 import {connect} from 'react-redux'
-import {deleteMeeting,changeEvent} from '../../store/events'
+import {changeEvent} from '../../store/events'
+import{deleteMeeting,fetchMeetings} from '../../store/meetings'
 
 class DeleteMeeting extends React.Component{
     constructor(props){
@@ -12,7 +13,7 @@ class DeleteMeeting extends React.Component{
     }
 
     deleteMeeting(){
-        console.log('slime',this.props)
+        console.log('slime',this.props.meeting)
         swal({
          title: "Are you sure?",
         text: "Once deleted, you will not be able to recover this meeting!",
@@ -26,6 +27,7 @@ class DeleteMeeting extends React.Component{
         },
         }).then(value=>{
                   this.props.removeMeeting(value)
+                  this,props.
                 swal({
                   title:'Meeting request deleted',
                   icon:'success'
@@ -35,7 +37,9 @@ class DeleteMeeting extends React.Component{
     }
 
     addMeeting(){
+        console.log('Nickolodean', this.props.meeting)
         this.props.updateMeetingStatus(this.props.meeting)
+        this.props.statusChanged(this.props.meeting)
     }
 
     render(){
@@ -49,7 +53,8 @@ class DeleteMeeting extends React.Component{
 
 const mapDispatch =(dispatch)=>({
     removeMeeting:(event)=>dispatch(deleteMeeting(event)),
-    updateMeetingStatus:(event)=>dispatch(changeEvent(event))
+    updateMeetingStatus:(event)=>dispatch(changeEvent(event)),
+    statusChanged:(event)=>dispatch(fetchMeetings(event))
 })
 
 export default connect(null,mapDispatch)(DeleteMeeting)
