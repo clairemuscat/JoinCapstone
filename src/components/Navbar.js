@@ -21,6 +21,9 @@ const Navbar = withRouter(function ({ history }) {
         <div className="navbar-link" onClick={() => linkTo('/connect')}>
           Connect
         </div>
+        <div className="navbar-link" onClick={() => linkTo("/profile")}>
+          Profile
+        </div>
         <div
           className="navbar-link"
           onClick={() => linkTo('/account/calendar')}
