@@ -8,7 +8,8 @@ import {
   Connections,
   Calendar,
   UserMandatoryForm,
-  UserProfile
+  UserProfile,
+  UpdateProfile
 } from "./components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import firebase from "firebase";
@@ -69,6 +70,12 @@ function App(props) {
                 exact
                 path="/profile"
                 component={UserProfile}
+              />
+              <PrivateRoute
+                isLoggedIn={isLoggedIn}
+                exact
+                path="/updateProfile"
+                component={UpdateProfile}
               />
               <PrivateRoute
                 isLoggedIn={isLoggedIn}

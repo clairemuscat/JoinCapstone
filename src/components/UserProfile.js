@@ -1,15 +1,24 @@
 import React from "react";
+import { useHistory } from "react-router-dom"
 import { useSelector } from "react-redux";
+import UpdateProfile from "./UpdateProfile"
+import { isPropsEqual } from "@fullcalendar/core";
+import { withRouter } from "react-router-dom";
 
-const UserProfile = () => {
+const UserProfile = withRouter(function(props) {
 	const profile = useSelector((state) => state.profile);
-    console.log("lemon", profile.hobbies_interests);
+	let history = useHistory();
+	console.log("lemon", profile.hobbies_interests);
+	
+	const handleClick = () => {
+		history.push("/updateProfile")
+	}
 
 	return (
 		<div id="user-profile">
 			<div>
 				<h1>
-					{profile.firstName} {profile.lastName} (she/her/hers)
+					{profile.firstName} {profile.lastName}
 				</h1>
 			</div>
 			<div id="user-profile-img">
@@ -31,9 +40,7 @@ const UserProfile = () => {
 				<br />
 				<br />
 				<ul>
-					{profile.programming_languages.map((language) => {
-						return <li>{language}</li>;
-					})}
+					{profile.programming_languages}
 				</ul>
 			</div>
 			<br />
@@ -43,14 +50,13 @@ const UserProfile = () => {
 				<br />
 				<br />
 				<ul>
-					{profile.hobbies_interests.map((hobby) => {
-						return <li>{hobby}</li>;
-					})}
+					{profile.hobbies_interests}
 				</ul>
 			</div>
-            <button type='button'>Edit Profile</button>
+			
+	<button type='button' onClick={handleClick}>Edit Profile</button>
 		</div>
 	);
-};
+});
 
 export default UserProfile;
