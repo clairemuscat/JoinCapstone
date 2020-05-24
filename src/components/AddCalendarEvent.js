@@ -34,7 +34,7 @@ addCalendarEvent(){
     render(){
         return(
         <div>
-            <button type='button' onClick={this.addCalendarEvent}>Schedule A Call</button>
+            <button type='button'   id="meeting-button" className="button" onClick={this.addCalendarEvent}>Schedule A Call</button>
         </div>)
     }
 }

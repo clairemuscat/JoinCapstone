@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Chat, StartVideoChat } from '.';
+import AddCalendarEvent from './AddCalendarEvent'
 
-function SingleConnection({ match, compound }) {
+function SingleConnection({ match, compound,user }) {
   const [displayChat, setDisplayChat] = useState(false);
 
   const handleChat = () => {
@@ -28,13 +29,7 @@ function SingleConnection({ match, compound }) {
             >
               Chat
             </button>
-            <button
-              className="button"
-              onClick={() => console.log('not working yet')}
-              id="meeting-button"
-            >
-              Schedule a Meeting
-            </button>
+            <AddCalendarEvent user={user} match={match}/>
           </div>
         </div>
       </div>

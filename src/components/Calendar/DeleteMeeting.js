@@ -13,7 +13,6 @@ class DeleteMeeting extends React.Component{
     }
 
     deleteMeeting(){
-        console.log('slime',this.props.meeting)
         swal({
          title: "Are you sure?",
         text: "Once deleted, you will not be able to recover this meeting!",
@@ -37,7 +36,6 @@ class DeleteMeeting extends React.Component{
     }
 
     addMeeting(){
-        console.log('Nickolodean', this.props.meeting)
         this.props.updateMeetingStatus(this.props.meeting)
         this.props.statusChanged(this.props.meeting)
     }

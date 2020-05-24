@@ -18,10 +18,7 @@ class Sidebar extends React.Component{
 
     render(){
         const meetings = this.props.meetings
-        console.log('hot', this.props.user)
         const user=this.props.user
-        console.log('mangos', this.props.meetings)
-        console.log('pepper',user.uid)
         return( <section className="sidebar">
         <div className="sidebar-header">
           <h3>
