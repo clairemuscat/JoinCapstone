@@ -1,7 +1,7 @@
 import React from 'react'
 import swal from '@sweetalert/with-react'
 import {connect} from 'react-redux'
-import {deleteMeeting,changeEvent} from '../../store/meetings'
+import {deleteMeeting,changeEvent} from '../../store/events'
 
 class DeleteMeeting extends React.Component{
     constructor(props){
@@ -42,7 +42,7 @@ class DeleteMeeting extends React.Component{
         if(this.props.host){
         return(<button type='button' onClick={this.deleteMeeting}>delete</button>)}
         else{
-            <div><button type='button' onClick ={this.addMeeting}>Accept</button> <button type='button' onClick={this.deleteMeeting}> Decline</button></div>
+            return <div><button type='button' onClick ={this.addMeeting}>Accept</button> <button type='button' onClick={this.deleteMeeting}> Decline</button></div>
         }
     }
 }

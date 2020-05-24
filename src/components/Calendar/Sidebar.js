@@ -1,6 +1,6 @@
 import React from 'react'
 import './sidebar.css'
-import {fetchMeetings} from '../../store/meetings'
+import {fetchMeetings,fetchUpcomingMeetings} from '../../store/meetings'
 import {connect} from 'react-redux'
 import DeleteMeeting from './DeleteMeeting'
 
@@ -12,6 +12,7 @@ class Sidebar extends React.Component{
 
     componentDidMount(){
         this.props.pendingMeetings(this.props.user)
+        // this.props.upcomingMeetings(this.props.user)
     }
 
 
@@ -24,7 +25,7 @@ class Sidebar extends React.Component{
         return( <section className="sidebar">
         <div className="sidebar-header">
           <h3>
-            Meetings
+            Hello
           </h3>
         </div>
         <div className='meeting-section'>
@@ -48,7 +49,8 @@ const mapState = (state) =>({
 })
 
 const mapDispatch = (dispatch)=>({
-    pendingMeetings:(user) => dispatch(fetchMeetings(user))
+    pendingMeetings:(user) => dispatch(fetchMeetings(user)),
+    // upcomingMeetings:(user)=>dispatch(fetchUpcomingMeetings(user))
 })
 
 
