@@ -1,7 +1,7 @@
-import React from 'react';
-import { Auth } from '.';
-import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import React from "react";
+import { Auth } from ".";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 function LandingPage(props) {
   const { isLoggedIn } = props;
@@ -10,7 +10,9 @@ function LandingPage(props) {
       <Redirect to="/connect" />
     ) : (
       <div id="landing-page">
-        <h1>{'Welcome to .join()! Sign in to start connecting.'} </h1>
+        <h1 class="home-title">
+          <span>Welcome to .join()! Sign in to start connecting.</span>
+        </h1>
         <Auth />
       </div>
     );

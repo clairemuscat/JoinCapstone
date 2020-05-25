@@ -1,6 +1,6 @@
 
 .sidebar {
-  background-color: white;
+  background-color:white;
   color:black;
   z-index: 2;
   width:23%
@@ -21,10 +21,14 @@
   background-color: green;
 }
 .meeting{
-  border: 1px solid navy;
+  border: 1px solid rgba(158, 154, 154, 0.932);
+  background-color: rgba(158, 154, 154, 0.932);
+  color:white;
   border-radius: .5rem;
   padding:1px
 }
+
+
 .upcoming-meeting{
   border: 1px solid navy;
   border-radius: .5rem;
@@ -45,4 +49,5 @@
   display: flex;
   height:100%;
   align-items: flex-start;
+  background-color: white;
 }
