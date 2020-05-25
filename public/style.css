@@ -307,15 +307,18 @@ footer a {
   cursor: pointer;
 }
 
+
 #content {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 4rem;
+  padding-top: 1rem; 
   min-height: 100%;
   height: 100%;
-}
+} 
+
+/* \\padding top for content was 4rem */
 
 #attendee {
   text-align: left;

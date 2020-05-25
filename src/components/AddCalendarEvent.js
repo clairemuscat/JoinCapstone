@@ -25,8 +25,6 @@ addCalendarEvent(){
           confirm:'Add Event'
         }
       }).then(val=>{
-          console.log('apples',val.value)
-          console.log('sending to thunk',this.props.match,this.props.user,val.value)
           this.props.makeAppointment(this.props.match,this.props.user,val.value)
       })
 }

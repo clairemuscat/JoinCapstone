@@ -44,9 +44,9 @@ class DeleteMeeting extends React.Component{
 
     render(){
         if(this.props.host){
-        return(<button type='button' onClick={this.deleteMeeting}>delete</button>)}
+        return(<button type='button' className='delete-button' onClick={this.deleteMeeting}>delete</button>)}
         else{
-            return (<div><button type='button' onClick ={this.addMeeting}>Accept</button> <button type='button' onClick={this.deleteMeeting}> Decline</button></div>)
+            return (<div><button type='button' className='accept-button' onClick ={this.addMeeting}>Accept</button> <button type='button' className='delete-button' onClick={this.deleteMeeting}> Decline</button></div>)
         }
     }
 }

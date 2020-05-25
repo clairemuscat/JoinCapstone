@@ -33,12 +33,12 @@ class Sidebar extends React.Component{
         <div className='meeting-section'>
         <div className='meeting-list'>
         <h5>UPCOMING</h5>
-    {upcoming.map(meeting => meeting.inviteFirst ? <div>{meeting.title} @ {meeting.start}<br/>attendee(s): {meeting.host},{meeting.inviteFirst} {meeting.inviteLast} <button type='button' id='start-call-button'>Start Meeting</button><button type='button'>Reschedule</button><button type='button'>Cancel</button></div>:<div>{meeting.title} @ {meeting.start}<br/>attendee(s): {meeting.host}</div>)}
+    {upcoming.map(meeting => meeting.inviteFirst ? <div className='upcoming-meeting'>Title: {meeting.title}<br/> Time: {meeting.start}<br/>attendee(s): {meeting.host},{meeting.inviteFirst} {meeting.inviteLast} <br/> <button type='button' id='start-call-button'>Start Meeting</button><button type='button'>Reschedule</button><button type='button' className='delete-button' >Cancel</button></div>:<div>{meeting.title} @ {meeting.start}<br/>attendee(s): {meeting.host}</div>)}
         </div>
         <div>
         <h5 className='meeting-list'>PENDING</h5>
-        {meetings.map(meeting=>{if(meeting.host=== (user.uid)){ return <div className='meeting'>{meeting.title} @ {meeting.start} <DeleteMeeting meeting={meeting} host={meeting.host} user={user}/> </div>} 
-        else{return <div className='meeting'>{meeting.title} @ {meeting.start} <DeleteMeeting meeting={meeting} user={user}/></div>}})}
+        {meetings.map(meeting=>{if(meeting.hostId===user.uid){ return <div className='meeting'> Title: {meeting.title}<br/> Time: {meeting.start} <br/> Invitation:{meeting.inviteFirst} {meeting.inviteLast}<br/><DeleteMeeting meeting={meeting} host={meeting.host} user={user}/> </div>} 
+        else{return <div className='meeting'> Title: {meeting.title}<br/> Time: {meeting.start} <br/>invite request: {meeting.inviteFirst} {meeting.inviteLast} <DeleteMeeting meeting={meeting} user={user}/></div>}})}
         </div>
         </div>
       </section>)

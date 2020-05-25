@@ -7,18 +7,25 @@
 }
 
 .sidebar-header {
-  /* height: 53px;
-  width: 220px; */
   text-align: center;
   background-color: white;
   border-bottom: 1px solid gray;
   color:black;
-
- 
 }
 
+.delete-button{
+  background-color: rgb(211, 19, 19);
+}
 
+.accept-button{
+  background-color: green;
+}
 .meeting{
+  border: 1px solid navy;
+  border-radius: .5rem;
+  padding:1px
+}
+.upcoming-meeting{
   border: 1px solid navy;
   border-radius: .5rem;
   padding:1px
@@ -34,55 +41,8 @@
   margin-bottom: 1.1rem; 
 }
 
-/* .sidebar-header h3 div {
-  margin-bottom: 2rem;
-  margin-right: 10px;
-  text-align: center;
-} */
-
-/* .sidebar h5 {
-  text-transform: uppercase;
-  margin-left: 16px;
-}
-
-.sidebar ul {
-  text-transform: lowercase;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-.sidebar ul li {
-  height: 28px;
-  width: 205px;
-}
-
-.sidebar ul li a {
-  color: #AFB1B6;
-  padding-left: 16px;
-  padding-top: 3px;
-  display: list-item;
-  height: 100%;
-  width: 100%;
-}
-
-.sidebar ul li a:hover, .sidebar ul li a:focus {
-  color: #AFB1B6;
-  background-color: #303641;
-  text-decoration: none;
-}
-
-.sidebar ul li a.active {
-  background-color: #5294E2;
-  color: #D4D5D8;
-  border-radius: 0 5px 5px 0;
-}
-
-.sidebar ul li a span:first-child {
-  margin-right: 10px;
-} */
-
 .calendar{
   display: flex;
+  height:100%;
   align-items: flex-start;
 }
