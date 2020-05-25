@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import Drawer from "react-drag-drawer";
-import Room from "./room";
+import Room from "./Room";
 
 function StartVideoChat(props) {
   const [token, setToken] = useState(null);
