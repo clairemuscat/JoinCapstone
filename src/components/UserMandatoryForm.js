@@ -1,9 +1,9 @@
-import React from "react";
-import { useForm } from "react-hook-form";
-import { connect, useDispatch } from "react-redux";
-import { db } from "..";
-import { withRouter } from "react-router-dom";
-import { fetchOrCreateProfile } from "../store/profile";
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { connect, useDispatch } from 'react-redux';
+import { db } from '..';
+import { withRouter } from 'react-router-dom';
+import { fetchOrCreateProfile } from '../store/profile';
 // import CloudWidget from "./CloudWidget";
 
 // Using react-hook-form https://react-hook-form.com/
@@ -13,16 +13,16 @@ const UserMandatoryForm = withRouter(function (props) {
   const dispatch = useDispatch();
   const onSubmit = async (data) => {
     try {
-      let userRef = db.collection("users").doc(user.uid);
+      let userRef = db.collection('users').doc(user.uid);
       await userRef.set(data, { merge: true });
       dispatch(fetchOrCreateProfile(user));
-      props.history.push("/connect");
+      props.history.push('/connect');
     } catch (error) {
       console.error(error);
     }
   };
   return (
-    <form className="user-form" onSubmit={handleSubmit(onSubmit)}>
+    <form className="user-form home-title" onSubmit={handleSubmit(onSubmit)}>
       <h1 className="user-greeting">Create your .join() profile</h1>
       <label className="user-labels"></label>
       <input
@@ -32,7 +32,7 @@ const UserMandatoryForm = withRouter(function (props) {
         name="firstName"
         ref={register({ required: true, maxLength: 20 })}
       />
-      {errors.firstName && errors.firstName.type === "required" && (
+      {errors.firstName && errors.firstName.type === 'required' && (
         <p className="required"> This is required </p>
       )}
       <label className="user-labels"></label>
@@ -43,7 +43,7 @@ const UserMandatoryForm = withRouter(function (props) {
         name="lastName"
         ref={register({ required: true, maxLength: 20 })}
       />
-      {errors.lastName && errors.lastName.type === "required" && (
+      {errors.lastName && errors.lastName.type === 'required' && (
         <p className="required"> This is required </p>
       )}
       <label className="user-labels"></label>
@@ -102,14 +102,19 @@ const UserMandatoryForm = withRouter(function (props) {
         name="company"
         ref={register}
       />
-      <label className="user-labels">Looking For Work?</label>
-      <input
-        className="form-inputs"
-        type="checkbox"
-        defaultChecked="checked"
-        name="looking_for_work"
-        ref={register}
-      />
+      <div className="form-inputs">
+        <label className="user-labels">
+          Looking For Work?
+          <input
+            // className="form-inputs"
+            type="checkbox"
+            id="check"
+            defaultChecked="checked"
+            name="looking_for_work"
+            ref={register}
+          />
+        </label>
+      </div>
       <label className="user-labels"></label>
       <input
         className="form-inputs"
@@ -126,15 +131,20 @@ const UserMandatoryForm = withRouter(function (props) {
         name="about"
         ref={register}
       />
-         
-        <label className="user-labels">Profile Picture</label>
-        <input
-          className="form-inputs"
-          type="text"
-          name="imageUrl"
-          ref={register}
-        />
-      <input className="form-inputs" type="submit" />
+      <label className="user-labels"></label>
+      <input
+        className="form-inputs"
+        type="text"
+        placeholder="Profile Picture"
+        name="imageUrl"
+        ref={register}
+      />
+      <input
+        className="form-inputs"
+        type="submit"
+        className="button"
+        id="form-submit"
+      />
     </form>
   );
 });
