@@ -11,7 +11,7 @@ const Connections = withRouter(function (props) {
 
   return (
     <div>
-      <h1>Connections</h1>
+      <h1 id="connections-header">Connections</h1>
       {profile.matches ? (
         profile.matches.map((match) => {
           let compound = generateCompoundUid(user.uid, match.id);

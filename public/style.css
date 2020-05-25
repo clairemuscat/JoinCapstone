@@ -9,7 +9,7 @@ html {
 }
 
 body {
-  font-family: "Open Sans", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
   color: #333e5a;
   min-height: 100%;
 }
@@ -49,7 +49,7 @@ h1 {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-image: url("network.jpg");
+  background-image: url('network.jpg');
 }
 
 main {
@@ -227,6 +227,14 @@ footer a {
   box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.3);
   border-radius: 5px;
   overflow: auto;
+  background-color: white;
+}
+
+#no-users {
+  background-color: white;
+  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  padding: 1rem;
 }
 
 .match-card-header {
@@ -365,6 +373,9 @@ footer a {
   margin: 5rem 5rem;
   max-height: 80%;
   max-width: 90%;
+  background-color: white;
+  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
 }
 
 /* #logo {
@@ -382,6 +393,7 @@ footer a {
   border-radius: 5px;
   margin: 2rem;
   width: 40rem;
+  background-color: white;
 }
 
 .connection-top-row {
@@ -512,4 +524,11 @@ footer a {
   font-size: 14px;
   font-weight: 200;
   text-decoration: underline;
+}
+
+#connections-header {
+  background-color: white;
+  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  padding: 1rem;
 }

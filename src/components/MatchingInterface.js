@@ -134,7 +134,7 @@ function MatchingInterface(props) {
           handleReject={handleReject}
         />
       ) : (
-        <div>No users to connect with</div>
+        <div id="no-users">No users to connect with</div>
       )}
     </div>
   );
