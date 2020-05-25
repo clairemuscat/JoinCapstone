@@ -12,7 +12,7 @@ function SingleConnection({ match, compound }) {
     <div className="connection">
       <div className="connection-top-row">
         <div className="connection-img-container">
-          <img src="/default-user.jpg" />
+        <img src={match.imageUrl ? match.imageUrl : "/default-user.jpg"} />
         </div>
         <div className="connection-content">
           <h2>
