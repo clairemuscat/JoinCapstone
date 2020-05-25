@@ -1,5 +1,5 @@
-import React from 'react';
-import { MatchProfileDisplay } from '.';
+import React from "react";
+import { MatchProfileDisplay } from ".";
 
 function MatchCard(props) {
   const { userB, handleConnect, handleReject } = props;
