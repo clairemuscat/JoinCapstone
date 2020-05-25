@@ -26,7 +26,14 @@ const Navbar = withRouter(function ({ history, location }) {
         >
           Connect
         </div>
-        <div className="navbar-link" onClick={() => linkTo('/profile')}>
+        <div
+          className={
+            location.pathname === '/profile'
+              ? 'navbar-link underline'
+              : 'navbar-link'
+          }
+          onClick={() => linkTo('/profile')}
+        >
           Profile
         </div>
         <div

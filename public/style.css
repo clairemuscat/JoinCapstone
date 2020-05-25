@@ -92,7 +92,7 @@ h1 {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-image: url('network.jpg');
+  background-image: url('networkHIGHEST.jpg');
 }
 
 main {
@@ -612,4 +612,9 @@ footer a {
 
 .underline {
   border-bottom: 1px solid black;
+}
+
+#user-profile-img img {
+  max-width: 100%;
+  max-height: 100%;
 }
