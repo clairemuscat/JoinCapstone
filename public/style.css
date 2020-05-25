@@ -366,16 +366,15 @@ footer a {
   cursor: pointer;
 }
 
-
 #content {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 1rem; 
+  padding-top: 1rem;
   min-height: 100%;
   height: 100%;
-} 
+}
 
 /* \\padding top for content was 4rem */
 
@@ -432,8 +431,7 @@ footer a {
   font-weight: 200;
 }
 
-
-.connection-meeting-options{
+.connection-meeting-options {
   display: grid;
   grid-row: 1fr;
   grid-column: auto;
@@ -626,4 +624,13 @@ footer a {
 #user-profile-img img {
   max-width: 100%;
   max-height: 100%;
+}
+
+#reschedule {
+  background-color: #3a506b;
+}
+
+.meeting-button {
+  font-size: 0.8rem;
+  margin: auto 0.1rem;
 }
