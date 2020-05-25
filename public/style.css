@@ -609,3 +609,7 @@ footer a {
   width: 100%;
   border-radius: 5px;
 }
+
+.underline {
+  border-bottom: 1px solid black;
+}
