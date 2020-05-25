@@ -129,6 +129,7 @@ function MatchingInterface(props) {
     <div id="matching-interface">
       {toConnect.length ? (
         <MatchCard
+          className="home-title"
           userB={toConnect[current]}
           handleConnect={handleConnect}
           handleReject={handleReject}

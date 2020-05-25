@@ -1,11 +1,11 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { isPropsEqual } from '@fullcalendar/core';
-import { withRouter } from 'react-router-dom';
-import { db } from '..';
-import { connect, useDispatch } from 'react-redux';
-import { deleteProfileThunk } from '../store/profile';
+import React from "react";
+import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { isPropsEqual } from "@fullcalendar/core";
+import { withRouter } from "react-router-dom";
+import { db } from "..";
+import { connect, useDispatch } from "react-redux";
+import { deleteProfileThunk } from "../store/profile";
 
 const UserProfile = withRouter(function (props) {
   const profile = useSelector((state) => state.profile);
@@ -14,20 +14,20 @@ const UserProfile = withRouter(function (props) {
   let history = useHistory();
 
   const handleClick = () => {
-    history.push('/updateProfile');
+    history.push("/updateProfile");
   };
 
   const handleDelete = async () => {
     try {
-      window.confirm('This action will remove your profile.');
-      if (confirm('Are you sure you want to delete your profile?')) {
-        let docToDelete = db.collection('users').doc(user.uid);
+      window.confirm("This action will remove your profile.");
+      if (confirm("Are you sure you want to delete your profile?")) {
+        let docToDelete = db.collection("users").doc(user.uid);
         await docToDelete.delete();
         dispatch(deleteProfileThunk(user));
-        window.alert('Profile Deleted.');
-        history.push('/connect');
+        window.alert("Profile Deleted.");
+        history.push("/connect");
       } else {
-        window.alert('Cancelled.');
+        window.alert("Cancelled.");
       }
     } catch (error) {
       console.error(error);
@@ -38,7 +38,7 @@ const UserProfile = withRouter(function (props) {
     <div id="user-profile">
       <div id="upper-user-div">
         <div>
-          <h1>
+          <h1 className="home-title">
             {profile.firstName} {profile.lastName}
           </h1>
         </div>
@@ -48,8 +48,8 @@ const UserProfile = withRouter(function (props) {
         <br />
         <div>
           <b>
-            {profile.city}, {profile.state_province}, {profile.country} |{' '}
-            {profile.company} | {profile.role}{' '}
+            {profile.city}, {profile.state_province}, {profile.country} |{" "}
+            {profile.company} | {profile.role}{" "}
           </b>
         </div>
       </div>
@@ -69,8 +69,8 @@ const UserProfile = withRouter(function (props) {
           <br />
           <ul>
             {profile.looking_for_work
-              ? 'Yes'
-              : 'Just looking for new connections!'}
+              ? "Yes"
+              : "Just looking for new connections!"}
           </ul>
         </div>
         <br />

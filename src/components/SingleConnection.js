@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Chat, StartVideoChat } from '.';
+import React, { useState } from "react";
+import { Chat, StartVideoChat } from ".";
 
 function SingleConnection({ match, compound }) {
   const [displayChat, setDisplayChat] = useState(false);
@@ -12,13 +12,16 @@ function SingleConnection({ match, compound }) {
     <div className="connection">
       <div className="connection-top-row">
         <div className="connection-img-container">
-          <img src="/default-user.jpg" />
+          <img
+            src={
+              match.imageUrl.length > 0 ? match.imageUrl : "default-user.jpg"
+            }
+          />
         </div>
         <div className="connection-content">
           <h2>
             {match.firstName} {match.lastName}
           </h2>
-          <h3>{match.role}</h3>
           <div className="connection-controls">
             <StartVideoChat compoundUid={compound} />
             <button
@@ -30,7 +33,7 @@ function SingleConnection({ match, compound }) {
             </button>
             <button
               className="button"
-              onClick={() => console.log('not working yet')}
+              onClick={() => console.log("not working yet")}
               id="meeting-button"
             >
               Schedule a Meeting
