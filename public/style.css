@@ -395,6 +395,7 @@ footer a {
   width: 100%;
   background: white;
   border-bottom: 5px solid turquoise;
+  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.3);
 }
 
 .form-inputs {
