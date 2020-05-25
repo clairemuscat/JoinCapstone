@@ -16,10 +16,13 @@ const Navbar = withRouter(function ({ history }) {
 
   return (
     <div id="navbar">
-      <img src="/logo.png" />
+      <img onClick={() => linkTo('/')} src="/logo.png" id="logo" />
       <div id="navbar-link-container">
         <div className="navbar-link" onClick={() => linkTo('/connect')}>
           Connect
+        </div>
+        <div className="navbar-link" onClick={() => linkTo("/profile")}>
+          Profile
         </div>
         <div
           className="navbar-link"

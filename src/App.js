@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
   LandingPage,
   MatchingInterface,
@@ -8,15 +8,17 @@ import {
   Calendar,
   Chat,
   UserMandatoryForm,
-} from './components';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import firebase from 'firebase';
-import { useDispatch, useSelector } from 'react-redux';
-import { setUser as setUserRedux } from './store/user';
+  UserProfile,
+  UpdateProfile
+} from "./components";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import firebase from "firebase";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser as setUserRedux } from "./store/user";
 import {
   fetchOrCreateProfile,
   setProfile as setProfileRedux,
-} from './store/profile';
+} from "./store/profile";
 
 function App(props) {
   const isLoggedIn = useSelector((state) =>
@@ -59,6 +61,18 @@ function App(props) {
                 exact
                 path="/account/calendar"
                 component={Calendar}
+              />
+              <PrivateRoute
+                isLoggedIn={isLoggedIn}
+                exact
+                path="/profile"
+                component={UserProfile}
+              />
+              <PrivateRoute
+                isLoggedIn={isLoggedIn}
+                exact
+                path="/updateProfile"
+                component={UpdateProfile}
               />
               <PrivateRoute
                 isLoggedIn={isLoggedIn}

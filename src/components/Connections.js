@@ -13,14 +13,11 @@ const Connections = withRouter(function (props) {
         profile.matches.map((match) => {
           let compound = generateCompoundUid(user.uid, match.id);
           return (
-          
             <SingleConnection
               key={match.id}
               match={match}
               compound={compound}
             user={user}/>
-           
-    
           );
         })
       ) : (

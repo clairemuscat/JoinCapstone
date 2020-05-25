@@ -1,7 +1,8 @@
 import React, { useState, useCallback } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import Room from "./Room";
+import Drawer from "react-drag-drawer";
+import Room from "./room";
 
 function StartVideoChat(props) {
   const [token, setToken] = useState(null);
@@ -13,23 +14,25 @@ function StartVideoChat(props) {
   const handleClick = async (event) => {
     try {
       event.preventDefault();
-      const { data } = await axios.post('/video/token', {
+      const { data } = await axios.post("/video/token", {
         identity: user.displayName,
         room: props.compoundUid,
       });
       setToken(data.token);
     } catch (error) {
-      console.log('Oops I did it again', error);
+      console.log("Oops I did it again", error);
     }
   };
   let render;
   if (token) {
     render = (
-      <Room
-        roomName={props.compoundUid}
-        token={token}
-        handleLogout={handleLogout}
-      />
+      <Drawer open={true}>
+        <Room
+          roomName={props.compoundUid}
+          token={token}
+          handleLogout={handleLogout}
+        />
+      </Drawer>
     );
   } else {
     render = (

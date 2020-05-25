@@ -89,6 +89,7 @@ main {
 #chat-view {
   max-height: 400px;
   width: 100%;
+  min-height: 400px;
   /* box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.3); */
   /* border-top-left-radius: 5px; */
   /* border-top-right-radius: 5px; */
@@ -113,6 +114,10 @@ main {
 h2 {
   font-weight: 300;
   margin-bottom: 1em;
+  text-align: center;
+}
+
+h3 {
   text-align: center;
 }
 
@@ -147,11 +152,12 @@ button:hover {
 
 .room {
   position: relative;
+  display: flex;
+  justify-content: space-between;
 }
-.room button {
-  position: absolute;
-  top: 0;
-  right: 20px;
+.logoutButton {
+  align-self: baseline;
+  margin-top: 1em;
 }
 .room > h3 {
   text-align: center;
@@ -162,12 +168,13 @@ button:hover {
 .local-participant {
   text-align: center;
   margin-bottom: 2em;
+  flex-direction: row;
+  flex-grow: 3;
 }
 .remote-participants {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-between;
   padding: 0 2em 2em;
+  flex-direction: column;
+  flex-grow: 1;
 }
 .participant {
   background: #333e5a;
@@ -183,6 +190,11 @@ button:hover {
   text-align: center;
   padding-bottom: 0.5em;
   color: #fff;
+}
+
+.audio-button-icon {
+  align-self: baseline;
+  margin-top: 1em;
 }
 
 video {
@@ -349,12 +361,15 @@ footer a {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 .connection-meeting-options{
   display: grid;
   grid-row: 1fr;
   grid-column: auto;
 }
 =======
+=======
+>>>>>>> ab56a260769b55b4b85ce01a123be58b9a146487
 #calendar {
   margin: 5rem 5rem;
   max-height: 80%;
@@ -436,4 +451,91 @@ footer a {
 #matching-interface {
   margin: auto auto;
 }
+<<<<<<< HEAD
 >>>>>>> 116943313ead975a4284affc0fb6677054f75b45
+=======
+
+.swal-footer {
+  text-align: center;
+}
+
+.connection-meeting-options {
+  display: grid;
+  grid-row: 1fr;
+  grid-column: auto;
+}
+
+#user-profile {
+  text-align: center;
+}
+
+#upper-user-div {
+  width: 500px;
+  border: none;
+  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  padding: 30px;
+  margin: 50px;
+}
+
+#user-profile-info {
+  width: 500px;
+  border: none;
+  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  padding: 50px;
+  margin: 50px;
+}
+
+.listed-items > ul {
+  text-align: left;
+  text-indent: 1rem;
+}
+.listed-items {
+  text-align: left;
+}
+
+.user-update {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.profile-greeting {
+  font-weight: 100;
+  color: turquoise;
+  text-align: center;
+  padding-bottom: 10px;
+  border-bottom: 10px solid rgb(79, 98, 148);
+}
+
+.update-inputs {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid turquoise;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.update-labels {
+  line-height: 2;
+  text-align: left;
+  display: block;
+  margin-bottom: 13px;
+  margin-top: 20px;
+  color: rgb(0, 109, 128);
+  font-size: 14px;
+  font-weight: 200;
+  text-decoration: underline;
+}
+
+.profile-button {
+  width: 100%;
+}
+
+.blue {
+  background-color: #3a506b;
+}
+>>>>>>> ab56a260769b55b4b85ce01a123be58b9a146487
