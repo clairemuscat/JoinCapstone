@@ -75,15 +75,17 @@ export const newEvent = (user,event)=>{
 export const changeEvent=(event)=>{
     return async(dispatch)=>{
         try{
+            console.log('grape',event)
             let data={
                 title:event.title,
-                start:event.date.valueOf(),
+                start:event.date? event.date.valueOf():event.start.valueOf(),
                 status:true,
                 id:event.id
             }
             await db.collection('events').doc(event.id).set(data,{merge:true})
             const snap = await db.collection('events').doc(event.id).get();
             const updatedEvent = snap.data()
+            console.log('green grape', updatedEvent)
             dispatch(updateEvent(updatedEvent))
         }
         catch(err){

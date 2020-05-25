@@ -40,9 +40,8 @@ return async(dispatch)=>{
         console.log('one',user)
         const newThing = await db.collection('events').add({
             title:event.title,
-                start:event.date.valueOf(),
-                hostFirst:user.firstName,
-                hostLast:user.lastName,
+                start:event.date? event.date.valueOf():event.start.valueOf(),
+                host:user.displayName,
                 inviteFirst:match.firstName,
                 inviteLast:match.lastName,
                 attendees:match?[user.uid,match.id]:[user.uid],
@@ -52,9 +51,8 @@ return async(dispatch)=>{
        const id =newThing.id
        await db.collection('events').doc(id).set({
         title:event.title,
-        start:event.date.valueOf(),
-        hostFirst:user.firstName,
-        hostLast:user.lastName,
+        start:event.date? event.date.valueOf():event.start.valueOf(),
+        host:user.displayName,
         inviteFirst:match.firstName,
         inviteLast:match.lastName,
         attendees:match?[user.uid,match.id]:[user.uid],

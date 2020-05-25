@@ -3,6 +3,7 @@ import swal from '@sweetalert/with-react'
 import {connect} from 'react-redux'
 import {changeEvent} from '../../store/events'
 import{deleteMeeting,fetchMeetings} from '../../store/meetings'
+import {fetchUpcomingMeetings} from '../../store/upcomingMeetings'
 
 class DeleteMeeting extends React.Component{
     constructor(props){
@@ -26,7 +27,7 @@ class DeleteMeeting extends React.Component{
         },
         }).then(value=>{
                   this.props.removeMeeting(value)
-                  this,props.
+                  this.props.upcomingGone(this.props.user)
                 swal({
                   title:'Meeting request deleted',
                   icon:'success'
@@ -35,9 +36,12 @@ class DeleteMeeting extends React.Component{
         })
     }
 
-    addMeeting(){
-        this.props.updateMeetingStatus(this.props.meeting)
-        this.props.statusChanged(this.props.meeting)
+     addMeeting(){
+        console.log('do this first')
+        this.props.meeting.start = new Date(this.props.meeting.start).valueOf()
+         this.props.updateMeetingStatus(this.props.meeting)
+        console.log('then this')
+        this.props.statusChanged(this.props.user)
     }
 
     render(){
@@ -52,7 +56,8 @@ class DeleteMeeting extends React.Component{
 const mapDispatch =(dispatch)=>({
     removeMeeting:(event)=>dispatch(deleteMeeting(event)),
     updateMeetingStatus:(event)=>dispatch(changeEvent(event)),
-    statusChanged:(event)=>dispatch(fetchMeetings(event))
+    statusChanged:(user)=>dispatch(fetchMeetings(user)),
+    upcomingGone:(user)=>dispatch(fetchUpcomingMeetings(user))
 })
 
 export default connect(null,mapDispatch)(DeleteMeeting)

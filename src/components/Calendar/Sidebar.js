@@ -37,8 +37,8 @@ class Sidebar extends React.Component{
         </div>
         <div>
         <h5 className='meeting-list'>PENDING</h5>
-        {meetings.map(meeting=>{if(meeting.host=== (user.uid)){ return <div className='meeting'>{meeting.title} @ {meeting.start} <DeleteMeeting meeting={meeting} host={meeting.host}/> </div>} 
-        else{return <div className='meeting'>{meeting.title} @ {meeting.start} <DeleteMeeting meeting={meeting}/></div>}})}
+        {meetings.map(meeting=>{if(meeting.host=== (user.uid)){ return <div className='meeting'>{meeting.title} @ {meeting.start} <DeleteMeeting meeting={meeting} host={meeting.host} user={user}/> </div>} 
+        else{return <div className='meeting'>{meeting.title} @ {meeting.start} <DeleteMeeting meeting={meeting} user={user}/></div>}})}
         </div>
         </div>
       </section>)
