@@ -9,7 +9,7 @@ import {
   Chat,
   UserMandatoryForm,
   UserProfile,
-  UpdateProfile
+  UpdateProfile,
 } from "./components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import firebase from "firebase";
@@ -45,8 +45,9 @@ function App(props) {
 
   return (
     <Router>
+      <Navbar />
+
       <div className="app">
-        <Navbar />
         <div id="content">
           {authStateChecked && (
             <Switch>

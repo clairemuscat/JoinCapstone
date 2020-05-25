@@ -9,7 +9,7 @@ html {
 }
 
 body {
-  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", Helvetica, Arial, sans-serif;
   color: #333e5a;
   min-height: 100%;
 }
@@ -49,6 +49,7 @@ h1 {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-image: url("network.jpg");
 }
 
 main {
