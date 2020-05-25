@@ -1,5 +1,5 @@
 import React from 'react'
-import {newEvent} from '../store/events'
+import { addMeeting} from '../store/meetings'
 import {connect} from 'react-redux'
 import swal from '@sweetalert/with-react'
 import MyInput from './Calendar/MyInput'
@@ -16,7 +16,6 @@ class AddCalendarEvent extends React.Component{
     }
 
 addCalendarEvent(){
-    console.log('bologna')
     
     swal({
         title:"Create Event",
@@ -26,24 +25,20 @@ addCalendarEvent(){
           confirm:'Add Event'
         }
       }).then(val=>{
-          console.log('apples',val.value)
-          console.log('sending to thunk',this.props.match,this.props.user,val.value)
           this.props.makeAppointment(this.props.match,this.props.user,val.value)
       })
 }
     render(){
         return(
         <div>
-            <button type='button' onClick={this.addCalendarEvent}>Schedule A Call</button>
+            <button type='button'   id="meeting-button" className="button" onClick={this.addCalendarEvent}>Schedule A Call</button>
         </div>)
     }
 }
-// const mapState =(state)=>({
-//     events:state.calendar
-// })
+
 
 const mapDispatch=(dispatch)=>({
-    makeAppointment:(match,user,event)=>dispatch(newEvent(match,user,event))
+    makeAppointment:(match,user,event)=>dispatch(addMeeting(match,user,event))
 })
 
 

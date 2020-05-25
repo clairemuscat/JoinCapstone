@@ -44,7 +44,7 @@ const UserProfile = withRouter(function (props) {
         </div>
         <div id="user-profile-img">
           <img
-            src={profile.imageUrl > 0 ? profile.imageUrl : 'default-user.jpg'}
+            src={profile.imageUrl ? profile.imageUrl : 'default-user.jpg'}
           />
         </div>
         <br />

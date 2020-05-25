@@ -66,9 +66,10 @@ class UpdateEvent extends Component {
 						onChange={this.changeDate}
 					/>
 					<br />
-
 					<br />
-					<div id="attendee">Attendee(s): Brian</div>
+					<div id="attendee">
+						Attendee(s):{this.props.event.attendees}
+					</div>
 				</form>
 				<button type="button" onClick={this.updatingEvent}>
 					Update Event

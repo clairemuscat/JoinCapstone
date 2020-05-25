@@ -7,7 +7,6 @@ import { SingleConnection } from ".";
 const Connections = withRouter(function (props) {
   const profile = useSelector((state) => state.profile);
   const user = useSelector((state) => state.user);
-
   return (
     <div>
       <h1 id="connections-header" className="home-title">
@@ -22,7 +21,7 @@ const Connections = withRouter(function (props) {
               key={match.id}
               match={match}
               compound={compound}
-            />
+            user={user}/>
           );
         })
       ) : (
@@ -31,5 +30,4 @@ const Connections = withRouter(function (props) {
     </div>
   );
 });
-
 export default Connections;
