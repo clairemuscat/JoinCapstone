@@ -106,7 +106,7 @@ class Sidebar extends React.Component {
                     <div className="meeting-content">
                       Title: {meeting.title}
                       <br /> Time: {meeting.start} <br />
-                      invite request: {meeting.inviteFirst} {meeting.inviteLast}
+                      From: {meeting.host}
                     </div>
                     <br />
                     <DeleteMeeting meeting={meeting} user={user} />
