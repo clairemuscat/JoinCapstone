@@ -26,19 +26,19 @@ class Sidebar extends React.Component{
         
         return( <section className="sidebar">
         <div className="sidebar-header">
-          <h3>
+          <h1>
             Meetings
-          </h3>
+          </h1>
         </div>
         <div className='meeting-section'>
         <div className='meeting-list'>
-        <h5>UPCOMING</h5>
-    {upcoming.map(meeting => meeting.inviteFirst ? <div className='upcoming-meeting'>Title: {meeting.title}<br/> Time: {meeting.start}<br/>attendee(s): {meeting.host},{meeting.inviteFirst} {meeting.inviteLast} <br/> <button type='button' id='start-call-button'>Start Meeting</button><button type='button'>Reschedule</button><button type='button' className='delete-button' >Cancel</button></div>:<div>{meeting.title} @ {meeting.start}<br/>attendee(s): {meeting.host}</div>)}
+        <h3>UPCOMING</h3>
+    {upcoming===[] ?'No Updoming Meetings': upcoming.map(meeting => meeting.inviteFirst ? <div className='upcoming-meeting'><div className='meeting-content'>Title: {meeting.title}<br/> Time: {meeting.start}<br/>attendee(s): {meeting.host},{meeting.inviteFirst} {meeting.inviteLast} </div><br/> <div className='meeting-buttons'> <button type='button' id='start-call-button'>Start Meeting</button><button type='button'>Reschedule</button><button type='button' className='delete-button' >Cancel</button></div></div>:<div>{meeting.title} @ {meeting.start}<br/>attendee(s): {meeting.host}</div>)}
         </div>
         <div>
-        <h5 className='meeting-list'>PENDING</h5>
-        {meetings.map(meeting=>{if(meeting.hostId===user.uid){ return <div className='meeting'> Title: {meeting.title}<br/> Time: {meeting.start} <br/> Invitation:{meeting.inviteFirst} {meeting.inviteLast}<br/><DeleteMeeting meeting={meeting} host={meeting.host} user={user}/> </div>} 
-        else{return <div className='meeting'> Title: {meeting.title}<br/> Time: {meeting.start} <br/>invite request: {meeting.inviteFirst} {meeting.inviteLast} <DeleteMeeting meeting={meeting} user={user}/></div>}})}
+        <h3 className='meeting-list'>PENDING</h3>
+        { meetings.map(meeting=>{if(meeting.hostId===user.uid){ return <div className='meeting'>< div className='meeting-content'>Title: {meeting.title}<br/> Time: {meeting.start} <br/> Invitation:{meeting.inviteFirst} {meeting.inviteLast}</div><br/><DeleteMeeting meeting={meeting} host={meeting.host} user={user}/> </div>} 
+        else{return <div className='meeting'> <div className='meeting-content'>Title: {meeting.title}<br/> Time: {meeting.start} <br/>invite request: {meeting.inviteFirst} {meeting.inviteLast}</div><br/><DeleteMeeting meeting={meeting} user={user}/></div>}})}
         </div>
         </div>
       </section>)

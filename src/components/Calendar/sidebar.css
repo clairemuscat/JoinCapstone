@@ -1,53 +1,80 @@
 
 .sidebar {
-  background-color:white;
   color:black;
   z-index: 2;
-  width:23%
+  width:23%;
 }
 
 .sidebar-header {
   text-align: center;
-  background-color: white;
-  border-bottom: 1px solid gray;
   color:black;
+  background-color: white;
 }
 
+.meeting-section h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 1.1rem; 
+  background-color:white ;
+}
 .delete-button{
   background-color: rgb(211, 19, 19);
-}
 
+}
+.error-message{
+  background-color:black;
+}
+.decline-button{
+  background-color: rgb(211, 19, 19);
+  margin-bottom: .5rem;
+  margin-left: 21.5rem;
+}
 .accept-button{
   background-color: green;
+}
+.pending-buttons{
+  margin-bottom: .5rem;
+  margin-left: 16.5rem;
 }
 .meeting{
   border: 1px solid rgba(158, 154, 154, 0.932);
   background-color: rgba(158, 154, 154, 0.932);
   color:white;
   border-radius: .5rem;
-  padding:1px
+  padding:1px;
+  margin:.5rem;
+  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.3);
 }
 
+.meeting-content{
+  margin-top:1rem;
+  margin-left: .5rem;
+}
+
+.meeting-buttons{
+  margin-bottom: .5rem;
+  margin-left: 7.75rem;
+}
 
 .upcoming-meeting{
   border: 1px solid navy;
   border-radius: .5rem;
-  padding:1px
+  padding:1px;
+  margin:.5rem;
+  background-color: white;
+  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.3);
 }
 .meeting-list{
   margin-top: 1rem;
 }
 .fullcalendar{
-  width:77%
+  width:77%;
+  background-color: white;
+  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.3);
 }
-.sidebar-header h3 {
-  margin-top: 1.5rem;
-  margin-bottom: 1.1rem; 
-}
+
 
 .calendar{
   display: flex;
   height:100%;
   align-items: flex-start;
-  background-color: white;
 }
