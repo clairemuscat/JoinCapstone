@@ -27,7 +27,6 @@ class Calendar extends React.Component{
  }
 
  render(){
-   console.log('legos', this.props.meetings)
    return(
      <div className='calendar'>
     <Sidebar/>

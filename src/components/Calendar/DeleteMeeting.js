@@ -37,10 +37,8 @@ class DeleteMeeting extends React.Component{
     }
 
      addMeeting(){
-        console.log('do this first')
         this.props.meeting.start = new Date(this.props.meeting.start).valueOf()
          this.props.updateMeetingStatus(this.props.meeting)
-        console.log('then this')
         this.props.statusChanged(this.props.user)
     }
 

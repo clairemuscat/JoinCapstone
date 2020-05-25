@@ -37,7 +37,6 @@ export const fetchMeetings = (user) =>{
 export const addMeeting = (match,user,event) =>{
 return async(dispatch)=>{
     try{
-        console.log('one',user)
         const newThing = await db.collection('events').add({
             title:event.title,
                 start:event.date? event.date.valueOf():event.start.valueOf(),
@@ -47,7 +46,6 @@ return async(dispatch)=>{
                 attendees:match?[user.uid,match.id]:[user.uid],
                 status:false
         })
-        console.log('two')
        const id =newThing.id
        await db.collection('events').doc(id).set({
         title:event.title,
@@ -59,7 +57,6 @@ return async(dispatch)=>{
         status:false,
         id:id
        })
-       console.log('three')
         const snap=await db.collection('events').doc(id).get();
         const calendarEvent=snap.data()
          dispatch(createMeeting(calendarEvent))

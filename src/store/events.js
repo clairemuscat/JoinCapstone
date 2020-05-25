@@ -43,7 +43,6 @@ export const fetchEvents =(user)=>{
 export const newEvent = (user,event)=>{
     return async(dispatch)=>{
         try{
-            console.log('one',user)
             const newThing = await db.collection('events').add({
                 title:event.title,
                     start:event.date.valueOf(),
@@ -75,7 +74,6 @@ export const newEvent = (user,event)=>{
 export const changeEvent=(event)=>{
     return async(dispatch)=>{
         try{
-            console.log('grape',event)
             let data={
                 title:event.title,
                 start:event.date? event.date.valueOf():event.start.valueOf(),
@@ -85,7 +83,6 @@ export const changeEvent=(event)=>{
             await db.collection('events').doc(event.id).set(data,{merge:true})
             const snap = await db.collection('events').doc(event.id).get();
             const updatedEvent = snap.data()
-            console.log('green grape', updatedEvent)
             dispatch(updateEvent(updatedEvent))
         }
         catch(err){

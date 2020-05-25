@@ -16,7 +16,6 @@ class AddCalendarEvent extends React.Component{
     }
 
 addCalendarEvent(){
-    console.log('bologna')
     
     swal({
         title:"Create Event",
@@ -38,9 +37,7 @@ addCalendarEvent(){
         </div>)
     }
 }
-// const mapState =(state)=>({
-//     events:state.calendar
-// })
+
 
 const mapDispatch=(dispatch)=>({
     makeAppointment:(match,user,event)=>dispatch(addMeeting(match,user,event))
