@@ -92,7 +92,7 @@ h1 {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-image: url('network.jpg');
+  background-image: url('networkHIGHEST.jpg');
 }
 
 main {
@@ -392,6 +392,8 @@ footer a {
   background-color: white;
   box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.3);
   border-radius: 5px;
+  border: 1px solid turquoise;
+  padding: 1rem;
 }
 
 .user-greeting {
@@ -406,11 +408,13 @@ footer a {
   display: block;
   box-sizing: border-box;
   width: 100%;
-  border-radius: 4px;
+  border-radius: 5px;
   border: 1px solid turquoise;
   padding: 10px 15px;
   margin-bottom: 10px;
   font-size: 14px;
+  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.3);
+  background-color: white;
 }
 
 .required {
@@ -598,15 +602,28 @@ footer a {
   text-decoration: underline;
 }
 
-#connections-header {
-  background-color: white;
-  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.3);
+.profile-button {
+  width: 100%;
+}
+
+.blue {
+  background-color: #3a506b;
+}
+
+#check {
+  margin-left: 12rem;
+}
+
+#form-submit {
+  width: 100%;
   border-radius: 5px;
-  padding: 1rem;
-  text-align: center;
-  margin-bottom: 6rem;
 }
 
 .underline {
   border-bottom: 1px solid black;
+}
+
+#user-profile-img img {
+  max-width: 100%;
+  max-height: 100%;
 }

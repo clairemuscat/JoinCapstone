@@ -38,12 +38,14 @@ const UserProfile = withRouter(function (props) {
     <div id="user-profile">
       <div id="upper-user-div">
         <div>
-          <h1>
+          <h1 className="home-title">
             {profile.firstName} {profile.lastName}
           </h1>
         </div>
         <div id="user-profile-img">
-          <img src={profile.imageUrl} />
+          <img
+            src={profile.imageUrl > 0 ? profile.imageUrl : 'default-user.jpg'}
+          />
         </div>
         <br />
         <div>

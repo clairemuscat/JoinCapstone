@@ -5,7 +5,13 @@ function MatchProfileDisplay(props) {
   return (
     <div className="match-profile-display">
       <div id="card-image-container">
-        <img src="/default-user.jpg" />
+        <img
+          src={
+            userProfile.imageUrl.length > 0
+              ? userProfile.imageUrl
+              : 'default-user.jpg'
+          }
+        />
       </div>
       <div className="match-card-header">
         <h2>

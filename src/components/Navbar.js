@@ -1,19 +1,17 @@
 import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
 import firebase from 'firebase';
-
 const Navbar = withRouter(function ({ history, location }) {
   const linkTo = (path) => {
     history.push(path);
   };
-
   const handleSignOut = () => {
     try {
       firebase.auth().signOut();
       history.push('/');
     } catch (error) {}
   };
-  console.log(location);
+
   return (
     <div id="navbar">
       <img onClick={() => linkTo('/')} src="/logo.png" id="logo" />
@@ -28,7 +26,14 @@ const Navbar = withRouter(function ({ history, location }) {
         >
           Connect
         </div>
-        <div className="navbar-link" onClick={() => linkTo("/profile")}>
+        <div
+          className={
+            location.pathname === '/profile'
+              ? 'navbar-link underline'
+              : 'navbar-link'
+          }
+          onClick={() => linkTo('/profile')}
+        >
           Profile
         </div>
         <div
@@ -58,5 +63,4 @@ const Navbar = withRouter(function ({ history, location }) {
     </div>
   );
 });
-
 export default Navbar;

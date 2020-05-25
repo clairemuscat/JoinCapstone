@@ -12,7 +12,7 @@ import './sidebar.css'
 import  {fetchEvents,newEvent,changeEvent,deleteEvent} from '../../store/events'
 
 
-import './main.scss'; // webpack must be configured to do this
+import "./main.scss"; // webpack must be configured to do this
 
 
 

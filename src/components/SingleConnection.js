@@ -13,13 +13,16 @@ function SingleConnection({ match, compound,user }) {
     <div className="connection">
       <div className="connection-top-row">
         <div className="connection-img-container">
-          <img src="/default-user.jpg" />
+          <img
+            src={
+              match.imageUrl.length > 0 ? match.imageUrl : "default-user.jpg"
+            }
+          />
         </div>
         <div className="connection-content">
           <h2>
             {match.firstName} {match.lastName}
           </h2>
-          <h3>{match.role}</h3>
           <div className="connection-controls">
             <StartVideoChat compoundUid={compound} />
             <button
