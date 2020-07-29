@@ -18,17 +18,14 @@ const Room = ({ roomName, token, handleLogout }) => {
   ));
   //
   useEffect(() => {
-    // Adds a participant to state
     const participantConnected = (participant) => {
       setParticipants((prevParticipants) => [...prevParticipants, participant]);
     };
-    // Removes a participant from state
     const participantDisconnected = (participant) => {
       setParticipants((prevParticipants) =>
         prevParticipants.filter((p) => p !== participant)
       );
     };
-    // Connects local video/audio
     Video.connect(token, {
       name: roomName,
     }).then((room) => {
